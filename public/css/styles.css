@@ -133,8 +133,8 @@ body {
 }
 
 .main-title {
-    margin-top: 70px;
-    margin-bottom: 40px;
+    margin-top: 60px;
+    margin-bottom: 10px;
 }
 
 .main-pages a {
@@ -161,10 +161,6 @@ body {
 .main-buttons {
     display: flex;
     float: right;
-}
-
-#search-input {
-    border-radius: 100px;
 }
 
 .create-btn {
@@ -212,12 +208,24 @@ tr:nth-child(odd) {
     background-color: #f7f7f7;
 }
 
-.table-main {
-    margin-top: 50px;
-    margin-bottom: 100px;
-    overflow-x: auto;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(73, 73, 73, 0.288);
+.tablemain {
+    margin-top: 30px;
+    overflow-x:auto;
+    box-shadow: 0 0 10px rgba(148, 148, 148, 0.637);
+    border-radius: 15px;    
+    background: linear-gradient(to bottom, #FFA500 0%, #ececec 100%);
+}
+
+.create-docbtn{
+    display: flex;
+    float: right;
+}
+
+#custom-filter{
+    width: 240px;
+    margin-top: 14px;
+    border-radius: 30px;
+    background-color: #e8e6e6;
 }
 
 #delete-btn{

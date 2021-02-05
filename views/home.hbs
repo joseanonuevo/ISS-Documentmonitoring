@@ -2,16 +2,292 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+  <title>ISS-Documents</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap4 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+  <!-- Icons -->
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  {{!-- SweetAlert --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 
 <body>
-    {{names}}
 
+  <!-- Header -->
+  <nav id="page-header">
+    <div class="title">
+      <img src="/img/iss-logo.png" id="header-logo">
+      <h3 id="header-title">INFORMATION SYSTEMS SOCIETY</h3>
+    </div>
 
+    <!-- Start of  Dropdown -->
+    <div class="settings-dropdown">
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false" id="settings-btn">
+          
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <button class="dropdown-item" type="button" data-toggle="modal" data-target="#forgot-pass"><span
+              class="material-icons" id="dropdown-icons">
+              lock
+            </span>Security</button>
+          <button class="dropdown-item" type="button" onclick="logout()"><span class="material-icons"
+              id="dropdown-icons">
+              exit_to_app
+            </span>Logout</button>
+        </div>
+      </div>
+    </div>
+    <!-- END Dropdown -->
+  </nav>
+  <!-- END of Header -->
 
+  <!-- Start of Content -->
+  <div class="container-fluid" id="main-container">
+
+    <!-- Title -->
+    <div class="main-title">
+      <h1>Monitored Documents</h1>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <div class="main-pages">
+              <a href="/main"><span class="material-icons" id="menu-icons">
+                  description
+                </span>Documents
+              </a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="main-pages">
+              <a href="/archive"><span class="material-icons" id="menu-icons">
+                  archive
+                </span>Archive
+              </a>
+            </div>
+          </li>
+        </ul>
+        <div class="create-docbtn">
+            <button class="create-btn" type="button" data-toggle="modal" data-target="#createDoc">Create
+            Document</button>  
+            <input id="custom-filter" class="form-control" placeholder="Search" type="text"/>
+        </div>
+      </div>
+    </nav>
+    <!-- START of table -->
+    <div class="tablemain">
+
+      <table id="mydatatable">
+       <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Date Updated</th>
+            <th>Note</th>
+            <th>To be Signed By</th>
+            <th>Attachment</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {{#each names}}
+            <tr>
+                <td style="width: 100px">{{createDocu_ID}}</td>
+                <td>{{createDocu_Title}}</td>
+                <td style="width: 20%">{{createDocu_Date}}</td>
+                <td>{{createDocu_Notes}}</td>
+                <td>{{createDocu_tobeSignedby}}</td>
+                <td>{{createDocu_Attachment}}</td>
+                <td>{{createDocu_Status}}</td>
+                <td><button class="delete-row-btn" id="delete-btn" data-id=${createDocu_ID}></td>
+                <td><button class="archive-row-btn" id="archive-btn" data-id=${createDocu_ID}></td>
+            </tr>
+            {{/each}}
+        </tbody>     
+      </table>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <!-- END of table -->
+
+  <!-- End of Content -->
+
+  <!-- FOR MODAL -->
+  <!-- Modal -->
+
+  <!-- MODAL FOR FORGOT PASSWORD -->
+  <div class="modal fade" id="forgot-pass" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" id="modal-body">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLongTitle">Change Password</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="create-docform">
+            <form>
+              <label for="" id="createdoc-label">Old Password</label>
+              <input type="password" class="modal-input" id="createdoc-modal" required><br>
+              <label for="" id="createdoc-label">New Password</label>
+              <input type="password" class="modal-input" id="createdoc-modal" required><br>
+              <label for="" id="createdoc-label">Confirm New Password</label>
+              <input type="password" class="modal-input" id="createdoc-modal" required><br>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="button-pw">          
+            <button type="button" class="close-modal" data-dismiss="modal">Close</button>
+            <button type="submit" class="submit-modal">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL FOR CREATE DOC -->
+  <div class="modal fade" id="createDoc" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" id="modal-body">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLongTitle">Create a Document</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="create-docform">
+            <form action="/auth/createDocu" method="POST">
+              <label for="" id="createdoc-label">Document Title</label>
+              <input type="text" class="modal-input" id="createdoc-modal" name="document_title"><br>
+              <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
+              <label for="" id="createdoc-label">Upload File</label></br>
+              <h5>Attachment: <input type="file" multiple name="attachment" />
+              </h5>
+              <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
+              <label for="" id="createdoc-label">To be Signed by</label>
+              <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
+              
+              <label for="" id="createdoc-label">Note</label>
+              <input type="text" class="modal-input" id="note-modal" name="note" required><br>
+              <!-- Radio Buttons -->
+              <div class="row">
+                <div class="col-3">
+                  <label for="">Status</label>
+                </div>
+                <div class="col">
+                  <div class="radio-form">
+                    <input type="radio" id="complete" name="status" value="Complete" required>
+                    <label for="complete">Complete</label><br>
+                    <input type="radio" id="in-progress" name="status" value="In Progress">
+                    <label for="in-progress">In Progress</label><br>
+                    <input type="radio" id="on-hold" name="status" value="On Hold">
+                    <label for="on-hold">On Hold</label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="close-modal" data-dismiss="modal">Close</button>
+                  <button type="submit" class="submit-modal">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </body>
+<!-- Scripts -->
+<script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+
+<!-- Script for Bootstrap 4 -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+
+{{!--SweetAlert  --}}
+<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
+
+<script src="/vanila-js/createDocu.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+var table = $('#mydatatable').DataTable();
+   //DataTable custom search field
+    $('#custom-filter').keyup( function() {
+      table.search( this.value ).draw();
+    } );
+});
+</script>
+
+<script>
+
+$('#mydatatable').DataTable({
+    sDom: 'lrtip',
+    "bInfo" : false,
+    bPaginate: false,
+    "aaSorting": [],
+  columnDefs: [{
+  orderable: false,
+  targets: [0,3,4,5,7,8],
+  }]
+});
+
+
+</script>
 
 </html>

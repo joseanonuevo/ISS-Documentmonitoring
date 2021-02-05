@@ -8,11 +8,11 @@ router.get("/", (req, res) => {
 });
 
 router.get("/home", verify, (req, res) => {
-  const sql = "SELECT * from users";
+  const sql = "SELECT * from create_document";
   db.query(sql, (err, results) => {
     if (!err)
       return res.render("home", {
-        names: JSON.stringify(results),
+        names: results,
       });
     else return res.json(err);
   });
