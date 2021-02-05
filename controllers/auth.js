@@ -9,14 +9,14 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: "Pls input values" });
     }
     db.query(
-      "SELECT * FROM users WHERE email = ?",
+      "SELECT * FROM users WHERE user_Email = ?",
       [email],
       async (error, results) => {
         if (results.length === 0) {
           return res.status(400).json({ error: "No Account" });
         } else if (
           !results ||
-          !(await bcrypt.compare(password, results[0].password))
+          !(await bcrypt.compare(password, results[0].user_Password))
         ) {
           return res.status(400).json({ error: "Invalid" });
         } else {

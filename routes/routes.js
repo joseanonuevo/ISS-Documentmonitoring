@@ -4,22 +4,6 @@ const jwt = require("jsonwebtoken");
 const db = require("../db/connectDB");
 
 router.get("/", (req, res) => {
-  res.render("register");
-});
-
-router.get("/a", (req, res) => {
-  res.render("activation");
-});
-
-router.get("/b", (req, res) => {
-  res.render("requestPw");
-});
-
-router.get("/c", (req, res) => {
-  res.render("reset");
-});
-
-router.get("/d", (req, res) => {
   res.render("login");
 });
 
