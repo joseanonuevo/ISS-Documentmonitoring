@@ -2,19 +2,153 @@
 <html lang="en">
 
 <head>
+    <title>ISS-Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <!-- Bootstrap4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
 <body>
-    <form action="/auth/login" method="POST">
-        <label for="email">Email</label><br>
-        <input type="text" id="email" name="email"><br>
-        <label for="email">Password</label><br>
-        <input type="text" id="password" name="password"><br>
-        <input type="submit">
-    </form>
+
+    <!-- Header -->
+    <nav id="page-header">
+        <div class="title">
+            <img src="/img/iss-logo.png" id="header-logo">
+            <h3 id="header-title">INFORMATION SYSTEMS SOCIETY</h3>
+        </div>
+    </nav>
+
+    <div class="container mt-4 mb-4">
+        <!-- Slideshow -->
+        
+            <div class="slideshow-index">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="/public/img/slideshow1.jpg" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="/public/img/slideshow2.jpg" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="/public/img/slideshow3.jpg" alt="Third slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="/public/img/slideshow4.jpg" alt="Fourth slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        
+        <!-- End of Slideshow -->
+
+        <!-- Content of the page -->
+        <div class="landing-content">
+            <div class="row">
+                <div class="col">
+                    <!-- Login -->
+                    <div class="login-column">
+                        <h1 id="login-title">Login</h1>
+                        <p>Please log in to the system</p>
+                        <form action="/auth/login" method="POST">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="text" name="email" aria-describedby="text"
+                                    placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Password" required>
+                                <div class="forgotPW"><a data-toggle="modal" href="#forgotPWModal">Forgot Password?</a></div>
+                            </div>
+                            <button type="submit" class="login-btn">Log In</button>
+                        </form>
+                    </div>
+                    <!-- End of Login -->
+                </div>
+                <div class="col">
+                    <!-- Page info -->
+                    <div class="page-info">
+                        <section>
+                            <h1>About Us</h1>
+                            <p>Information Systems Society (ISS) is the official academic organization for students
+                                taking up Information Systems in the University of Santo Tomas. UST - ISS is
+                                dedicated
+                                in the dissemination of knowledge and enhancing the talents of its members.</p>
+                        </section>
+                        <section>
+                            <h1>The System</h1>
+                            <p>Information Systems Society Document Monitoring System is a web application to keep
+                                monitoring of the documents; to be able to disseminate information of what was
+                                actually
+                                going on to the certain documents that the organization is working on; and to
+                                finalize
+                                the documents with satisfaction.</p>
+                        </section>
+                    </div>
+                    <br>
+                    <br>
+                    <!-- End of Page Info -->
+                    {{!-- For Modal --}}
+                    <div class="modal fade" id="forgotPWModal" tabindex="-1" role="dialog" aria-labelledby="forgotPWModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content" id="forgotPWMod">
+                                <div class="modal-body" style="back">
+                                    <center>
+                                        <h2>Forgot Password?</h2>
+                                        <br>
+                                        <pre style="font-family: 'Montserrat', sans-serif; font-size:16px;">Contact Administrator at
+ust.issociety@gmail.com</pre>                                
+                                    </center>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="forgotpw-closeBtn" data-dismiss="modal">Okay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+
+    <!-- Script for Bootstrap 4 -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>
