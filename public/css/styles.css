@@ -326,13 +326,36 @@ tr:nth-child(odd) {
     padding-bottom: 20px;
 }
 
-#forgotpw-closeBtn{
+#email-forgotpw{
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    width: 250px;
+}
+
+#lbl-enterEmail{
+    font-size: 16px;
+    color: black;
+    padding-right: 20px;
+}
+
+#forgotPW-title{
+    position: relative;
+    top: -25px;
+}
+
+#forgotPW-body{
+    position: relative;
+    top: -25px;
+}
+
+#submit-forgetPW {
     background-color: orange;
     outline: none;
     border: none;
     color: white;
     height: 35px;
-    width: 80px;
+    width: 120px;
     border-radius: 30px;
     margin-right: auto;
     margin-left: auto;
