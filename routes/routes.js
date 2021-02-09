@@ -18,6 +18,10 @@ router.get("/home", verify, (req, res) => {
   });
 });
 
+router.get("/requestPW", (req, res) => {
+  res.render("requestPW");
+});
+
 function verify(req, res, next) {
   const authcookie = req.cookies.authcookie;
   jwt.verify(authcookie, process.env.JWT_SECRET, (err, data) => {

@@ -362,3 +362,80 @@ tr:nth-child(odd) {
 }
 
 /* END Modal for forgotPWModal */
+
+/* forgot password pages */
+
+.header-reset{
+    display: flex;
+    font-family: 'Montserrat',
+    sans-serif;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 38%;
+}
+
+#header-logo1 {
+    width: 55px;
+    height: 55px;
+    margin-right: 20px;
+}
+
+.resetpage-content{
+    background-color: #fffff0;
+    font-family: 'Montserrat',
+    sans-serif;
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 0 5px rgba(148, 148, 148, 0.637);
+    margin-top: 30px;
+}
+
+.resetpage-inner{
+    margin: auto;
+    width: 60%;
+    padding-right: 10px;
+}
+
+.thick{
+    font-weight: 900;
+}
+
+.lbl-resetpg{
+    width: 250px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.input-resetPW{
+    border-radius: 15px;
+    border: none;
+    background-color: #e8e6e6;
+    height: 35px;
+    width: 230px;
+    font-size: 21px;
+}
+
+#submit-resetpw{
+    background-color: orange;
+    border: none;
+    padding: 2px;
+    width: 100px;
+    border-radius: 100px;
+    color: white;
+    margin-top: 40px;
+}
+
+#resetreset-btn{
+    margin-right: 20px;
+    border-radius: 30px;
+    background-color: #c4c4c4;
+    border: none;
+    padding: 2px;
+    width: 100px;
+    border-radius: 100px;
+    color: black;
+}
+
+/* END */
