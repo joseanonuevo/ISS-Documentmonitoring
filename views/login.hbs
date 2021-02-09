@@ -113,29 +113,31 @@
                     <br>
                     <!-- End of Page Info -->
                     {{!-- For Modal --}}
-                    <div class="modal fade" id="forgotPWModal" tabindex="-1" role="dialog" aria-labelledby="forgotPWModal" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content" id="forgotPWMod">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" style="position:relative; top:-20px;">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" id="forgotPW-body" style="back">
-                            <center>
-                                <h2 id="forgotPW-title">Forgot Password?</h2>
-                                <br>
-                                <form action="#">
-                                    <label for="email-forgotpw" id="lbl-enterEmail">Enter Email</label>
-                                    <input type="text" name="email-forgotpw" id="email-forgotpw">                
-                            </center>
-                        </div>
-                            <div class="modal-footer">
-                                <button type="submit" id="submit-forgetPW">Submit</button>
-                                </form>
+                    <div class="modal fade" id="forgotPWModal" tabindex="-1" role="dialog"
+                        aria-labelledby="forgotPWModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content" id="forgotPWMod">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="position:relative; top:-20px;">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="forgotPW-body" style="back">
+                                    <center>
+                                        <h2 id="forgotPW-title">Forgot Password?</h2>
+                                        <br>
+                                        <form action="/api/requestPwChange" method="POST">
+
+                                            <label for="email-forgotpw" id="lbl-enterEmail">Enter Email</label>
+                                            <input type="text" name="email" id="email>
+                                    </center>
+                                </div>
+                                <div class=" modal-footer">
+                                            <button type="submit" id="submit-forgetPW">Submit</button>
+                                        </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>

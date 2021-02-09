@@ -228,13 +228,11 @@ exports.requestPwChange = (req, res) => {
   console.log(req.body);
   const { email } = req.body;
   db.query(
-    "SELECT * FROM users WHERE email = ?",
+    "SELECT * FROM users WHERE user_Email = ?",
     [email],
     async (error, results) => {
       if (results.length === 0) {
-        return res.status(400).json({
-          error: "No Account",
-        });
+        return res.status(400).json({ error: "No Account" });
       } else {
         const token = jwt.sign(
           {
