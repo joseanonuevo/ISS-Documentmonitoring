@@ -18,8 +18,8 @@ router.get("/home", verify, (req, res) => {
   });
 });
 
-router.get("/requestPW", (req, res) => {
-  res.render("requestPW");
+router.get("/resetPW", (req, res) => {
+  res.render("resetPW");
 });
 
 function verify(req, res, next) {

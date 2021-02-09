@@ -282,7 +282,7 @@ exports.resetPw = (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 5);
         console.log(hashedPassword);
         db.query(
-          "UPDATE users SET password = ? WHERE email = ?",
+          "UPDATE users SET user_Password = ? WHERE user_Email = ?",
           [hashedPassword, email],
           (error, results) => {
             if (error) {

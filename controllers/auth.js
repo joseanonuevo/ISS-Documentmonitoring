@@ -20,8 +20,8 @@ exports.login = async (req, res) => {
         ) {
           return res.status(400).json({ error: "Invalid" });
         } else {
-          const id = results[0].id;
-          const token = jwt.sign({ id: id }, process.env.JWT_SECRET, {
+          const id = results[0].user_ID;
+          const token = jwt.sign({ id }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN,
           });
           console.log("TOKEN:" + token);

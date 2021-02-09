@@ -36,22 +36,25 @@
 
     <div class="resetpage-content">
         <br><br>
-        <center><h2 class="thick">Reset Password</h2></center>
-        <br>   
+        <center>
+            <h2 class="thick">Reset Password</h2>
+        </center>
+        <br>
 
         <div class="resetpage-inner">
             <form action="/api/resetPw" method="post">
-             
+
                 <label class="lbl-resetpg" for="newpw">New Password</label>
-                <input type="password" id="password" name="newpw" class="input-resetPW" required><br><br>
+                <input type="password" id="password" name="password" class="input-resetPW" required><br><br>
                 <label class="lbl-resetpg" for="confirmpw">Confirm Password</label>
-                <input type="password" id="password" name="confirmpw" class="input-resetPW" required><br><br>
+                <input type="password" id="password" name="passwordConfirm" class="input-resetPW" required><br><br>
                 <label class="lbl-resetpg" for="token">Verification Code</label>
                 <input type="text" id="token" name="token" class="input-resetPW" required><br><br>
-                
-                <center><button type="reset" value="Reset" id="resetreset-btn">Cancel</button><input type="submit" id="submit-resetpw"></center>
+
+                <center><button type="reset" value="Reset" id="resetreset-btn">Cancel</button><input type="submit"
+                        id="submit-resetpw"></center>
                 <br><br>
-               
+
 
             </form>
         </div>
@@ -60,7 +63,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-    </script>
+        </script>
 </body>
 
 
