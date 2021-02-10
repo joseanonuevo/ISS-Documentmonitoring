@@ -22,6 +22,10 @@ router.get("/resetPW", (req, res) => {
   res.render("resetPW");
 });
 
+router.get("/registration", (req, res) => {
+  res.render("registration");
+});
+
 function verify(req, res, next) {
   const authcookie = req.cookies.authcookie;
   jwt.verify(authcookie, process.env.JWT_SECRET, (err, data) => {
