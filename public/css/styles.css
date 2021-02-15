@@ -191,6 +191,9 @@ th {
     padding-right: 10px;
     padding-left: 20px;
     color: white;
+    font-size: 16px;
+    font-family: 'Montserrat',
+    sans-serif;
 }
 
 td {
@@ -253,6 +256,12 @@ tr:nth-child(odd) {
 #modal-body {
     background-color: rgb(232, 230, 230);
     border-radius: 20px;
+}
+
+#modal-body input:focus{
+    outline: none;
+    padding-left: 10px;
+    box-shadow: 0 0 3pt 2pt lightblue;
 }
 
 #createdoc-modal,
@@ -571,6 +580,7 @@ tr:nth-child(odd) {
     font-family: 'Montserrat',
     sans-serif;
     font-weight: bolder;
+    margin-bottom: 40px;
 }
 
 #regSubmit-btn:focus,
@@ -579,4 +589,64 @@ tr:nth-child(odd) {
     outline: none;
 }
 
+.reg3{
+    margin-bottom: 20px;
+}
+
 /* REGISTRATION */
+
+/* START Go back */
+
+#goback{
+    color: black;
+    font-size: 18px;
+    position: absolute;
+    left: -10px;
+    top: 97px;
+}
+
+#gobackbtn{
+    font-size: 40px;
+    position: relative;
+    top: 13px;
+    left: 13px;
+}
+
+/* END Go back */
+
+/* START Add Account Modal */
+
+#addAccount-modalContent{
+    background-color: #e8e6e6;
+    border-radius: 40px;
+}
+
+.content-addAcc{
+    display: flex;
+}
+
+#addAcc-email {
+    border-radius: 30px;
+    border: none;
+    background-color: #fffff0;
+    height: 30px;
+    width: 250px;
+    margin-bottom: 30px;
+    outline: none;
+}
+
+#addAccount-modalBody input:focus{
+    box-shadow: 0 0 1pt 1pt lightblue;
+    padding-left: 10px;
+}
+
+#addAcc-emailBtn{
+    border-radius: 30px;
+    background-color: orange;
+    border: none;
+    color: white;
+    height: 30px;
+    width: 100px;
+}
+
+/* END Add Account Modal */

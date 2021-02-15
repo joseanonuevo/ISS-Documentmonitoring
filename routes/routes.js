@@ -26,6 +26,14 @@ router.get("/registration", (req, res) => {
   res.render("registration");
 });
 
+router.get("/registeredUsers", (req, res) => {
+  res.render("registeredUsers");
+});
+
+router.get("/adminHome", (req, res) => {
+  res.render("adminHome");
+});
+
 function verify(req, res, next) {
   const authcookie = req.cookies.authcookie;
   jwt.verify(authcookie, process.env.JWT_SECRET, (err, data) => {

@@ -61,12 +61,22 @@
   </nav>
   <!-- END of Header -->
 
+    {{!-- Go back lang --}}
+    
+    <div class="go-backbtn">
+        <a href="/adminHome" id="goback"><span class="material-icons" id="gobackbtn">
+        navigate_before
+        </span>Go Back</a>
+    </div>
+
+    {{!-- End of go back --}}
+
   <!-- Start of Content -->
   <div class="container-fluid" id="main-container">
 
     <!-- Title -->
-    <div class="main-title">
-      <h1>Monitored Documents</h1>
+    <div class="main-title" style="margin-top: 100px;">
+      <h1>Registered Users</h1>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -79,23 +89,22 @@
           <li class="nav-item active">
             <div class="main-pages">
               <a href="/main"><span class="material-icons" id="menu-icons">
-                  description
-                </span>Documents
+                  people
+                </span>Registered Users
               </a>
             </div>
           </li>
           <li class="nav-item">
             <div class="main-pages">
               <a href="/archive"><span class="material-icons" id="menu-icons">
-                  archive
-                </span>Archive
+                  person_add_disabled
+                </span>Disabled Users
               </a>
             </div>
           </li>
         </ul>
         <div class="create-docbtn">
-            <button class="create-btn" type="button" data-toggle="modal" data-target="#createDoc">Create
-            Document</button>  
+            <button class="create-btn" type="button" data-toggle="modal" data-target="#addAccount-modal">Add Account</button> 
             <input id="custom-filter" class="form-control" placeholder="Search" type="text"/>
         </div>
       </div>
@@ -106,15 +115,13 @@
       <table id="mydatatable">
        <thead>
           <tr>
-            <th style="width: 10px;">ID</th>
-            <th>Title</th>
-            <th>Date Updated</th>
-            <th style="width: 136px;">Note</th>
-            <th>To be Signed By</th>
-            <th>Attachment</th>
-            <th>Status</th>
-            <th></th>
-            <th></th>
+            <th style="width: 160px;">Last Name</th>
+            <th style="width: 160px;">First Name</th>
+            <th style="width: 30px;">M.I</th>
+            <th style="width: 180px;">Position</th>
+            <th style="width: 220px;">Email</th>
+            <th>Commencement Date</th>
+            <th style="width: 30px;">Disable</th>
           </tr>
         </thead>
 
@@ -165,69 +172,44 @@
               <label for="" id="createdoc-label">New Password</label>
               <input type="password" class="modal-input" id="createdoc-modal" required><br>
               <label for="" id="createdoc-label">Confirm New Password</label>
-              <input type="password" class="modal-input" id="createdoc-modal" required><br>  
-              <center>       
-              <button type="button" class="close-modal" data-dismiss="modal">Close</button>
-              <button type="submit" class="submit-modal">Submit</button></form>
-              </center>   
+              <input type="password" class="modal-input" id="createdoc-modal" required><br>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL FOR CREATE DOC -->
-  <div class="modal fade" id="createDoc" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" id="modal-body">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLongTitle">Create a Document</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="create-docform">
-            <form action="/auth/createDocu" method="POST">
-              <label for="" id="createdoc-label">Document Title</label>
-              <input type="text" class="modal-input" id="createdoc-modal" name="document_title"><br>
-              <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
-              <label for="" id="createdoc-label">Upload File</label>
-              <input type="file" multiple name="attachment" /></br><br>
-              <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
-              <label for="" id="createdoc-label">To be Signed by</label>
-              <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
-              
-              <label for="" id="createdoc-label">Note</label>
-              <input type="text" class="modal-input" id="note-modal" name="note" required><br>
-              <!-- Radio Buttons -->
-              <div class="row">
-                <div class="col-3">
-                  <label for="">Status</label>
-                </div>
-                <div class="col">
-                  <div class="radio-form">
-                    <input type="radio" id="complete" name="status" value="Complete" required>
-                    <label for="complete">Complete</label><br>
-                    <input type="radio" id="in-progress" name="status" value="In Progress">
-                    <label for="in-progress">In Progress</label><br>
-                    <input type="radio" id="on-hold" name="status" value="On Hold">
-                    <label for="on-hold">On Hold</label>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="close-modal" data-dismiss="modal">Close</button>
-                  <button type="submit" class="submit-modal">Submit</button>
-                </div>
-              </div>
+        <div class="modal-footer">
+          <div class="button-pw">          
+            <button type="button" class="close-modal" data-dismiss="modal">Close</button>
+            <button type="submit" class="submit-modal">Submit</button>
             </form>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+<!-- Modal -->
+<div class="modal fade" id="addAccount-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" id="addAccount-modalContent">
+      <div class="modal-header" id="addAccount-modalHead">
+        <h3>Add Account</h3>  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="addAccount-modalBody">
+        <form action="#">
+            <div class="content-addAcc" id="testi1"></div>
+                <center>
+                    <label for="addAcc-email">Enter Email</label>
+                    <input type="text" name="addAcc-email" id="addAcc-email">
+                    <input type="submit" value="Submit" id="addAcc-emailBtn" />
+                </center>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 <!-- Scripts -->
 <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -279,7 +261,7 @@ $('#mydatatable').DataTable({
     "aaSorting": [],
   columnDefs: [{
   orderable: false,
-  targets: [0,3,4,5,7,8],
+  targets: [2,3,4,5,6],
   }]
 });
 
