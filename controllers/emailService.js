@@ -12,7 +12,7 @@ exports.register = (req, res) => {
   console.log(req.body);
   const { email } = req.body;
   db.query(
-    "SELECT email FROM users WHERE email = ?",
+    "SELECT user_Email FROM users WHERE user_Email = ?",
     [email],
     async (error, results) => {
       if (results.length > 0) {
@@ -172,7 +172,19 @@ exports.register = (req, res) => {
 
 exports.activateAccount = (req, res, next) => {
   try {
-    const { token, name, password } = req.body;
+    date = Date.now();
+    const {
+      fname,
+      mi,
+      lname,
+      regmonth,
+      regday,
+      regyear,
+      position,
+      password,
+      confirmpw,
+      token,
+    } = req.body;
     console.log(req.body);
     if (token) {
       jwt.verify(
@@ -188,7 +200,7 @@ exports.activateAccount = (req, res, next) => {
           const hashedPassword = await bcrypt.hash(password, 5);
           console.log(hashedPassword);
           db.query(
-            "SELECT email FROM users WHERE email = ?",
+            "SELECT user_Email FROM users WHERE user_Email = ?",
             [email],
             (error, results) => {
               if (results.length > 0) {
@@ -199,8 +211,8 @@ exports.activateAccount = (req, res, next) => {
             }
           );
           db.query(
-            "INSERT INTO users (name,email,password) VALUES (?,?,?)",
-            [name, email, hashedPassword],
+            "INSERT INTO users (user_lastName,user_firstName,user_middleInitial,user_commencementDate,user_Position, user_Email,user_Password,admin_ID) VALUES (?,?,?,?,?,?,?,?)",
+            [lname, fname, mi, date, position, email, hashedPassword, 1],
             (error, results) => {
               if (error) {
                 return res.status(400).json({

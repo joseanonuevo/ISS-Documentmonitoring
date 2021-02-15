@@ -27,119 +27,122 @@
 
     <div class="header-reset">
         <div><img src="/img/iss-logo.png" id="header-logo1"></div>
-        <div><p style="font-size:30px;">INFORMATION SYSTEMS SOCIETY</p></div></div>
+        <div>
+            <p style="font-size:30px;">INFORMATION SYSTEMS SOCIETY</p>
+        </div>
+    </div>
     </div>
 
     <div class="container-reg">
-   
-        
+
+
         <div class="container-formreg">
-        <h1>Registration</h1>
-        <div class="reg-title">
-            <p>Register an Account</p>
-        </div> 
-
-            <form action="#">
-            <div class="reg1">
-                <input type="text" id="reg-fname"  placeholder="First Name">
-                <input type="text" id="reg-mi" placeholder="M.I">
-                <input type="text" id="reg-lname" placeholder="Last Name">
+            <h1>Registration</h1>
+            <div class="reg-title">
+                <p>Register an Account</p>
             </div>
-            <div class="reg2">
-                <select name="position" id="position" aria-placeholder="Position">
-                <option value="" disabled selected>Position in the organization</option>
-                <option value="President">President</option>
-                <option value="Internal Vice-President">Internal Vice-President</option>
-                <option value="External Vice-President">External Vice-President</option>
-                <option value="Secretary">Secretary</option>
-                <option value="Treasurer">Treasurer</option>
-                <option value="Auditor">Auditor</option>
-                <option value="Public Relations Officer">Public Relations Officer</option>
-                <option value="Assistant Secretary">Assistant Secretary</option>
-                <option value="Executive Associate to Secretary">Executive Associate to Secretary</option>
-                <option value="Team Head for Academics">Team Head for Academics</option>
-                </select>
-            </div>
-            <br>
-            <div class="reg3">
-                <div class="reg3-title">
-                    <p style="position:relative; left:5px">Commencement Date of Position</p>
-                    <select name="reg-month" id="reg-month">
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
-                    </select>
 
-                    <select name="reg-day" id="reg-day">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    </select>
-
-                    <select name="reg-year" id="reg-year">
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    </select>                
+            <form action="/api/activateAccount" method="POST">
+                <div class="reg1">
+                    <input type="text" id="reg-fname" name="fname" placeholder="First Name">
+                    <input type="text" id="reg-mi" name="mi" placeholder="M.I">
+                    <input type="text" id="reg-lname" name="lname" placeholder="Last Name">
                 </div>
-            </div>
-            <div class="reg4">
-                <input type="password" id="reg-pw" placeholder="Enter Password">
-            </div>
-            <br>
-            <div class="reg5">
-                <input type="password" id="reg-cpw" placeholder="Confirm Password">
-            </div>
-            <br>
-            <div class="reg6">
-                <input type="text" id="reg-code" placeholder="Verification Code">
-            </div>
+                <div class="reg2">
+                    <select name="position" id="position" name="position" aria-placeholder="Position">
+                        <option value="" disabled selected>Position in the organization</option>
+                        <option value="President">President</option>
+                        <option value="Internal Vice-President">Internal Vice-President</option>
+                        <option value="External Vice-President">External Vice-President</option>
+                        <option value="Secretary">Secretary</option>
+                        <option value="Treasurer">Treasurer</option>
+                        <option value="Auditor">Auditor</option>
+                        <option value="Public Relations Officer">Public Relations Officer</option>
+                        <option value="Assistant Secretary">Assistant Secretary</option>
+                        <option value="Executive Associate to Secretary">Executive Associate to Secretary</option>
+                        <option value="Team Head for Academics">Team Head for Academics</option>
+                    </select>
+                </div>
+                <br>
+                <div class="reg3">
+                    <div class="reg3-title">
+                        <p style="position:relative; left:5px">Commencement Date of Position</p>
+                        <select name="regmonth" id="reg-month">
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
 
-            <div class="form-regbtn">
-                <center>
-                <button type="button" id="regGoBack-btn">Go Back</button>
-                <button type="submit" value="Register" id="regSubmit-btn"/>Register</button>
-                </center>
-            </div>
+                        <select name="regday" id="reg-day">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                        </select>
+
+                        <select name="regyear" id="reg-year">
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="reg4">
+                    <input type="password" id="reg-pw" name="password" placeholder="Enter Password">
+                </div>
+                <br>
+                <div class="reg5">
+                    <input type="password" id="reg-cpw" name="confirmpw" placeholder="Confirm Password">
+                </div>
+                <br>
+                <div class="reg6">
+                    <input type="text" id="reg-code" name="token" placeholder="Verification Code">
+                </div>
+
+                <div class="form-regbtn">
+                    <center>
+                        <button type="button" id="regGoBack-btn">Go Back</button>
+                        <button type="submit" value="Register" id="regSubmit-btn" />Register</button>
+                    </center>
+                </div>
             </form>
         </div>
     </div>
@@ -147,7 +150,7 @@
 
 
 
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
