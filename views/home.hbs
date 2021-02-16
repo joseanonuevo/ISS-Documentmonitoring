@@ -190,12 +190,12 @@
           </div>
           <div class="modal-body">
             <div class="create-docform">
-              <form action="/auth/createDocu" method="POST">
+              <form action="/upload/upload" enctype="multipart/form-data" method="POST">
                 <label for="" id="createdoc-label">Document Title</label>
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">Upload File</label>
-                <input type="file" multiple name="key" /></br><br>
+                <input type="file" name="key" single /></br><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">To be Signed by</label>
                 <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
