@@ -107,13 +107,12 @@ exports.register = (req, res) => {
               <div class="container">
                   <div class="email-header">
                       <center>
-                          <ul id="header-list">
-                              <li><img src="https://scontent.fmnl2-1.fna.fbcdn.net/v/t31.0-8/13995619_1244444428913204_2794517576543849237_o.png?_nc_cat=100&ccb=2&_nc_sid=174925&_nc_ohc=e7JTAN5J6VsAX_ppGXe&_nc_ht=scontent.fmnl2-1.fna&oh=4cef3eaec49c01bf273941ea9b279e8a&oe=60031495"
-                                      alt="iss-logo" id="iss-logo"></li>
-                              <li>
-                                  <h2>Information Systems Society</h2>
-                              </li>
-                          </ul>
+                        <ul id="header-list">
+                            <li><img src="https://i.ibb.co/9WqDmVm/iss-logo.png" alt="iss-logo" id="iss-logo"></li>
+                            <li>
+                                <h2>Information Systems Society</h2>
+                            </li>
+                        </ul>
                       </center>
                   </div>
 
