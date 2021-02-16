@@ -158,17 +158,17 @@
         </div>
         <div class="modal-body">
           <div class="create-docform">
-            <form>
-              <label for="" id="createdoc-label">Old Password</label>
-              <input type="password" class="modal-input" id="createdoc-modal" required><br>
-              <label for="" id="createdoc-label">New Password</label>
-              <input type="password" class="modal-input" id="createdoc-modal" required><br>
-              <label for="" id="createdoc-label">Confirm New Password</label>
-              <input type="password" class="modal-input" id="createdoc-modal" required><br>  
-              <center>       
-              <button type="button" class="close-modal" data-dismiss="modal">Close</button>
-              <button type="submit" class="submit-modal">Submit</button></form>
-              </center>  
+              <form action="/functions/changePw" method="POST">
+                <label for="" id="createdoc-label">Old Password</label>
+                <input type="password" class="modal-input" name="oldpassword" id="createdoc-modal" required><br>
+                <label for="" id="createdoc-label">New Password</label>
+                <input type="password" class="modal-input" name="newwpassword1" id="createdoc-modal" required><br>
+                <label for="" id="createdoc-label">Confirm New Password</label>
+                <input type="password" class="modal-input" name="newpassword" id="createdoc-modal" required><br>
+                <center>
+                  <button type="button" class="close-modal" data-dismiss="modal">Close</button>
+                  <button type="submit" class="submit-modal">Submit</button>
+              </form>
           </div>
         </div>
       </div>
