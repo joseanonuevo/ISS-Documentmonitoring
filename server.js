@@ -31,6 +31,7 @@ app.use("/functions", functions);
 
 //FUNCTIONS
 const db = require("./db/connectDB");
+
 app.delete("/delete/:id", (request, response) => {
   const { id } = request.params;
   const result = deleteRowById(id);

@@ -8,10 +8,21 @@ router.get("/", (req, res) => {
 });
 
 router.get("/home", verify, (req, res) => {
-  const sql = "SELECT * from create_document";
+  const sql = "SELECT * from create_document WHERE status = 1";
   db.query(sql, (err, results) => {
     if (!err)
       return res.render("home", {
+        names: results,
+      });
+    else return res.json(err);
+  });
+});
+
+router.get("/archive", verify, (req, res) => {
+  const sql = "SELECT * from create_document WHERE status = 0";
+  db.query(sql, (err, results) => {
+    if (!err)
+      return res.render("archive", {
         names: results,
       });
     else return res.json(err);
