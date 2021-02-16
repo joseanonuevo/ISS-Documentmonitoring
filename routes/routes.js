@@ -18,11 +18,33 @@ router.get("/home", verify, (req, res) => {
   });
 });
 
+router.get("/adminHome", verify, (req, res) => {
+  const sql = "SELECT * from create_document WHERE status = 1";
+  db.query(sql, (err, results) => {
+    if (!err)
+      return res.render("adminHome", {
+        names: results,
+      });
+    else return res.json(err);
+  });
+});
+
 router.get("/archive", verify, (req, res) => {
   const sql = "SELECT * from create_document WHERE status = 0";
   db.query(sql, (err, results) => {
     if (!err)
       return res.render("archive", {
+        names: results,
+      });
+    else return res.json(err);
+  });
+});
+
+router.get("/adminArchive", verify, (req, res) => {
+  const sql = "SELECT * from create_document WHERE status = 0";
+  db.query(sql, (err, results) => {
+    if (!err)
+      return res.render("adminArchive", {
         names: results,
       });
     else return res.json(err);
