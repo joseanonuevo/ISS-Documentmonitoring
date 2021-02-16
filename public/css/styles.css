@@ -600,9 +600,9 @@ tr:nth-child(odd) {
 #goback{
     color: black;
     font-size: 18px;
-    position: absolute;
+    position: relative;
     left: -10px;
-    top: 97px;
+    
 }
 
 #gobackbtn{
