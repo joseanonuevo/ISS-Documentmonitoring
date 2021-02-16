@@ -1,10 +1,29 @@
 const db = require("../db/connectDB");
+const bcrypt = require("bcrypt");
 
-exports.deleterow = (req, res) => {
-  const id = req.body;
-  const sql = "DELETE FROM files WHERE id = ?";
-  db.query(sql, [id], (err, results) => {
-    if (!err) return res.send("deleted");
-    else return res.send(err);
+exports.changePw = (req, res) => {
+  const { oldpassword, newpassword } = req.body;
+  const id = req.cookies.authcookie2;
+
+  //checking of new pw
+  sql1 = "SELECT user_Password FROM users WHERE user_ID = ?";
+  db.query(sql1, [id], async (err, results) => {
+    oldpw = results[0].user_Password;
+    if (
+      (await bcrypt.compare(oldpassword, results[0].user_Password)) === false
+    ) {
+      res.send("Wrong password");
+    } else {
+      // "UPDATE users SET user_Password = ? WHERE user_Email = ?"
+      const hashedPassword = await bcrypt.hash(newpassword, 5);
+      newsql = "UPDATE users SET user_Password = ? WHERE user_ID = ?";
+      db.query(newsql, [hashedPassword, id], (err, results) => {
+        if (!err) {
+          res.send("Updated");
+        } else {
+          res.send(err);
+        }
+      });
+    }
   });
 };
