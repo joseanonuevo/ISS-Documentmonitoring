@@ -43,7 +43,7 @@
       <div class="btn-group">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" id="settings-btn">
-          
+
         </button>
         <div class="dropdown-menu dropdown-menu-right">
           <button class="dropdown-item" type="button" data-toggle="modal" data-target="#forgot-pass"><span
@@ -94,9 +94,9 @@
           </li>
         </ul>
         <div class="create-docbtn">
-            <button class="create-btn" type="button" data-toggle="modal" data-target="#createDoc">Create
-            Document</button>  
-            <input id="custom-filter" class="form-control" placeholder="Search" type="text"/>
+          <button class="create-btn" type="button" data-toggle="modal" data-target="#createDoc">Create
+            Document</button>
+          <input id="custom-filter" class="form-control" placeholder="Search" type="text" />
         </div>
       </div>
     </nav>
@@ -104,7 +104,7 @@
     <div class="tablemain">
 
       <table id="mydatatable">
-       <thead>
+        <thead>
           <tr>
             <th style="width: 10px;">ID</th>
             <th>Title</th>
@@ -119,20 +119,20 @@
         </thead>
 
         <tbody>
-            {{#each names}}
-            <tr>
-                <td style="width: 100px">{{createDocu_ID}}</td>
-                <td>{{createDocu_Title}}</td>
-                <td style="width: 20%">{{createDocu_Date}}</td>
-                <td>{{createDocu_Notes}}</td>
-                <td>{{createDocu_tobeSignedby}}</td>
-                <td>{{createDocu_Attachment}}</td>
-                <td>{{createDocu_Status}}</td>
-                <td><button class="delete-row-btn" id="delete-btn" data-id=${createDocu_ID}></td>
-                <td><button class="archive-row-btn" id="archive-btn" data-id=${createDocu_ID}></td>
-            </tr>
-            {{/each}}
-        </tbody>     
+          {{#each names}}
+          <tr>
+            <td style="width: 100px">{{createDocu_ID}}</td>
+            <td>{{createDocu_Title}}</td>
+            <td style="width: 20%">{{createDocu_Date}}</td>
+            <td>{{createDocu_Notes}}</td>
+            <td>{{createDocu_tobeSignedby}}</td>
+            <td>{{createDocu_Attachment}}</td>
+            <td>{{createDocu_Status}}</td>
+            <td><button class="delete-row-btn" id="delete-btn" data-id={{createDocu_ID}}></td>
+            <td><button class="archive-row-btn" id="archive-btn" data-id={{createDocu_ID}}></td>
+          </tr>
+          {{/each}}
+        </tbody>
       </table>
     </div>
     <br>
@@ -141,93 +141,94 @@
 
     <!-- END of table -->
 
-  <!-- End of Content -->
+    <!-- End of Content -->
 
-  <!-- FOR MODAL -->
-  <!-- Modal -->
+    <!-- FOR MODAL -->
+    <!-- Modal -->
 
-  <!-- MODAL FOR FORGOT PASSWORD -->
-  <div class="modal fade" id="forgot-pass" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" id="modal-body">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLongTitle">Change Password</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="create-docform">
-            <form>
-              <label for="" id="createdoc-label">Old Password</label>
-              <input type="password" class="modal-input" id="createdoc-modal" required><br>
-              <label for="" id="createdoc-label">New Password</label>
-              <input type="password" class="modal-input" id="createdoc-modal" required><br>
-              <label for="" id="createdoc-label">Confirm New Password</label>
-              <input type="password" class="modal-input" id="createdoc-modal" required><br>  
-              <center>       
-              <button type="button" class="close-modal" data-dismiss="modal">Close</button>
-              <button type="submit" class="submit-modal">Submit</button></form>
-              </center>   
+    <!-- MODAL FOR FORGOT PASSWORD -->
+    <div class="modal fade" id="forgot-pass" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="modal-body">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLongTitle">Change Password</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL FOR CREATE DOC -->
-  <div class="modal fade" id="createDoc" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" id="modal-body">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLongTitle">Create a Document</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="create-docform">
-            <form action="/auth/createDocu" method="POST">
-              <label for="" id="createdoc-label">Document Title</label>
-              <input type="text" class="modal-input" id="createdoc-modal" name="document_title"><br>
-              <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
-              <label for="" id="createdoc-label">Upload File</label>
-              <input type="file" multiple name="attachment" /></br><br>
-              <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
-              <label for="" id="createdoc-label">To be Signed by</label>
-              <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
-              
-              <label for="" id="createdoc-label">Note</label>
-              <input type="text" class="modal-input" id="note-modal" name="note" required><br>
-              <!-- Radio Buttons -->
-              <div class="row">
-                <div class="col-3">
-                  <label for="">Status</label>
-                </div>
-                <div class="col">
-                  <div class="radio-form">
-                    <input type="radio" id="complete" name="status" value="Complete" required>
-                    <label for="complete">Complete</label><br>
-                    <input type="radio" id="in-progress" name="status" value="In Progress">
-                    <label for="in-progress">In Progress</label><br>
-                    <input type="radio" id="on-hold" name="status" value="On Hold">
-                    <label for="on-hold">On Hold</label>
-                  </div>
-                </div>
-                <div class="modal-footer">
+          <div class="modal-body">
+            <div class="create-docform">
+              <form>
+                <label for="" id="createdoc-label">Old Password</label>
+                <input type="password" class="modal-input" id="createdoc-modal" required><br>
+                <label for="" id="createdoc-label">New Password</label>
+                <input type="password" class="modal-input" id="createdoc-modal" required><br>
+                <label for="" id="createdoc-label">Confirm New Password</label>
+                <input type="password" class="modal-input" id="createdoc-modal" required><br>
+                <center>
                   <button type="button" class="close-modal" data-dismiss="modal">Close</button>
                   <button type="submit" class="submit-modal">Submit</button>
-                </div>
-              </div>
-            </form>
+              </form>
+              </center>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
-  </div>
+
+    <!-- MODAL FOR CREATE DOC -->
+    <div class="modal fade" id="createDoc" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="modal-body">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLongTitle">Create a Document</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="create-docform">
+              <form action="/auth/createDocu" method="POST">
+                <label for="" id="createdoc-label">Document Title</label>
+                <input type="text" class="modal-input" id="createdoc-modal" name="document_title"><br>
+                <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
+                <label for="" id="createdoc-label">Upload File</label>
+                <input type="file" multiple name="attachment" /></br><br>
+                <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
+                <label for="" id="createdoc-label">To be Signed by</label>
+                <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
+
+                <label for="" id="createdoc-label">Note</label>
+                <input type="text" class="modal-input" id="note-modal" name="note" required><br>
+                <!-- Radio Buttons -->
+                <div class="row">
+                  <div class="col-3">
+                    <label for="">Status</label>
+                  </div>
+                  <div class="col">
+                    <div class="radio-form">
+                      <input type="radio" id="complete" name="status" value="Complete" required>
+                      <label for="complete">Complete</label><br>
+                      <input type="radio" id="in-progress" name="status" value="In Progress">
+                      <label for="in-progress">In Progress</label><br>
+                      <input type="radio" id="on-hold" name="status" value="On Hold">
+                      <label for="on-hold">On Hold</label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="close-modal" data-dismiss="modal">Close</button>
+                    <button type="submit" class="submit-modal">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
 </body>
 <!-- Scripts -->
 <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -245,13 +246,12 @@
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
 
-{{!--SweetAlert  --}}
+{{!--SweetAlert --}}
 <script src="sweetalert2.all.min.js"></script>
 <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
-
-<script src="/vanila-js/createDocu.js"></script>
+<script src="createDocu.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -261,27 +261,27 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
 <script>
-    $(document).ready(function(){
-var table = $('#mydatatable').DataTable();
-   //DataTable custom search field
-    $('#custom-filter').keyup( function() {
-      table.search( this.value ).draw();
-    } );
-});
+  $(document).ready(function () {
+    var table = $('#mydatatable').DataTable();
+    //DataTable custom search field
+    $('#custom-filter').keyup(function () {
+      table.search(this.value).draw();
+    });
+  });
 </script>
 
 <script>
 
-$('#mydatatable').DataTable({
+  $('#mydatatable').DataTable({
     sDom: 'lrtip',
-    "bInfo" : false,
+    "bInfo": false,
     bPaginate: false,
     "aaSorting": [],
-  columnDefs: [{
-  orderable: false,
-  targets: [0,3,4,5,7,8],
-  }]
-});
+    columnDefs: [{
+      orderable: false,
+      targets: [0, 3, 4, 5, 7, 8],
+    }]
+  });
 
 
 </script>

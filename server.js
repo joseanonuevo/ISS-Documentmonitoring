@@ -29,6 +29,71 @@ app.use("/", routes);
 app.use("/upload", upload);
 app.use("/functions", functions);
 
+//FUNCTIONS
+const db = require("./db/connectDB");
+app.delete("/delete/:id", (request, response) => {
+  const { id } = request.params;
+  const result = deleteRowById(id);
+  result
+    .then((data) =>
+      response.json({
+        success: true,
+      })
+    )
+    .catch((err) => console.log(err));
+});
+app.patch("/archive/:id", (request, response) => {
+  const { id } = request.params;
+  const result = archiveRowById(id);
+  result
+    .then((data) =>
+      response.json({
+        success: true,
+      })
+    )
+    .catch((err) => console.log(err));
+});
+async function deleteRowById(id) {
+  try {
+    id = parseInt(id, 10);
+    const response = await new Promise((resolve, reject) => {
+      const query = "DELETE FROM create_document WHERE createDocu_ID = ?";
+
+      db.query(query, [id], (err, results) => {
+        if (err) reject(new Error(err.message));
+        resolve(results);
+      });
+    });
+    return response === 1 ? true : false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+async function archiveRowById(id) {
+  const dateArchived = new Date();
+  try {
+    id = parseInt(id, 10);
+    const response = await new Promise((resolve, reject) => {
+      const query =
+        "UPDATE create_document SET status = 0 WHERE createDocu_ID = ?";
+      db.query(query, [id], (err, results) => {
+        if (err) reject(new Error(err.message));
+        resolve(results);
+      });
+      const query2 =
+        "INSERT INTO archive_document (archiveDocu_Date, createDocu_ID) VALUES(?,?)";
+      db.query(query2, [dateArchived, id], (err, results) => {
+        if (err) reject(new Error(err.message));
+        resolve(results);
+      });
+    });
+    return response === 1 ? true : false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server @ " + PORT);
