@@ -177,9 +177,7 @@ exports.activateAccount = (req, res, next) => {
       fname,
       mi,
       lname,
-      regmonth,
-      regday,
-      regyear,
+      regdate,
       position,
       password,
       confirmpw,
@@ -212,7 +210,7 @@ exports.activateAccount = (req, res, next) => {
           );
           db.query(
             "INSERT INTO users (user_lastName,user_firstName,user_middleInitial,user_commencementDate,user_Position, user_Email,user_Password,admin_ID) VALUES (?,?,?,?,?,?,?,?)",
-            [lname, fname, mi, date, position, email, hashedPassword, 1],
+            [lname, fname, mi, regdate, position, email, hashedPassword, 1],
             (error, results) => {
               if (error) {
                 return res.status(400).json({

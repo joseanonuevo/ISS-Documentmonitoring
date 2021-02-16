@@ -30,6 +30,10 @@ router.get("/registeredUsers", (req, res) => {
   res.render("registeredUsers");
 });
 
+router.get("/register", (req, res) => {
+  res.render("register");
+});
+
 router.get("/adminHome", (req, res) => {
   res.render("adminHome");
 });
