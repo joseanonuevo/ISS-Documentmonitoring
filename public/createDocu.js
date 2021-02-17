@@ -1,5 +1,3 @@
-console.log("Hello world");
-
 document.querySelector("tbody").addEventListener("click", function (event) {
   if (event.target.className === "archive-row-btn") {
     archiveRowById(event.target.dataset.id);

@@ -60,7 +60,7 @@ router.get("/registration", (req, res) => {
 });
 
 router.get("/registeredUsers", (req, res) => {
-  const sql = "SELECT * FROM users";
+  const sql = "SELECT * FROM users where user_status =0";
   db.query(sql, (err, results) => {
     if (!err)
       res.render("registeredUsers", {

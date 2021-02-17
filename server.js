@@ -54,6 +54,16 @@ app.patch("/archive/:id", (request, response) => {
     )
     .catch((err) => console.log(err));
 });
+app.patch("/disable/:email", (request, response) => {
+  const { email } = request.params;
+  const result = disableRowById(email);
+  result.then((data) => {
+    response.json({
+      success: true,
+    });
+  });
+});
+
 async function deleteRowById(id) {
   try {
     id = parseInt(id, 10);
@@ -71,20 +81,11 @@ async function deleteRowById(id) {
     return false;
   }
 }
-async function archiveRowById(id) {
-  const dateArchived = new Date();
+async function disableRowById(email) {
   try {
-    id = parseInt(id, 10);
     const response = await new Promise((resolve, reject) => {
-      const query =
-        "UPDATE create_document SET status = 0 WHERE createDocu_ID = ?";
-      db.query(query, [id], (err, results) => {
-        if (err) reject(new Error(err.message));
-        resolve(results);
-      });
-      const query2 =
-        "INSERT INTO archive_document (archiveDocu_Date, createDocu_ID) VALUES(?,?)";
-      db.query(query2, [dateArchived, id], (err, results) => {
+      const query = "UPDATE users SET user_Status = 1 WHERE user_Email = ?";
+      db.query(query, [email], (err, results) => {
         if (err) reject(new Error(err.message));
         resolve(results);
       });

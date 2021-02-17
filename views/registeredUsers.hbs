@@ -132,10 +132,11 @@
             <td>{{user_lastName}}</td>
             <td>{{user_firstName}}</td>
             <td>{{user_middleInitial}}</td>
-            <td>{{user_Position}}</td> 
+            <td>{{user_Position}}</td>
             <td>{{user_Email}}</td>
             <td>{{user_commencementDate}}</td>
-            <td style="text-align: center;"><button class="disable-row-btn" id="disableUser-btn" {{!--data-id=${#}  --}}></td>
+            <td style="text-align: center;"><button class="disable-row-btn" id="disableUser-btn" data-id={{user_Email}}>
+            </td>
           </tr>
           {{/each}}
         </tbody>
@@ -194,7 +195,7 @@
             </button>
           </div>
           <div class="modal-body" id="addAccount-modalBody">
-            {{!-- CODY  ADD ACCOUNT--}}
+            {{!-- CODY ADD ACCOUNT--}}
             <form action="#">
               <div class="content-addAcc" id="testi1"></div>
               <center>
@@ -231,7 +232,7 @@
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
 
-<script src="/vanila-js/createDocu.js"></script>
+<script src="registeredUsers.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
