@@ -43,7 +43,7 @@
       <div class="btn-group">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" id="settings-btn">
-          
+
         </button>
         <div class="dropdown-menu dropdown-menu-right">
           <button class="dropdown-item" type="button" data-toggle="modal" data-target="#forgot-pass"><span
@@ -61,15 +61,15 @@
   </nav>
   <!-- END of Header -->
 
-    {{!-- Go back lang --}}
-    
-    <div class="go-backbtn">
-        <a href="/adminHome" id="goback"><span class="material-icons" id="gobackbtn">
-        navigate_before
-        </span>Go Back</a>
-    </div>
+  {{!-- Go back lang --}}
 
-    {{!-- End of go back --}}
+  <div class="go-backbtn">
+    <a href="/adminHome" id="goback"><span class="material-icons" id="gobackbtn">
+        navigate_before
+      </span>Go Back</a>
+  </div>
+
+  {{!-- End of go back --}}
 
   <!-- Start of Content -->
   <div class="container-fluid" id="main-container">
@@ -104,8 +104,9 @@
           </li>
         </ul>
         <div class="create-docbtn">
-            <button class="create-btn" type="button" data-toggle="modal" data-target="#addAccount-modal">Add Account</button> 
-            <input id="custom-filter" class="form-control" placeholder="Search" type="text"/>
+          <button class="create-btn" type="button" data-toggle="modal" data-target="#addAccount-modal">Add
+            Account</button>
+          <input id="custom-filter" class="form-control" placeholder="Search" type="text" />
         </div>
       </div>
     </nav>
@@ -113,7 +114,7 @@
     <div class="tablemain">
 
       <table id="mydatatable">
-       <thead>
+        <thead>
           <tr>
             <th style="width: 160px;">Last Name</th>
             <th style="width: 160px;">First Name</th>
@@ -126,20 +127,20 @@
         </thead>
 
         <tbody>
-            {{#each names}}
-            <tr>
-                <td style="width: 100px">{{createDocu_ID}}</td>
-                <td>{{createDocu_Title}}</td>
-                <td style="width: 20%">{{createDocu_Date}}</td>
-                <td>{{createDocu_Notes}}</td>
-                <td>{{createDocu_tobeSignedby}}</td>
-                <td>{{createDocu_Attachment}}</td>
-                <td>{{createDocu_Status}}</td>
-                <td><button class="delete-row-btn" id="delete-btn" data-id=${createDocu_ID}></td>
-                <td><button class="archive-row-btn" id="archive-btn" data-id=${createDocu_ID}></td>
-            </tr>
-            {{/each}}
-        </tbody>     
+          {{#each names}}
+          <tr>
+            <td style="width: 100px">{{createDocu_ID}}</td>
+            <td>{{createDocu_Title}}</td>
+            <td style="width: 20%">{{createDocu_Date}}</td>
+            <td>{{createDocu_Notes}}</td>
+            <td>{{createDocu_tobeSignedby}}</td>
+            <td>{{createDocu_Attachment}}</td>
+            <td>{{createDocu_Status}}</td>
+            <td><button class="delete-row-btn" id="delete-btn" data-id=${createDocu_ID}></td>
+            <td><button class="archive-row-btn" id="archive-btn" data-id=${createDocu_ID}></td>
+          </tr>
+          {{/each}}
+        </tbody>
       </table>
     </div>
     <br>
@@ -148,24 +149,24 @@
 
     <!-- END of table -->
 
-  <!-- End of Content -->
+    <!-- End of Content -->
 
-  <!-- FOR MODAL -->
-  <!-- Modal -->
+    <!-- FOR MODAL -->
+    <!-- Modal -->
 
-  <!-- MODAL FOR FORGOT PASSWORD -->
-  <div class="modal fade" id="forgot-pass" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" id="modal-body">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLongTitle">Change Password</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="create-docform">
+    <!-- MODAL FOR FORGOT PASSWORD -->
+    <div class="modal fade" id="forgot-pass" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="modal-body">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLongTitle">Change Password</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="create-docform">
               <form action="/functions/changePw" method="POST">
                 <label for="" id="createdoc-label">Old Password</label>
                 <input type="password" class="modal-input" name="oldpassword" id="createdoc-modal" required><br>
@@ -177,36 +178,37 @@
                   <button type="button" class="close-modal" data-dismiss="modal">Close</button>
                   <button type="submit" class="submit-modal">Submit</button>
               </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-<!-- Modal -->
-<div class="modal fade" id="addAccount-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" id="addAccount-modalContent">
-      <div class="modal-header" id="addAccount-modalHead">
-        <h3>Add Account</h3>  
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="addAccount-modalBody">
-        <form action="#">
-            <div class="content-addAcc" id="testi1"></div>
-                <center>
-                    <label for="addAcc-email">Enter Email</label>
-                    <input type="text" name="addAcc-email" id="addAcc-email">
-                    <input type="submit" value="Submit" id="addAcc-emailBtn" />
-                </center>
-            </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addAccount-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="addAccount-modalContent">
+          <div class="modal-header" id="addAccount-modalHead">
+            <h3>Add Account</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="addAccount-modalBody">
+            <form action="#">
+              <div class="content-addAcc" id="testi1"></div>
+              <center>
+                <label for="addAcc-email">Enter Email</label>
+                <input type="text" name="addAcc-email" id="addAcc-email">
+                <input type="submit" value="Submit" id="addAcc-emailBtn" />
+              </center>
+          </div>
           </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </body>
 <!-- Scripts -->
 <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -224,7 +226,7 @@
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
 
-{{!--SweetAlert  --}}
+{{!--SweetAlert --}}
 <script src="sweetalert2.all.min.js"></script>
 <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
@@ -240,27 +242,27 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
 <script>
-    $(document).ready(function(){
-var table = $('#mydatatable').DataTable();
-   //DataTable custom search field
-    $('#custom-filter').keyup( function() {
-      table.search( this.value ).draw();
-    } );
-});
+  $(document).ready(function () {
+    var table = $('#mydatatable').DataTable();
+    //DataTable custom search field
+    $('#custom-filter').keyup(function () {
+      table.search(this.value).draw();
+    });
+  });
 </script>
 
 <script>
 
-$('#mydatatable').DataTable({
+  $('#mydatatable').DataTable({
     sDom: 'lrtip',
-    "bInfo" : false,
+    "bInfo": false,
     bPaginate: false,
     "aaSorting": [],
-  columnDefs: [{
-  orderable: false,
-  targets: [2,3,4,5,6],
-  }]
-});
+    columnDefs: [{
+      orderable: false,
+      targets: [2, 3, 4, 5, 6],
+    }]
+  });
 
 
 </script>

@@ -60,7 +60,14 @@ router.get("/registration", (req, res) => {
 });
 
 router.get("/registeredUsers", (req, res) => {
-  res.render("registeredUsers");
+  const sql = "SELECT * FROM users";
+  db.query(sql, (err, results) => {
+    if (!err)
+      res.render("registeredUsers", {
+        names: results,
+      });
+    else return res.json(err);
+  });
 });
 
 router.get("/register", (req, res) => {
