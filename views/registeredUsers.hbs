@@ -116,28 +116,26 @@
       <table id="mydatatable">
         <thead>
           <tr>
-            <th style="width: 160px;">Last Name</th>
-            <th style="width: 160px;">First Name</th>
-            <th style="width: 30px;">M.I</th>
-            <th style="width: 180px;">Position</th>
-            <th style="width: 220px;">Email</th>
+            <th style="width:11%">Last Name</th>
+            <th style="width:11%">First Name</th>
+            <th>M.I</th>
+            <th>Position</th>
+            <th>Email</th>
             <th>Commencement Date</th>
-            <th style="width: 30px;">Disable</th>
+            <th>Disable</th>
           </tr>
         </thead>
 
         <tbody>
           {{#each names}}
           <tr>
-            <td style="width: 100px">{{createDocu_ID}}</td>
-            <td>{{createDocu_Title}}</td>
-            <td style="width: 20%">{{createDocu_Date}}</td>
-            <td>{{createDocu_Notes}}</td>
-            <td>{{createDocu_tobeSignedby}}</td>
-            <td>{{createDocu_Attachment}}</td>
-            <td>{{createDocu_Status}}</td>
-            <td><button class="delete-row-btn" id="delete-btn" data-id=${createDocu_ID}></td>
-            <td><button class="archive-row-btn" id="archive-btn" data-id=${createDocu_ID}></td>
+            <td>{{user_lastName}}</td>
+            <td>{{user_firstName}}</td>
+            <td>{{user_middleInitial}}</td>
+            <td>{{user_Position}}</td> 
+            <td>{{user_Email}}</td>
+            <td>{{user_commencementDate}}</td>
+            <td style="text-align: center;"><button class="disable-row-btn" id="disableUser-btn" {{!--data-id=${#}  --}}></td>
           </tr>
           {{/each}}
         </tbody>
@@ -196,6 +194,7 @@
             </button>
           </div>
           <div class="modal-body" id="addAccount-modalBody">
+            {{!-- CODY  ADD ACCOUNT--}}
             <form action="#">
               <div class="content-addAcc" id="testi1"></div>
               <center>

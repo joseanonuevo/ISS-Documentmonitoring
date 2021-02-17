@@ -16,7 +16,7 @@ exports.login = async (req, res) => {
       async (error, results) => {
         if (results.length === 0) {
           return res.status(400).render("login", {
-            message: "Account does not exist in the system",
+            message: "Invalid Credentials",
           });
         } else if (
           !results ||

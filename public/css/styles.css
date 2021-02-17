@@ -252,6 +252,14 @@ tr:nth-child(odd) {
     border: none;
 }
 
+#disableUser-btn {
+    background: url('/img/disable-user.png') no-repeat;
+    background-color: rgba(245, 222, 179, 0);
+    height: 30px;
+    width: 30px;
+    border: none;
+}
+
 #archive-btn {
     background: url('/img/archive-icon.png') no-repeat;
     background-color: rgba(245, 222, 179, 0);
