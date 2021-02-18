@@ -127,7 +127,7 @@
             {{#each names}}
             <tr>
                 <td>{{createDocu_ID}}</td>
-                <td><u><a href="/docUpdates" style="color: black;">{{createDocu_Title}}</a></u></td>
+                <td><button class="docUpdate-btn" id="docUpdate-btn">{{createDocu_Title}}</button></td>
                 <td>{{createDocu_Date}}</td>
                 <td>{{createDocu_Notes}}</td>
                 <td>{{createDocu_tobeSignedby}}</td>
@@ -265,6 +265,12 @@
 
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script type="text/javascript">
+  document.getElementById("docUpdate-btn").onclick = function () {
+        location.href = "https://pornhub.com";
+    };
+</script>
 
 <script>
     $(document).ready(function(){
