@@ -84,6 +84,17 @@ app.get("/update/:id", (req, res) => {
   });
 });
 
+app.get("/adminUpdate/:id", (req, res) => {
+  const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
+  db.query(sql, [req.params.id], (err, results) => {
+    if (!err)
+      return res.render("adminDocUpdates", {
+        names: results,
+      });
+    else return res.json(err);
+  });
+});
+
 async function deleteRowById(id) {
   try {
     id = parseInt(id, 10);
