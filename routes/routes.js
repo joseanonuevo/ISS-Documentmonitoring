@@ -98,8 +98,4 @@ function verify(req, res, next) {
   });
 }
 
-router.get("/docUpdates", (req, res) => {
-  res.render("docUpdates");
-});
-
 module.exports = router;

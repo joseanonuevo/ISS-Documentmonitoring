@@ -73,12 +73,22 @@ app.patch("/enable/:email", (request, response) => {
   });
 });
 
+app.get("/update/:id", (req, res) => {
+  const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
+  db.query(sql, [req.params.id], (err, results) => {
+    if (!err)
+      return res.render("docUpdates", {
+        names: results,
+      });
+    else return res.json(err);
+  });
+});
+
 async function deleteRowById(id) {
   try {
     id = parseInt(id, 10);
     const response = await new Promise((resolve, reject) => {
       const query = "DELETE FROM create_document WHERE createDocu_ID = ?";
-
       db.query(query, [id], (err, results) => {
         if (err) reject(new Error(err.message));
         resolve(results);

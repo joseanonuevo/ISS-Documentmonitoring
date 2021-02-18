@@ -5,11 +5,10 @@ document.querySelector("tbody").addEventListener("click", function (event) {
   if (event.target.className === "delete-row-btn") {
     deleteRowById(event.target.dataset.id);
   }
+  if (event.target.className === "update-row-btn") {
+    updateRowById(event.target.dataset.id);
+  }
 });
-
-const archiveBtn = document.querySelector("#archive-row-btn");
-const deletebtn = document.querySelector("#delete-row-btn");
-
 function archiveRowById(id) {
   Swal.fire({
     icon: "warning",
@@ -77,5 +76,10 @@ function deleteRowById(id) {
           }
         });
     }
+  });
+}
+function updateRowById(id) {
+  fetch("http://localhost:3000/update/" + id, {
+    method: "GET",
   });
 }

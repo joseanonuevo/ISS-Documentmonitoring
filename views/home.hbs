@@ -122,7 +122,9 @@
           {{#each names}}
           <tr>
             <td>{{createDocu_ID}}</td>
-            <td><button class="docUpdate-btn" id="docUpdate-btn" style="background-color: rgba(0, 0, 0, 0); border:none"><u>{{createDocu_Title}}</u></button></td>
+            <td>
+              <a href="/update/{{createDocu_ID}}">{{createDocu_Title}}</a>
+            </td>
             <td>{{createDocu_Date}}</td>
             <td>{{createDocu_Notes}}</td>
             <td>{{createDocu_tobeSignedby}}</td>
@@ -139,10 +141,10 @@
     <br>
     <br>
     {{#if message}}
-  <p style="color: red;">
-    {{message}}
-  </p>
-{{/if}}
+    <p style="color: red;">
+      {{message}}
+    </p>
+    {{/if}}
 
 
     <!-- END of table -->
@@ -201,7 +203,7 @@
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">Upload File</label>
-                <input type="file" name="key" single required/></br><br>
+                <input type="file" name="key" single required /></br><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">To be Signed by</label>
                 <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
@@ -274,13 +276,6 @@
       table.search(this.value).draw();
     });
   });
-</script>
-
-{{!-- CODY ANDITO YUNG SCRIPT PARA MA OPEN SI DOCUMENT UPDATES TRY MO KUNG PWEDE ISAMA SA SEPARATE JS FILE MO --}}
-<script type="text/javascript">
-  document.getElementById("docUpdate-btn").onclick = function () {
-        location.href = "/docUpdates";
-    };
 </script>
 
 <script>
