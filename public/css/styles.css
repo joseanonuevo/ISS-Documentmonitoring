@@ -260,6 +260,11 @@ tr:nth-child(odd) {
     border: none;
 }
 
+#docUpdate-btn{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
 #enableUser-btn{
     background: url('/img/enable-user.png') no-repeat;
     background-color: rgba(245, 222, 179, 0);
