@@ -11,7 +11,7 @@ exports.login = async (req, res) => {
       });
     }
     db.query(
-      "SELECT * FROM users WHERE user_Email = ?",
+      "SELECT * FROM users WHERE user_Email = ? AND user_Status = 0",
       [email],
       async (error, results) => {
         if (results.length === 0) {
