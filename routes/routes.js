@@ -73,7 +73,7 @@ router.get("/disabledUsers", (req, res) => {
   const sql = "SELECT * FROM users where user_status =1";
   db.query(sql, (err, results) => {
     if (!err)
-      res.render("registeredUsers", {
+      res.render("disabledUsers", {
         names: results,
       });
     else return res.json(err);
