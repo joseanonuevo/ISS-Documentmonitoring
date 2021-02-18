@@ -81,6 +81,30 @@ async function deleteRowById(id) {
     return false;
   }
 }
+async function archiveRowById(id) {
+  const dateArchived = new Date();
+  try {
+    id = parseInt(id, 10);
+    const response = await new Promise((resolve, reject) => {
+      const query =
+        "UPDATE create_document SET status = 0 WHERE createDocu_ID = ?";
+      db.query(query, [id], (err, results) => {
+        if (err) reject(new Error(err.message));
+        resolve(results);
+      });
+      const query2 =
+        "INSERT INTO archive_document (archiveDocu_Date, createDocu_ID) VALUES(?,?)";
+      db.query(query2, [dateArchived, id], (err, results) => {
+        if (err) reject(new Error(err.message));
+        resolve(results);
+      });
+    });
+    return response === 1 ? true : false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
 async function disableRowById(email) {
   try {
     const response = await new Promise((resolve, reject) => {
@@ -96,6 +120,7 @@ async function disableRowById(email) {
     return false;
   }
 }
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server @ " + PORT);

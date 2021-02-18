@@ -69,7 +69,16 @@ router.get("/registeredUsers", (req, res) => {
     else return res.json(err);
   });
 });
-
+router.get("/disabledUsers", (req, res) => {
+  const sql = "SELECT * FROM users where user_status =1";
+  db.query(sql, (err, results) => {
+    if (!err)
+      res.render("registeredUsers", {
+        names: results,
+      });
+    else return res.json(err);
+  });
+});
 router.get("/register", (req, res) => {
   res.render("register");
 });
