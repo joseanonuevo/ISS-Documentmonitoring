@@ -43,7 +43,15 @@ router.post("/upload", upload, (req, res) => {
       "INSERT INTO create_document (createDocu_Title,createDocu_Date, createDocu_Notes,createDocu_tobeSignedby,createDocu_Attachment,createDocu_Status,user_ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
     db.query(
       sql,
-      [document_title, dateAdded, note, to_be_signed, data.Location, status, 1],
+      [
+        document_title,
+        dateAdded,
+        note,
+        to_be_signed,
+        data.Location,
+        status,
+        req.cookies.authcookie2,
+      ],
       (err, result) => {
         return console.log(err);
       }

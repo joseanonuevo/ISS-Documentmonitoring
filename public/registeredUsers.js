@@ -1,19 +1,15 @@
 document.querySelector("tbody").addEventListener("click", function (event) {
-  if (event.target.className === "archive-row-btn") {
-    archiveRowById(event.target.dataset.id);
+  if (event.target.className === "disable-row-btn") {
+    disableRowById(event.target.dataset.id);
   }
-  if (event.target.className === "delete-row-btn") {
-    deleteRowById(event.target.dataset.id);
+  if (event.target.className === "enable-row-btn") {
+    enableRowById(event.target.dataset.id);
   }
 });
-
-const archiveBtn = document.querySelector("#archive-row-btn");
-const deletebtn = document.querySelector("#delete-row-btn");
-
-function archiveRowById(id) {
+function disableRowById(id) {
   Swal.fire({
     icon: "warning",
-    title: "Are you sure you want to archive this document?",
+    title: "Are you sure you want to disable this user?",
     confirmButtonText: `Yes`,
     confirmButtonColor: "#FFA627",
     showCancelButton: true,
@@ -22,7 +18,7 @@ function archiveRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("http://localhost:3000/archive/" + id, {
+      fetch("http://localhost:3000/disable/" + id, {
         method: "PATCH",
       })
         .then((response) => response.json())
@@ -30,7 +26,7 @@ function archiveRowById(id) {
           if (data.success) {
             Swal.fire({
               icon: "success",
-              title: "File Archived!",
+              title: "User Disabled!",
               confirmButtonText: `Done`,
               confirmButtonColor: "#FFA627",
             }).then((result) => {
@@ -44,11 +40,10 @@ function archiveRowById(id) {
     }
   });
 }
-
-function deleteRowById(id) {
+function enableRowById(id) {
   Swal.fire({
     icon: "warning",
-    title: "Are you sure you want to delete this document?",
+    title: "Are you sure you want to enable this user?",
     confirmButtonText: `Yes`,
     confirmButtonColor: "#FFA627",
     showCancelButton: true,
@@ -57,15 +52,15 @@ function deleteRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("http://localhost:3000/delete/" + id, {
-        method: "DELETE",
+      fetch("http://localhost:3000/enable/" + id, {
+        method: "PATCH",
       })
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
             Swal.fire({
               icon: "success",
-              title: "File Deleted!",
+              title: "User Enabled!",
               confirmButtonText: `Done`,
               confirmButtonColor: "#FFA627",
             }).then((result) => {

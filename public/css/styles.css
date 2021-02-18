@@ -99,6 +99,11 @@ body {
     outline: none;
 }
 
+.login-btn:focus{
+    outline: none;
+    box-shadow: 0 0 1pt 1pt rgb(0, 0, 0);
+}
+
 .forgotPW{
     float: right;
     padding-top: 5px;
@@ -107,6 +112,14 @@ body {
 
 .forgotPW a{
     color: black;
+    outline: none;
+
+}
+
+.forgotPW a:focus {
+    color: blue;
+    outline: none;
+
 }
 
 .login-column {
@@ -233,6 +246,27 @@ tr:nth-child(odd) {
 
 #delete-btn{
     background: url('/img/trash-icon.png') no-repeat;
+    background-color: rgba(245, 222, 179, 0);
+    height: 30px;
+    width: 30px;
+    border: none;
+}
+
+#disableUser-btn {
+    background: url('/img/disable-user.png') no-repeat;
+    background-color: rgba(245, 222, 179, 0);
+    height: 30px;
+    width: 30px;
+    border: none;
+}
+
+#docUpdate-btn{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+#enableUser-btn{
+    background: url('/img/enable-user.png') no-repeat;
     background-color: rgba(245, 222, 179, 0);
     height: 30px;
     width: 30px;
@@ -600,9 +634,9 @@ tr:nth-child(odd) {
 #goback{
     color: black;
     font-size: 18px;
-    position: absolute;
+    position: relative;
     left: -10px;
-    top: 97px;
+    
 }
 
 #gobackbtn{

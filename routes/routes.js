@@ -60,9 +60,25 @@ router.get("/registration", (req, res) => {
 });
 
 router.get("/registeredUsers", (req, res) => {
-  res.render("registeredUsers");
+  const sql = "SELECT * FROM users where user_status =0";
+  db.query(sql, (err, results) => {
+    if (!err)
+      res.render("registeredUsers", {
+        names: results,
+      });
+    else return res.json(err);
+  });
 });
-
+router.get("/disabledUsers", (req, res) => {
+  const sql = "SELECT * FROM users where user_status =1";
+  db.query(sql, (err, results) => {
+    if (!err)
+      res.render("disabledUsers", {
+        names: results,
+      });
+    else return res.json(err);
+  });
+});
 router.get("/register", (req, res) => {
   res.render("register");
 });
@@ -81,5 +97,9 @@ function verify(req, res, next) {
     }
   });
 }
+
+router.get("/docUpdates", (req, res) => {
+  res.render("docUpdates");
+});
 
 module.exports = router;

@@ -104,13 +104,14 @@
       <table id="mydatatable">
         <thead>
           <tr>
-            <th style="width: 10px;">ID</th>
-            <th>Title</th>
-            <th>Date Updated</th>
-            <th style="width: 136px;">Note</th>
-            <th>To be Signed By</th>
-            <th>Attachment</th>
-            <th>Status</th>
+          <tr>
+            <th style="width: 4%">ID</th>
+            <th style="width: 20%">Title</th>
+            <th style="width: 20%">Date Updated</th>
+            <th style="width: 15%;">Note</th>
+            <th style="width: 20%">To be Signed By</th>
+            <th style="width: 10%;">Attachment</th>
+            <th style="width: 10%;">Status</th>
           </tr>
         </thead>
 
@@ -122,7 +123,7 @@
             <td style="width: 20%">{{createDocu_Date}}</td>
             <td>{{createDocu_Notes}}</td>
             <td>{{createDocu_tobeSignedby}}</td>
-            <td>{{createDocu_Attachment}}</td>
+            <td><a href="{{{createDocu_Attachment}}}">Attachment</a></td>
             <td>{{createDocu_Status}}</td>
           </tr>
           {{/each}}
@@ -153,13 +154,13 @@
           </div>
           <div class="modal-body">
             <div class="create-docform">
-              <form>
+              <form action="/functions/changePw" method="POST">
                 <label for="" id="createdoc-label">Old Password</label>
-                <input type="password" class="modal-input" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="oldpassword" id="createdoc-modal" required><br>
                 <label for="" id="createdoc-label">New Password</label>
-                <input type="password" class="modal-input" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="newpassword1" id="createdoc-modal" required><br>
                 <label for="" id="createdoc-label">Confirm New Password</label>
-                <input type="password" class="modal-input" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="newpassword" id="createdoc-modal" required><br>
                 <center>
                   <button type="button" class="close-modal" data-dismiss="modal">Close</button>
                   <button type="submit" class="submit-modal">Submit</button>
@@ -273,7 +274,7 @@
     "aaSorting": [],
     columnDefs: [{
       orderable: false,
-      targets: [0, 3, 4, 5, 7, 8],
+      targets: [0, 3, 4, 5],
     }]
   });
 

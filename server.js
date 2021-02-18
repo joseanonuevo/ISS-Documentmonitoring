@@ -54,6 +54,25 @@ app.patch("/archive/:id", (request, response) => {
     )
     .catch((err) => console.log(err));
 });
+app.patch("/disable/:email", (request, response) => {
+  const { email } = request.params;
+  const result = disableRowById(email);
+  result.then((data) => {
+    response.json({
+      success: true,
+    });
+  });
+});
+app.patch("/enable/:email", (request, response) => {
+  const { email } = request.params;
+  const result = enableRowById(email);
+  result.then((data) => {
+    response.json({
+      success: true,
+    });
+  });
+});
+
 async function deleteRowById(id) {
   try {
     id = parseInt(id, 10);
@@ -95,6 +114,37 @@ async function archiveRowById(id) {
     return false;
   }
 }
+async function disableRowById(email) {
+  try {
+    const response = await new Promise((resolve, reject) => {
+      const query = "UPDATE users SET user_Status = 1 WHERE user_Email = ?";
+      db.query(query, [email], (err, results) => {
+        if (err) reject(new Error(err.message));
+        resolve(results);
+      });
+    });
+    return response === 1 ? true : false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+async function enableRowById(email) {
+  try {
+    const response = await new Promise((resolve, reject) => {
+      const query = "UPDATE users SET user_Status = 0 WHERE user_Email = ?";
+      db.query(query, [email], (err, results) => {
+        if (err) reject(new Error(err.message));
+        resolve(results);
+      });
+    });
+    return response === 1 ? true : false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server @ " + PORT);

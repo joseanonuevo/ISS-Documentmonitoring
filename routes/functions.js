@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express();
 
-const { deleterow } = require("../controllers/functions");
+const { changePw } = require("../controllers/functions");
 
-router.delete("/delete", deleterow);
-
+router.post("/changePw", changePw);
+//
 module.exports = router;
