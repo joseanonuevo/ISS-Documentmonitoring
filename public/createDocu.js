@@ -2,9 +2,11 @@ document.querySelector("tbody").addEventListener("click", function (event) {
   if (event.target.className === "archive-row-btn") {
     archiveRowById(event.target.dataset.id);
   }
+  //else if
   if (event.target.className === "delete-row-btn") {
     deleteRowById(event.target.dataset.id);
   }
+  //else
   if (event.target.className === "update-row-btn") {
     updateRowById(event.target.dataset.id);
   }
@@ -76,10 +78,5 @@ function deleteRowById(id) {
           }
         });
     }
-  });
-}
-function updateRowById(id) {
-  fetch("http://localhost:3000/update/" + id, {
-    method: "GET",
   });
 }

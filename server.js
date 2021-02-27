@@ -72,18 +72,16 @@ app.patch("/enable/:email", (request, response) => {
     });
   });
 });
-
 app.get("/update/:id", (req, res) => {
   const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
   db.query(sql, [req.params.id], (err, results) => {
-    if (!err)
-      return res.render("docUpdates", {
+    if (!err) {
+      res.render("docUpdates", {
         names: results,
       });
-    else return res.json(err);
+    } else return res.json(err);
   });
 });
-
 app.get("/adminUpdate/:id", (req, res) => {
   const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
   db.query(sql, [req.params.id], (err, results) => {
@@ -94,7 +92,6 @@ app.get("/adminUpdate/:id", (req, res) => {
     else return res.json(err);
   });
 });
-
 async function deleteRowById(id) {
   try {
     id = parseInt(id, 10);
