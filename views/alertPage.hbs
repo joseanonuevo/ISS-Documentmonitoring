@@ -57,9 +57,35 @@
                 </h2>
             {{/if}}
 
+            {{#if expiredLink}}
+                 <span class="material-icons" style="font-size: 250px; color:red">
+                    {{error}}
+                </span>
 
+                <h2 class="thick">
+                    {{expiredLink}}
+                </h2>               
+            {{/if}}
 
+             {{#if errorAlert}}
+                 <span class="material-icons" style="font-size: 250px; color:red">
+                    {{error}}
+                </span>
 
+                <h2 class="thick">
+                    {{errorAlert}}
+                </h2>               
+            {{/if}}           
+
+            {{#if pwUpdated}}
+                 <span class="material-icons" style="font-size: 250px; color:red">
+                    {{success}}
+                </span>
+
+                <h2 class="thick">
+                    {{pwUpdated}}
+                </h2>               
+            {{/if}}
             <button id="alertBtn" onclick="goBack()">Go Back</button>
         </center>
         <br>

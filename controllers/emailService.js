@@ -269,7 +269,7 @@ exports.requestPwChange = (req, res) => {
           if (error) return console.log(error);
           else
             return res.status(400).render("alertPage", {
-              yesAccount: "A reset",
+              yesAccount: "Success! An email has been sent to your account.",
               success: "check_circle",
             });
         });
@@ -287,8 +287,9 @@ exports.resetPw = (req, res) => {
       process.env.JWT_ACC_ACTIVATE,
       async (err, decodedToken) => {
         if (err) {
-          return res.send(400).json({
-            error: "Incorrect or expired link",
+          return res.status(400).render("alertPage", {
+            expiredLink: "Incorrect or expired link",
+            error: "error",
           });
         }
         const { email } = decodedToken;
@@ -299,13 +300,14 @@ exports.resetPw = (req, res) => {
           [hashedPassword, email],
           (error, results) => {
             if (error) {
-              return res.stastus(400).json({
-                message: error,
+              return res.status(400).render("alertPage", {
+                error1: "Error",
+                error: "error",
               });
             } else {
-              console.log(results);
-              return res.status(200).json({
-                message: "Password Updated",
+              return res.status(400).render("alertPage", {
+                pwUpdated: "Password Updated",
+                success: "success",
               });
             }
           }
