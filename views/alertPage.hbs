@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!-- Icons -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background-color:#f8f7f6">
+
+    <div class="design-top" style="width: 100%; height: 30px; background-color: orange;">
+
+    </div>
+
+    <div class="header-reset">
+        <img src="/img/iss-logo.png" id="header-logo1">
+        <p style="font-size:30px;">INFORMATION SYSTEMS SOCIETY</p>
+    </div>
+
+    <div class="resetpage-content" style="width: 50%;">
+        <br><br>
+        <center>
+            <span class="material-icons" style="font-size: 250px; color:red">
+            error
+            </span>
+            <h2 class="thick">No Account</h2>
+
+            {{#if noAccount}}
+                <span class="material-icons" style="font-size: 250px; color:red">
+                    {{error}}
+                </span>
+
+                <h2 class="thick">
+                    {{noAccount}}
+                </h2>
+            {{/if}}
+
+            {{#if yesAccount}}
+                <span class="material-icons" style="font-size: 250px; color:rgb(23, 207, 23)">
+                    {{success}}
+                </span>
+                
+                <h2 class="thick">
+                    {{yesAccount}}
+                </h2>
+            {{/if}}
+
+
+
+
+            <button id="alertBtn" onclick="goBack()">Go Back</button>
+        </center>
+        <br>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+        </script>
+    <script>
+  function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+
+
+</html>

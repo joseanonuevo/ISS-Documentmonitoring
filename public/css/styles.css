@@ -336,6 +336,14 @@ tr:nth-child(odd) {
     padding-left: 15px;
 }
 
+#alertBtn{
+    border: none;
+    height:40px;
+    border-radius:15px;
+    color:white;
+    background-color:orange;
+}
+
 .submit-modal {
     background-color: orange;
     border: none;

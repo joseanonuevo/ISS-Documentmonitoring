@@ -87,6 +87,10 @@ router.get("/adminHome", (req, res) => {
   res.render("adminHome");
 });
 
+router.get("/alertPage", (req, res) => {
+  res.render("alertPage");
+});
+
 function verify(req, res, next) {
   const authcookie = req.cookies.authcookie;
   jwt.verify(authcookie, process.env.JWT_SECRET, (err, data) => {

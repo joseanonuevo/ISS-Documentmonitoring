@@ -241,7 +241,10 @@ exports.requestPwChange = (req, res) => {
     [email],
     async (error, results) => {
       if (results.length === 0) {
-        return res.status(400).json({ error: "No Account" });
+        return res.status(400).render("alertPage", {
+          noAccount: "No Account",
+          error: "error",
+        });
       } else {
         const token = jwt.sign(
           {
@@ -265,8 +268,9 @@ exports.requestPwChange = (req, res) => {
           console.log(body);
           if (error) return console.log(error);
           else
-            return res.status(200).json({
-              message: "Email sent",
+            return res.status(400).render("alertPage", {
+              yesAccount: "A reset",
+              success: "check_circle",
             });
         });
       }
