@@ -407,6 +407,12 @@ tr:nth-child(odd) {
     width: 230px;
     height: 35px;
     background-color: #fffff0;
+    outline: none;
+    padding-left: 10px;
+}
+
+#email:focus{
+    box-shadow: 0 0 3pt 2pt lightblue;
 }
 
 #forgotPW-title{
