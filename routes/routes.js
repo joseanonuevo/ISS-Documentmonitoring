@@ -62,6 +62,12 @@ router.get("/update/:id", (req, res) => {
   });
 });
 
+router.get("/logout", (req, res) => {
+  res.clearCookie("authcookie");
+  res.clearCookie("authcookie2");
+  res.render("login");
+});
+
 router.get("/adminUpdate/:id", (req, res) => {
   const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
   db.query(sql, [req.params.id], (err, results) => {
