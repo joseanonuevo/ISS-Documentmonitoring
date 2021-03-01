@@ -51,6 +51,28 @@ router.get("/adminArchive", verify, (req, res) => {
   });
 });
 
+router.get("/update/:id", (req, res) => {
+  const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
+  db.query(sql, [req.params.id], (err, results) => {
+    if (!err) {
+      res.render("docUpdates", {
+        names: results,
+      });
+    } else return res.json(err);
+  });
+});
+
+router.get("/adminUpdate/:id", (req, res) => {
+  const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
+  db.query(sql, [req.params.id], (err, results) => {
+    if (!err)
+      return res.render("adminDocUpdates", {
+        names: results,
+      });
+    else return res.json(err);
+  });
+});
+
 router.get("/resetPW", (req, res) => {
   res.render("resetPW");
 });
@@ -69,6 +91,7 @@ router.get("/registeredUsers", (req, res) => {
     else return res.json(err);
   });
 });
+
 router.get("/disabledUsers", (req, res) => {
   const sql = "SELECT * FROM users where user_status =1";
   db.query(sql, (err, results) => {

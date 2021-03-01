@@ -43,6 +43,17 @@ app.delete("/delete/:id", (request, response) => {
     )
     .catch((err) => console.log(err));
 });
+app.delete("/deleteUpdate/:id", (request, response) => {
+  const { id } = request.params;
+  const result = deleteRowByIdUpdate(id);
+  result
+    .then((data) =>
+      response.json({
+        success: true,
+      })
+    )
+    .catch((err) => console.log(err));
+});
 app.patch("/archive/:id", (request, response) => {
   const { id } = request.params;
   const result = archiveRowById(id);
@@ -72,31 +83,28 @@ app.patch("/enable/:email", (request, response) => {
     });
   });
 });
-app.get("/update/:id", (req, res) => {
-  const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
-  db.query(sql, [req.params.id], (err, results) => {
-    if (!err) {
-      res.render("docUpdates", {
-        names: results,
-      });
-    } else return res.json(err);
-  });
-});
-app.get("/adminUpdate/:id", (req, res) => {
-  const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
-  db.query(sql, [req.params.id], (err, results) => {
-    if (!err)
-      return res.render("adminDocUpdates", {
-        names: results,
-      });
-    else return res.json(err);
-  });
-});
+
 async function deleteRowById(id) {
   try {
     id = parseInt(id, 10);
     const response = await new Promise((resolve, reject) => {
       const query = "DELETE FROM create_document WHERE createDocu_ID = ?";
+      db.query(query, [id], (err, results) => {
+        if (err) reject(new Error(err.message));
+        resolve(results);
+      });
+    });
+    return response === 1 ? true : false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+async function deleteRowByIdUpdate(id) {
+  try {
+    id = parseInt(id, 10);
+    const response = await new Promise((resolve, reject) => {
+      const query = "DELETE FROM update_document WHERE updateDocu_ID = ?";
       db.query(query, [id], (err, results) => {
         if (err) reject(new Error(err.message));
         resolve(results);
