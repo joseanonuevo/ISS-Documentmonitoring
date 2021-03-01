@@ -118,7 +118,9 @@ function verify(req, res, next) {
   const authcookie = req.cookies.authcookie;
   jwt.verify(authcookie, process.env.JWT_SECRET, (err, data) => {
     if (err) {
-      return res.send("ERROR");
+      return res.status(400).render("login", {
+        message: "You must login to continue",
+      });
     } else {
       next();
     }

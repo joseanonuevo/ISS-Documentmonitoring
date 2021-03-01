@@ -16,8 +16,9 @@ exports.register = (req, res) => {
     [email],
     async (error, results) => {
       if (results.length > 0) {
-        return res.status(400).json({
-          error: "user exists already",
+        return res.status(400).render("alertPage", {
+          userExistsAlready: "User exists already!",
+          error: "error",
         });
       } else {
         const token = jwt.sign(
@@ -160,8 +161,10 @@ exports.register = (req, res) => {
           console.log(body);
           if (error) return console.log(error);
           else
-            return res.status(200).json({
-              message: "Email sent please activate account",
+            return res.status(400).render("alertPage", {
+              successActivateAccount:
+                "Success! Check your email inbox to activate your account.",
+              success: "check_circle",
             });
         });
       }
@@ -189,8 +192,9 @@ exports.activateAccount = (req, res, next) => {
         process.env.JWT_ACC_ACTIVATE,
         async (err, decodedToken) => {
           if (err) {
-            return res.send(400).json({
-              error: "Incorrect or expired link",
+            return res.status(400).render("alertPage", {
+              incorrectOrExpiredLink1: "Incorrect or Expired Link!",
+              error: "error",
             });
           }
           const { email } = decodedToken;
@@ -201,8 +205,9 @@ exports.activateAccount = (req, res, next) => {
             [email],
             (error, results) => {
               if (results.length > 0) {
-                return res.status(400).json({
-                  error: "Invalid request",
+                return res.status(400).render("alertPage", {
+                  invalidRequest: "Invalid Request",
+                  error: "error",
                 });
               }
             }
@@ -212,13 +217,16 @@ exports.activateAccount = (req, res, next) => {
             [lname, fname, mi, regdate, position, email, hashedPassword, 1],
             (error, results) => {
               if (error) {
-                return res.status(400).json({
-                  message: error,
+                return res.status(400).render("alertPage", {
+                  errorMSG: "Error",
+                  error: "error",
                 });
               } else {
                 console.log(results);
-                return res.status(200).json({
-                  message: "Account Registered",
+                return res.status(400).render("alertPage", {
+                  successAccountRegistered:
+                    "Account has been successfully registered!",
+                  success: "check_circle",
                 });
               }
             }
@@ -227,8 +235,9 @@ exports.activateAccount = (req, res, next) => {
       );
     }
   } catch {
-    return res.stastus(400).json({
-      message: error,
+    return res.status(400).render("alertPage", {
+      errorMSG: "Error",
+      error: "error",
     });
   }
 };
@@ -301,13 +310,13 @@ exports.resetPw = (req, res) => {
           (error, results) => {
             if (error) {
               return res.status(400).render("alertPage", {
-                error1: "Error",
+                errorAlert: "Error",
                 error: "error",
               });
             } else {
               return res.status(400).render("alertPage", {
                 pwUpdated: "Password Updated",
-                success: "success",
+                success: "check_circle",
               });
             }
           }

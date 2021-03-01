@@ -164,13 +164,13 @@
           </div>
           <div class="modal-body">
             <div class="create-docform">
-              <form action="/functions/changePw" method="POST">
+              <form action="/functions/changePw" method="POST" onsubmit="return validate()">
                 <label for="" id="createdoc-label">Old Password</label>
-                <input type="password" class="modal-input" name="oldpassword" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="oldpassword" id="oldpassword" required><br>
                 <label for="" id="createdoc-label">New Password</label>
-                <input type="password" class="modal-input" name="newpassword1" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="newpassword1" id="newpassword1" required><br>
                 <label for="" id="createdoc-label">Confirm New Password</label>
-                <input type="password" class="modal-input" name="newpassword" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="newpassword" id="newpassword" required><br>
                 <center>
                   <button type="button" class="close-modal" data-dismiss="modal">Close</button>
                   <button type="submit" class="submit-modal">Submit</button>
@@ -199,7 +199,7 @@
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">Upload File</label>
-                <input type="file" name="key" single required /></br><br>
+                <input type="file" name="key" accept= "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf" single required /></br><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">To be Signed by</label>
                 <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
@@ -289,6 +289,25 @@
   });
 
 
+</script>
+
+<script>
+  function validate(){
+        var t = document.getElementById("newpassword1").value;
+        var te = document.getElementById("newpassword").value;
+        
+        if(t != te){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "Password don't match!",
+          })
+          return false;
+        }else{
+          return true;
+        }
+
+      }
 </script>
 
 </html>

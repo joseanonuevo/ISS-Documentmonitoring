@@ -309,6 +309,15 @@ tr:nth-child(odd) {
     background-color: rgb(255, 255, 240);
 }
 
+#oldpassword, #newpassword, #newpassword1{
+    height: 35px !important;
+    width: 300px !important;
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 240);
+}
+
 #note-modal {
     height: 35px !important;
     width: 300px !important;
@@ -474,8 +483,16 @@ tr:nth-child(odd) {
     border: none;
     background-color: #e8e6e6;
     height: 35px;
-    width: 230px;
+    width: 200px;
     font-size: 21px;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.input-resetPW:focus{
+    outline: none;
+    box-shadow: 0 0 3pt 2pt lightblue;
+
 }
 
 #submit-resetpw{
@@ -486,6 +503,7 @@ tr:nth-child(odd) {
     border-radius: 100px;
     color: white;
     margin-top: 40px;
+    outline: none;
 }
 
 #resetreset-btn{
@@ -497,6 +515,18 @@ tr:nth-child(odd) {
     width: 100px;
     border-radius: 100px;
     color: black;
+    outline: none;
+}
+
+#resetreset-btn:focus,
+#submit-resetpw:focus {
+    box-shadow: 0 0 3pt 2pt lightblue;
+    outline: none;
+}
+
+#resetreset-btn :focus{
+    outline: none;
+    box-shadow: 0 0 3pt 2pt lightblue;
 }
 
 /* END */

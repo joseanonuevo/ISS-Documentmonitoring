@@ -16,14 +16,20 @@ exports.changePw = (req, res) => {
       if (
         (await bcrypt.compare(oldpassword, results[0].user_Password)) === false
       ) {
-        res.send("Wrong password");
+        return res.status(400).render("alertPage", {
+          wrongOldPw: "Wrong Old Password!",
+          error: "error",
+        });
       } else {
         // "UPDATE users SET user_Password = ? WHERE user_Email = ?"
         const hashedPassword = await bcrypt.hash(newpassword, 5);
         newsql = "UPDATE users SET user_Password = ? WHERE user_ID = ?";
         db.query(newsql, [hashedPassword, id], (err, results) => {
           if (!err) {
-            res.send("Updated");
+            return res.status(400).render("alertPage", {
+              successChangePw: "Your password has been changed successfully!",
+              success: "check_circle",
+            });
           } else {
             res.send(err);
           }

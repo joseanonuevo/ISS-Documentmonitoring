@@ -119,7 +119,6 @@
             <th style="width: 10%;">Attachment</th>
             <th style="width: 10%;">Status</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -134,7 +133,6 @@
             <td><a href="{{{updateDocu_Attachment}}}">Attachment</a></td>
             <td>{{updateDocu_Status}}</td>
             <td><button class="delete-row-btn" id="delete-btn" data-id=${updateDocu_ID}></td>
-            <td><button class="archive-row-btn" id="archive-btn" data-id=${updateDocu_ID}></td>
           </tr>
           {{/each}}
         </tbody>
@@ -199,7 +197,7 @@
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">Upload File</label>
-                <input type="file" multiple name="key" /></br><br>
+                <input type="file" name="key" accept= "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf" required single/></br><br>
 
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">To be Signed by</label>

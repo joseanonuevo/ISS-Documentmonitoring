@@ -46,10 +46,6 @@
 
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          <a href="/registeredUsers"><button class="dropdown-item" type="button"><span class="material-icons"
-                id="dropdown-icons">
-                manage_accounts
-              </span>Manage Accounts</button></a>
           <button class="dropdown-item" type="button" data-toggle="modal" data-target="#forgot-pass"><span
               class="material-icons" id="dropdown-icons">
               lock
@@ -119,7 +115,6 @@
             <th style="width: 10%;">Attachment</th>
             <th style="width: 10%;">Status</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -134,7 +129,6 @@
             <td><a href="{{{updateDocu_Attachment}}}">Attachment</a></td>
             <td>{{updateDocu_Status}}</td>
             <td><button class="delete-row-btn" id="delete-btn" data-id={{updateDocu_ID}}></td>
-            <td><button class="archive-row-btn" id="archive-btn" data-id=${updateDocu_ID}></td>
           </tr>
           {{/each}}
         </tbody>
@@ -166,13 +160,13 @@
           </div>
           <div class="modal-body">
             <div class="create-docform">
-              <form action="/functions/changePw" method="POST">
+              <form action="/functions/changePw" method="POST" onsubmit="return validate()">
                 <label for="" id="createdoc-label">Old Password</label>
-                <input type="password" class="modal-input" name="oldpassword" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="oldpassword" id="oldpassword" required><br>
                 <label for="" id="createdoc-label">New Password</label>
-                <input type="password" class="modal-input" name="newpassword1" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="newpassword1" id="newpassword1" required><br>
                 <label for="" id="createdoc-label">Confirm New Password</label>
-                <input type="password" class="modal-input" name="newpassword" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="newpassword" id="newpassword" required><br>
                 <center>
                   <button type="button" class="close-modal" data-dismiss="modal">Close</button>
                   <button type="submit" class="submit-modal">Submit</button>
@@ -201,7 +195,7 @@
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">Upload File</label>
-                <input type="file" name="key" single required /></br><br>
+                <input type="file" name="key" accept= "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf" single required /></br><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">To be Signed by</label>
                 <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
@@ -334,7 +328,25 @@
     }]
   });
 
+</script>
 
+<script>
+  function validate(){
+        var t = document.getElementById("newpassword1").value;
+        var te = document.getElementById("newpassword").value;
+        
+        if(t != te){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "Password don't match!",
+          })
+          return false;
+        }else{
+          return true;
+        }
+
+      }
 </script>
 
 </html>
