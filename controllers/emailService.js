@@ -135,17 +135,13 @@ exports.register = (req, res) => {
                       <br>
 
                       <center>
-                          <a href="${process.env.CLIENT_URL}/activation"
+                          <a href="${process.env.CLIENT_URL}/registration/${token}"
                               id="reset-link"><button id="resetpw-btn">Register Here</button>
                           </a>
 
                       </center>
 
                       <br>
-
-                      <section>
-                          <p>VERIFICATION CODE: ${token}</p>
-                      </section>
 
                       <section>
                           <p>Cheers, <br> Information Systems Society (UST-ISS)</p>
@@ -162,8 +158,7 @@ exports.register = (req, res) => {
           if (error) return console.log(error);
           else
             return res.status(400).render("alertPage", {
-              successActivateAccount:
-                "Success! Check your email inbox to activate your account.",
+              successActivateAccount: "Success!",
               success: "check_circle",
             });
         });
@@ -173,6 +168,9 @@ exports.register = (req, res) => {
 };
 
 exports.activateAccount = (req, res, next) => {
+  var newtoken = req.headers.referer;
+  var token = newtoken.split("/").pop();
+  console.log(token);
   try {
     date = Date.now();
     const {
@@ -183,7 +181,6 @@ exports.activateAccount = (req, res, next) => {
       position,
       password,
       confirmpw,
-      token,
     } = req.body;
     console.log(req.body);
     if (token) {
@@ -268,9 +265,116 @@ exports.requestPwChange = (req, res) => {
           from: "codesanonuevo@gmail.com",
           to: email,
           subject: "Reset Password",
-          html: `<h2>Please proceed to link to reset password</h2>
-                 <p>${process.env.CLIENT_URL}/activation</p>
-                 <p>${token}</p>
+          html: `
+          
+
+          <!DOCTYPE html>
+          <html lang="en">
+
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Document</title>
+              <style>
+                  #resetpw-btn {
+                      background-color: orange;
+                      width: 150px;
+                      height: 30px;
+                      border: none;
+                      border-radius: 50px;
+                      color: white;
+                  }
+
+                  .email-container {
+                      box-shadow: 0 0 8px #ccc;
+                      padding: 30px;
+                      margin-left: auto;
+                      margin-right: auto;
+                      width: 600px;
+                      border: solid 1px black;
+                  }
+
+                  .email-header {
+                      margin-left: auto;
+                      margin-right: auto;
+                  }
+
+                  #iss-logo {
+                      width: 50px;
+                      height: 50px;
+                      position: relative;
+                      top: 12px;
+                  }
+
+                  #header-list {
+                      list-style: none;
+                      width: 100%;
+                      height: 90px;
+                      margin: 0;
+                      padding: 0;
+                      white-space: nowrap;
+                      overflow-x: auto;
+                      overflow-y: hidden;
+                  }
+
+                  #header-list>li {
+                      display: inline-block;
+                  }
+
+                  .container {
+                      background-color: white;
+                      width: 680px;
+                      margin-left: auto;
+                      margin-right: auto;
+                  }
+              </style>
+          </head>
+
+          <body>
+              <div class="container">
+                  <div class="email-header">
+                      <center>
+                        <ul id="header-list">
+                            <li><img src="https://i.ibb.co/9WqDmVm/iss-logo.png" alt="iss-logo" id="iss-logo"></li>
+                            <li>
+                                <h2>Information Systems Society</h2>
+                            </li>
+                        </ul>
+                      </center>
+                  </div>
+
+                  <div class="email-container">
+                      <section>
+                          <h3>Good Day!</h3>
+                      </section>
+
+
+                      <section>
+                          <p>
+                          Click here to reset your password.
+                          </p>
+                      </section>
+
+                      <br>
+
+                      <center>
+                          <a href="${process.env.CLIENT_URL}/resetPw/${token}"
+                              id="reset-link"><button id="resetpw-btn">Register Here</button>
+                          </a>
+
+                      </center>
+
+                      <br>
+
+                      <section>
+                          <p>Cheers, <br> Information Systems Society (UST-ISS)</p>
+                      </section>
+                  </div>
+              </div>
+          </body>
+
+          </html>
+
           `,
         };
         mg.messages().send(data, (error, body) => {
@@ -288,7 +392,9 @@ exports.requestPwChange = (req, res) => {
 };
 
 exports.resetPw = (req, res) => {
-  const { token, password } = req.body;
+  var newtoken = req.headers.referer;
+  var token = newtoken.split("/").pop();
+  const { password } = req.body;
   console.log(req.body);
   if (token) {
     jwt.verify(

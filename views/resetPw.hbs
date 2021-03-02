@@ -21,7 +21,7 @@
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     {{! SweetAlert }}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
@@ -51,8 +51,6 @@
                 <input type="password" id="password" name="password" class="input-resetPW" required><br><br>
                 <label class="lbl-resetpg" for="confirmpw">Confirm Password</label>
                 <input type="password" id="password1" name="passwordConfirm" class="input-resetPW" required><br><br>
-                <label class="lbl-resetpg" for="token">Verification Code</label>
-                <input type="text" id="token" name="token" class="input-resetPW" required><br><br>
 
                 <center>
                     <button type="reset" value="Reset" id="resetreset-btn">Cancel</button>
@@ -72,22 +70,22 @@
         </script>
 </body>
 <script>
-  function validate(){
+    function validate() {
         var t = document.getElementById("password").value;
         var te = document.getElementById("password1").value;
-        
-        if(t != te){
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "Password don't match!",
-          })
-          return false;
-        }else{
-          return true;
+
+        if (t != te) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Password don't match!",
+            })
+            return false;
+        } else {
+            return true;
         }
 
-      }
+    }
 </script>
 
 </html>

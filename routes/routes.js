@@ -51,7 +51,7 @@ router.get("/adminArchive", verify, (req, res) => {
   });
 });
 
-router.get("/update/:id", (req, res) => {
+router.get("/update/:id", verify, (req, res) => {
   const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
   db.query(sql, [req.params.id], (err, results) => {
     if (!err) {
@@ -68,7 +68,7 @@ router.get("/logout", (req, res) => {
   res.render("login");
 });
 
-router.get("/adminUpdate/:id", (req, res) => {
+router.get("/adminUpdate/:id", verify, (req, res) => {
   const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
   db.query(sql, [req.params.id], (err, results) => {
     if (!err)
@@ -79,16 +79,16 @@ router.get("/adminUpdate/:id", (req, res) => {
   });
 });
 
-router.get("/resetPW", (req, res) => {
+router.get("/resetPW/:id", (req, res) => {
   res.render("resetPW");
 });
 
-router.get("/registration", (req, res) => {
+router.get("/registration/:id", (req, res) => {
   res.render("registration");
 });
 
-router.get("/registeredUsers", (req, res) => {
-  const sql = "SELECT * FROM users where user_status =0";
+router.get("/registeredUsers", verify, (req, res) => {
+  const sql = "SELECT * FROM users where user_status = 0";
   db.query(sql, (err, results) => {
     if (!err)
       res.render("registeredUsers", {
@@ -98,8 +98,8 @@ router.get("/registeredUsers", (req, res) => {
   });
 });
 
-router.get("/disabledUsers", (req, res) => {
-  const sql = "SELECT * FROM users where user_status =1";
+router.get("/disabledUsers", verify, (req, res) => {
+  const sql = "SELECT * FROM users where user_status = 1";
   db.query(sql, (err, results) => {
     if (!err)
       res.render("disabledUsers", {
@@ -108,11 +108,11 @@ router.get("/disabledUsers", (req, res) => {
     else return res.json(err);
   });
 });
-router.get("/register", (req, res) => {
+router.get("/register", verify, (req, res) => {
   res.render("register");
 });
 
-router.get("/adminHome", (req, res) => {
+router.get("/adminHome", verify, (req, res) => {
   res.render("adminHome");
 });
 
