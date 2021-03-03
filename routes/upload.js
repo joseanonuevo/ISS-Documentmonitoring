@@ -73,7 +73,7 @@ router.post("/upload", upload, (req, res) => {
           "INSERT INTO activity_log(activity,user_id,document_name) VALUES(?,?,?)";
         db.query(
           sql3,
-          ["Created", req.cookies.authcookie2, document_title],
+          ["has created", req.cookies.authcookie2, document_title],
           (err, result) => {
             console.log(
               `${req.cookies.authcookie2} uploaded a document ${document_title}`
@@ -144,7 +144,7 @@ router.post("/update/", upload, (req, res) => {
           "INSERT INTO activity_log(activity,user_id,document_name) VALUES(?,?,?)";
         db.query(
           sql3,
-          ["updated", req.cookies.authcookie2, document_title],
+          ["has updated", req.cookies.authcookie2, document_title],
           (err, result) => {
             console.log(
               `${req.cookies.authcookie2} updated document ${document_title}`

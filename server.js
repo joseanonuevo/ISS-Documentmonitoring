@@ -42,7 +42,7 @@ app.delete("/delete/:id", (request, response) => {
       "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
     db.query(
       query2,
-      ["Deleted", document_name, request.cookies.authcookie2],
+      ["has deleted", document_name, request.cookies.authcookie2],
       (err, results) => {
         console.log("pass");
       }
@@ -78,7 +78,7 @@ app.patch("/archive/:id", (request, response) => {
       "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
     db.query(
       query2,
-      ["Archived", document_name, request.cookies.authcookie2],
+      ["has archived", document_name, request.cookies.authcookie2],
       (err, results) => {
         console.log("pass");
       }

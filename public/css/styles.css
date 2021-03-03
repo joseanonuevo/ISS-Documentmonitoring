@@ -53,6 +53,10 @@ body {
     right: 5px;
 }
 
+.landing-content{
+    margin-top: 20px;
+}
+
 /* END of Header */
 
 
@@ -122,9 +126,13 @@ body {
 
 }
 
+.loginContents{
+    margin-top: 10px;
+}
+
 .login-column {
     margin-top: 15px;
-    margin-left: 20px;
+    
 }
 
 .page-info {
@@ -412,7 +420,6 @@ tr:nth-child(odd) {
 }
 
 .notif-div :hover{
-    cursor: pointer;
     background-color: #ddd;
 }
 

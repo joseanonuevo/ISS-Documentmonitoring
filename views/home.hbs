@@ -55,14 +55,16 @@
               <h4 class="notif-recent"><b>Recent</b></h5>
                 <br>
 
+
                 {{#each activities}}
-                <div class="notif-div" onclick="location.href='/update/{{createDocu_ID}}';">
-                  <p class="notif-txt">{{user_id}} DID SOMETHING {{document_name}}<br><span
+                <div class="notif-div">
+                  <p class="notif-txt">{{user_id}} <span id="activity">{{activity}}</span> {{document_name}}<br><span
                       class="notif-date">{{date}}</span></p>
 
                   <hr>
                 </div>
                 {{/each}}
+
           </div>
         </div>
       </div>
@@ -160,7 +162,7 @@
             <td><a href="{{{createDocu_Attachment}}}">Attachment</a></td>
             <td>{{createDocu_Status}}</td>
             <td><button class="delete-row-btn" id="delete-btn" data-id={{createDocu_ID}}></td>
-            <td><button class="archive-row-btn" id="archive-btn" data-id={{createDocu_ID}}></td>
+            <td style="padding-right:20px"><button class="archive-row-btn" id="archive-btn" data-id={{createDocu_ID}}></td>
           </tr>
           {{/each}}
         </tbody>
@@ -344,10 +346,5 @@
   }
 </script>
 
-<script>
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-</script>
 
 </html>
