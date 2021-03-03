@@ -34,6 +34,20 @@ const db = require("./db/connectDB");
 
 app.delete("/delete/:id", (request, response) => {
   const { id } = request.params;
+  query =
+    "SELECT createDocu_Title FROM create_document WHERE createDocu_ID = ?";
+  db.query(query, [id], (err, results) => {
+    const document_name = results[0].createDocu_Title;
+    query2 =
+      "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
+    db.query(
+      query2,
+      ["Deleted", document_name, request.cookies.authcookie2],
+      (err, results) => {
+        console.log("pass");
+      }
+    );
+  });
   const result = deleteRowById(id);
   result
     .then((data) =>
@@ -56,6 +70,20 @@ app.delete("/deleteUpdate/:id", (request, response) => {
 });
 app.patch("/archive/:id", (request, response) => {
   const { id } = request.params;
+  query =
+    "SELECT createDocu_Title FROM create_document WHERE createDocu_ID = ?";
+  db.query(query, [id], (err, results) => {
+    const document_name = results[0].createDocu_Title;
+    query2 =
+      "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
+    db.query(
+      query2,
+      ["Archived", document_name, request.cookies.authcookie2],
+      (err, results) => {
+        console.log("pass");
+      }
+    );
+  });
   const result = archiveRowById(id);
   result
     .then((data) =>

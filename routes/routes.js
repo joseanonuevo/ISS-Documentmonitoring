@@ -9,12 +9,18 @@ router.get("/", (req, res) => {
 
 router.get("/home", verify, (req, res) => {
   const sql = "SELECT * from create_document WHERE status = 1";
-  db.query(sql, (err, results) => {
-    if (!err)
-      return res.render("home", {
-        names: results,
+  db.query(sql, (err, results1) => {
+    if (!err) {
+      const sql2 = "SELECT * FROM activity_log";
+      db.query(sql2, (err, results2) => {
+        res.render("home", {
+          names: results1,
+          activities: results2,
+        });
       });
-    else return res.json(err);
+    } else {
+      res.json(err);
+    }
   });
 });
 

@@ -18,7 +18,6 @@ const storage = multer.memoryStorage({
 });
 
 const upload = multer({ storage }).single("key");
-
 router.post("/upload", upload, (req, res) => {
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
@@ -32,7 +31,6 @@ router.post("/upload", upload, (req, res) => {
     Key: `${uuidv4()}.${fileType}`,
     Body: req.file.buffer,
   };
-
   s3.upload(params, (error, data) => {
     if (error) {
       res.status(500).send(error);
@@ -69,6 +67,17 @@ router.post("/upload", upload, (req, res) => {
           ],
           (err, result) => {
             return console.log(err);
+          }
+        );
+        const sql3 =
+          "INSERT INTO activity_log(activity,user_id,document_name) VALUES(?,?,?)";
+        db.query(
+          sql3,
+          ["Created", req.cookies.authcookie2, document_title],
+          (err, result) => {
+            console.log(
+              `${req.cookies.authcookie2} uploaded a document ${document_title}`
+            );
           }
         );
         res.status(200).redirect("/home");
@@ -131,7 +140,17 @@ router.post("/update/", upload, (req, res) => {
         new_ID,
       ],
       (err, result) => {
-        console.log("pass");
+        const sql3 =
+          "INSERT INTO activity_log(activity,user_id,document_name) VALUES(?,?,?)";
+        db.query(
+          sql3,
+          ["updated", req.cookies.authcookie2, document_title],
+          (err, result) => {
+            console.log(
+              `${req.cookies.authcookie2} updated document ${document_title}`
+            );
+          }
+        );
       }
     );
     res.status(200).redirect("/update/" + new_ID);
