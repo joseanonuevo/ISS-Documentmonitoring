@@ -411,6 +411,55 @@ tr:nth-child(odd) {
     padding-left: 10px;
 }
 
+.notif-div :hover{
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+.notif-whole {
+    width: 500px;
+    max-height: 500px;
+}
+
+#notif-whole{
+    overflow-x:hidden;
+    overflow-y:auto;
+    box-shadow: 0px 3px 12px 3px rgba(0, 0, 0, 0.288);
+}
+
+.button-settings :hover{
+    color: gray;
+}
+
+#settings-btn:hover{
+    color: grey;
+}
+
+.notif-txt{
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left: 30px;
+    padding-right: 10px;
+    font-weight:600;
+}
+
+.notif-recent{
+    padding-left: 30px;
+    padding-top: 30px;
+    margin-bottom: -25px;
+}
+
+.notif-date{
+    color: gray;
+    font-weight:lighter;
+}
+
+.notif-title{
+    padding-left: 30px;
+    padding-top: 20px;
+    margin-bottom: -10px;
+}
+
 #email:focus{
     box-shadow: 0 0 3pt 2pt lightblue;
 }
@@ -728,3 +777,4 @@ tr:nth-child(odd) {
 }
 
 /* END Add Account Modal */
+

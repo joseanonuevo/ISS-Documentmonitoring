@@ -38,8 +38,36 @@
       <h3 id="header-title">INFORMATION SYSTEMS SOCIETY</h3>
     </div>
 
-    <!-- Start of  Dropdown -->
+    <!-- Start of  Dropdown for settings -->
+
+    <!-- Start of dropdown for notifications -->
     <div class="settings-dropdown">
+      <div class="btn-group">
+        <button type="button"  data-toggle="dropdown" class="button-settings" aria-haspopup="true"
+          aria-expanded="false" id="settings-btn">
+          <span class="material-icons">
+            notifications_none
+          </span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" id="notif-whole">
+          <div class="notif-whole">
+            <h2 class="notif-title"><b>Notifications</b></h3>
+            <h4 class="notif-recent"><b>Recent</b></h5>
+            <br>
+            
+            {{#each names}}
+            <div class="notif-div" onclick="location.href='/update/{{createDocu_ID}}';">
+              <p class="notif-txt">Golteb just updated {{createDocu_Title}}<br><span class="notif-date">{{createDocu_Date}}</span></p>
+
+            <hr>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <!-- End of dropdown for notifications -->
+
+      <!--Logout contents -->
       <div class="btn-group">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" id="settings-btn">
@@ -309,6 +337,12 @@
   function logout() {
     window.location.assign("/logout");
   }
+</script>
+
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
 
 </html>
