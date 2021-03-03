@@ -40,7 +40,7 @@
     <div class="resetpage-content">
         <br><br>
         <center>
-            <h2 class="thick">Reset Password</h2>
+            <h2><b>Reset Password</b></h2>
         </center>
         <br>
 
@@ -48,7 +48,8 @@
             <form action="/api/resetPw" method="post" onsubmit="return validate()">
 
                 <label class="lbl-resetpg" for="newpw">New Password</label>
-                <input type="password" id="password" name="password" class="input-resetPW" required><br><br>
+                <input type="password" id="password" name="password" class="input-resetPW" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$"
+            title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter." required><br><br>
                 <label class="lbl-resetpg" for="confirmpw">Confirm Password</label>
                 <input type="password" id="password1" name="passwordConfirm" class="input-resetPW" required><br><br>
 

@@ -72,7 +72,8 @@
                     </div>
                 </div>
                 <div class="reg4">
-                    <input type="password" id="reg-pw" name="password" placeholder="Enter Password" required>
+                    <input type="password" id="reg-pw" name="password" placeholder="Enter Password" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$"
+            title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter." required>
                 </div>
                 <br>
                 <div class="reg5">

@@ -162,7 +162,8 @@
                 <label for="" id="createdoc-label">Old Password</label>
                 <input type="password" class="modal-input" name="oldpassword" id="oldpassword" required><br>
                 <label for="" id="createdoc-label">New Password</label>
-                <input type="password" class="modal-input" name="newpassword1" id="newpassword1" required><br>
+                <input type="password" class="modal-input" name="newpassword1" id="newpassword1" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$"
+            title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter." required><br>
                 <label for="" id="createdoc-label">Confirm New Password</label>
                 <input type="password" class="modal-input" name="newpassword" id="newpassword" required><br>
                 <center>
