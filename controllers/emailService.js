@@ -38,7 +38,7 @@ exports.register = (req, res) => {
         */
         console.log(token);
         const data = {
-          from: "codesanonuevo@gmail.com",
+          from: "ust.iss.emonitor@gmail.com",
           to: email,
           subject: "Account Activation link",
           html: `
@@ -262,7 +262,7 @@ exports.requestPwChange = (req, res) => {
           }
         );
         const data = {
-          from: "codesanonuevo@gmail.com",
+          from: "ust.iss.emonitor@gmail.com",
           to: email,
           subject: "Reset Password",
           html: `

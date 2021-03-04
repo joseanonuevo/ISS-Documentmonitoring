@@ -57,7 +57,6 @@ app.delete("/delete/:id", (request, response) => {
     )
     .catch((err) => console.log(err));
 });
-
 app.delete("/deleteUpdate/:id", (request, response) => {
   const { id } = request.params;
   var create_docuID = request.headers.referer;
@@ -124,7 +123,6 @@ app.delete("/deleteUpdate/:id", (request, response) => {
     }
   });
 });
-
 app.patch("/archive/:id", (request, response) => {
   const { id } = request.params;
   query =
