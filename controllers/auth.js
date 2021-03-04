@@ -12,7 +12,7 @@ exports.login = async (req, res, next) => {
     }
 
     db.query(
-      "SELECT * FROM administrator WHERE admin_Email = ?",
+      "SELECT * FROM users WHERE user_Email = ? AND isAdmin = 1",
       [email],
       async (error, results) => {
         if (results.length === 0) {
@@ -52,7 +52,7 @@ exports.login = async (req, res, next) => {
           );
         } else if (
           !results ||
-          !(await bcrypt.compare(password, results[0].admin_Password))
+          !(await bcrypt.compare(password, results[0].user_Password))
         ) {
           db.query(
             "SELECT * FROM users WHERE user_Email = ? AND user_Status = 0",
@@ -89,7 +89,7 @@ exports.login = async (req, res, next) => {
             }
           );
         } else {
-          const id = results[0].admin_ID;
+          const id = results[0].user_ID;
           const token = jwt.sign({ id }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN,
           });

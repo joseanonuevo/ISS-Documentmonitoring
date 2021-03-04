@@ -209,6 +209,17 @@ router.post("/uploadAdmin", upload, (req, res) => {
             return console.log(err);
           }
         );
+        const sql3 =
+          "INSERT INTO activity_log(activity,user_id,document_name) VALUES(?,?,?)";
+        db.query(
+          sql3,
+          ["has created", req.cookies.authcookie2, document_title],
+          (err, result) => {
+            console.log(
+              `${req.cookies.authcookie2} uploaded a document ${document_title}`
+            );
+          }
+        );
         res.status(200).redirect("/adminHome");
       }
     );
