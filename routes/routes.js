@@ -1,3 +1,4 @@
+const { compareSync } = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
@@ -11,7 +12,8 @@ router.get("/home", verify, (req, res) => {
   const sql = "SELECT * from create_document WHERE status = 1";
   db.query(sql, (err, results1) => {
     if (!err) {
-      const sql2 = "SELECT * FROM activity_log";
+      const sql2 =
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC";
       db.query(sql2, (err, results2) => {
         res.render("home", {
           names: results1,
@@ -24,45 +26,61 @@ router.get("/home", verify, (req, res) => {
   });
 });
 
-router.get("/adminHome", verify, (req, res) => {
+router.get("/adminHome", verify, isAdmin, (req, res) => {
   const sql = "SELECT * from create_document WHERE status = 1";
-  db.query(sql, (err, results) => {
-    if (!err)
-      return res.render("adminHome", {
-        names: results,
+  db.query(sql, (err, results1) => {
+    if (!err) {
+      const sql2 = "SELECT * FROM activity_log ORDER BY date DESC";
+      db.query(sql2, (err, results2) => {
+        res.render("adminHome", {
+          names: results1,
+          activities: results2,
+        });
       });
-    else return res.json(err);
+    } else return res.json(err);
   });
 });
 
 router.get("/archive", verify, (req, res) => {
   const sql = "SELECT * from create_document WHERE status = 0";
-  db.query(sql, (err, results) => {
-    if (!err)
-      return res.render("archive", {
-        names: results,
+  db.query(sql, (err, results1) => {
+    if (!err) {
+      const sql2 = "SELECT * FROM activity_log";
+      db.query(sql2, (err, results2) => {
+        res.render("archive", {
+          names: results1,
+          activities: results2,
+        });
       });
-    else return res.json(err);
+    } else return res.json(err);
   });
 });
 
-router.get("/adminArchive", verify, (req, res) => {
+router.get("/adminArchive", verify, isAdmin, (req, res) => {
   const sql = "SELECT * from create_document WHERE status = 0";
-  db.query(sql, (err, results) => {
-    if (!err)
-      return res.render("adminArchive", {
-        names: results,
+  db.query(sql, (err, results1) => {
+    if (!err) {
+      const sql2 = "SELECT * FROM activity_log";
+      db.query(sql2, (err, results2) => {
+        res.render("archiveArchive", {
+          names: results1,
+          activities: results2,
+        });
       });
-    else return res.json(err);
+    } else return res.json(err);
   });
 });
 
 router.get("/update/:id", verify, (req, res) => {
   const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
-  db.query(sql, [req.params.id], (err, results) => {
+  db.query(sql, [req.params.id], (err, results1) => {
     if (!err) {
-      res.render("docUpdates", {
-        names: results,
+      const sql2 = "SELECT * FROM activity_log";
+      db.query(sql2, (err, results2) => {
+        res.render("docUpdates", {
+          names: results1,
+          activities: results2,
+        });
       });
     } else return res.json(err);
   });
@@ -74,14 +92,18 @@ router.get("/logout", (req, res) => {
   res.render("login");
 });
 
-router.get("/adminUpdate/:id", verify, (req, res) => {
+router.get("/adminUpdate/:id", verify, isAdmin, (req, res) => {
   const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
-  db.query(sql, [req.params.id], (err, results) => {
-    if (!err)
-      return res.render("adminDocUpdates", {
-        names: results,
+  db.query(sql, [req.params.id], (err, results1) => {
+    if (!err) {
+      const sql2 = "SELECT * FROM activity_log";
+      db.query(sql2, (err, results2) => {
+        res.render("adminArchive", {
+          names: results1,
+          activities: results2,
+        });
       });
-    else return res.json(err);
+    } else return res.json(err);
   });
 });
 
@@ -93,33 +115,37 @@ router.get("/registration/:id", (req, res) => {
   res.render("registration");
 });
 
-router.get("/registeredUsers", verify, (req, res) => {
+router.get("/registeredUsers", verify, isAdmin, (req, res) => {
   const sql = "SELECT * FROM users where user_status = 0";
-  db.query(sql, (err, results) => {
-    if (!err)
-      res.render("registeredUsers", {
-        names: results,
+  db.query(sql, (err, results1) => {
+    if (!err) {
+      const sql2 = "SELECT * FROM activity_log";
+      db.query(sql2, (err, results2) => {
+        res.render("registeredUsers", {
+          names: results1,
+          activities: results2,
+        });
       });
-    else return res.json(err);
+    } else return res.json(err);
   });
 });
 
-router.get("/disabledUsers", verify, (req, res) => {
+router.get("/disabledUsers", verify, isAdmin, (req, res) => {
   const sql = "SELECT * FROM users where user_status = 1";
-  db.query(sql, (err, results) => {
-    if (!err)
-      res.render("disabledUsers", {
-        names: results,
+  db.query(sql, (err, results1) => {
+    if (!err) {
+      const sql2 = "SELECT * FROM activity_log";
+      db.query(sql2, (err, results2) => {
+        res.render("disabledUsers", {
+          names: results1,
+          activities: results2,
+        });
       });
-    else return res.json(err);
+    } else return res.json(err);
   });
 });
-router.get("/register", verify, (req, res) => {
+router.get("/register", verify, isAdmin, (req, res) => {
   res.render("register");
-});
-
-router.get("/adminHome", verify, (req, res) => {
-  res.render("adminHome");
 });
 
 router.get("/alertPage", (req, res) => {
@@ -135,6 +161,18 @@ function verify(req, res, next) {
       });
     } else {
       next();
+    }
+  });
+}
+
+function isAdmin(req, res, next) {
+  const id = req.cookies.authcookie2;
+  const sql = "SELECT isAdmin FROM users WHERE user_ID = ?";
+  db.query(sql, [id], (err, result) => {
+    if (result[0].isAdmin === 1) {
+      next();
+    } else {
+      res.send("not an admin");
     }
   });
 }
