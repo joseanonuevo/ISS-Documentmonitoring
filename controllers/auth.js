@@ -10,7 +10,6 @@ exports.login = async (req, res, next) => {
         message: "Provide credentials",
       });
     }
-
     db.query(
       "SELECT * FROM users WHERE user_Email = ? AND isAdmin = 1",
       [email],

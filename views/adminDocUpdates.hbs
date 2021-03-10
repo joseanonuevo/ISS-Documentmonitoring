@@ -77,10 +77,10 @@
 
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          <a href="/registeredUsers"><button class="dropdown-item" type="button"><span
-              class="material-icons" id="dropdown-icons">
-              manage_accounts
-            </span>Manage Accounts</button></a>
+          <a href="/registeredUsers"><button class="dropdown-item" type="button"><span class="material-icons"
+                id="dropdown-icons">
+                manage_accounts
+              </span>Manage Accounts</button></a>
           <button class="dropdown-item" type="button" data-toggle="modal" data-target="#forgot-pass"><span
               class="material-icons" id="dropdown-icons">
               lock
@@ -163,10 +163,11 @@
             <td>{{updateDocu_Signedby}}</td>
             <td><a href="{{{updateDocu_Attachment}}}">Attachment</a></td>
             <td>{{updateDocu_Status}}</td>
-            <td><button class="delete-row-btn" id="delete-btn" data-id=${updateDocu_ID}></td>
+            <td><button class="delete-row-btn" id="delete-btn" data-id={{updateDocu_ID}}></td>
           </tr>
           {{/each}}
         </tbody>
+
       </table>
     </div>
     <br>
@@ -226,15 +227,15 @@
           </div>
           <div class="modal-body">
             <div class="create-docform">
-              <form action="/upload/updateAdmin" method="POST" onSubmit="document.getElementById('submit').disabled=true;">
+              <form action="/upload/updateAdmin/" enctype="multipart/form-data" method="POST"
+                onSubmit="document.getElementById('submit').disabled=true;">
                 <label for="" id="createdoc-label">Document Title</label>
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">Upload File</label>
                 <input type="file" name="key"
                   accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf"
-                  required single /></br><br>
-
+                  single required /></br><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">To be Signed by</label>
                 <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
@@ -264,7 +265,6 @@
               </form>
             </div>
           </div>
-
         </div>
       </div>
     </div>

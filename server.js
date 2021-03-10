@@ -64,27 +64,12 @@ app.delete("/deleteUpdate/:id", (request, response) => {
   var new_ID = create_docuID.split("/").pop();
   const sql =
     "SELECT MAX(updateDocu_ID) as query_ID FROM update_document WHERE createDocu_ID = ?";
-  db.query(sql, [new_ID], (err, result) => {
-    c1 = result[0].query_ID; //query results comparison
+  db.query(sql, [new_ID], (err, result1) => {
+    c1 = result1[0].query_ID; //query results comparison
     c2 = id; //original
     if (c1 > c2) {
-      console.log("delete lang");
-      console.log(new_ID);
-      const result = deleteRowByIdUpdate(id);
-      result
-        .then((data) =>
-          response.json({
-            success: true,
-          })
-        )
-        .catch((err) => console.log(err));
-    } else if (c1 == c2) {
-      const query = "DELETE FROM update_document WHERE updateDocu_ID = ?";
-      db.query(query, [id], (err, results) => {
-        console.log("passed");
-      });
-      const result = deleteRowById(new_ID);
-      result
+      const result1 = deleteRowByIdUpdate(id);
+      result1
         .then((data) =>
           response.json({
             success: true,
@@ -93,33 +78,50 @@ app.delete("/deleteUpdate/:id", (request, response) => {
         .catch((err) => console.log(err));
     } else {
       const sql1 =
-        "SELECT * FROM update_document WHERE updateDocu_ID = ? AND createDocu_ID = ?";
-      db.query(sql1, [c1 - 1, new_ID], (err, result) => {
-        sql2 =
-          "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Notes = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?, createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
-        db.query(
-          sql2,
-          [
-            result[0].updateDocu_Title,
-            result[0].updadteDocu_Date,
-            result[0].updateDocu_Notes,
-            result[0].updateDocu_Signedby,
-            result[0].updateDocu_Attachment,
-            result[0].updateDocu_Status,
-            result[0].updateUser_ID,
-            new_ID,
-          ],
-          (err, results) => {
-            const result = deleteRowByIdUpdate(id);
-            result
-              .then((data) =>
-                response.json({
-                  success: true,
-                })
-              )
-              .catch((err) => console.log(err));
-          }
-        );
+        "SELECT * FROM update_document WHERE createDocu_ID = ? ORDER BY updateDocu_ID DESC";
+      db.query(sql1, [new_ID], (err, result) => {
+        if (result.length == 1) {
+          const query = "DELETE FROM update_document WHERE updateDocu_ID = ?";
+          db.query(query, [id], (err, results) => {
+            console.log("passed");
+          });
+          const result = deleteRowById(new_ID);
+          result
+            .then((data) =>
+              response.json({
+                success: true,
+              })
+            )
+            .catch((err) => console.log(err));
+        } else {
+          sql2 =
+            "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Notes = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?, createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
+          db.query(
+            sql2,
+            [
+              result[1].updateDocu_Title,
+              result[1].updateDocu_Date,
+              result[1].updateDocu_Notes,
+              result[1].updateDocu_Signedby,
+              result[1].updateDocu_Attachment,
+              result[1].updateDocu_Status,
+              result[1].updateUser_ID,
+              new_ID,
+            ],
+            (err, results) => {
+              if (!err) {
+                const result = deleteRowByIdUpdate(id);
+                result.then((data) =>
+                  response.json({
+                    success: true,
+                  })
+                );
+              } else {
+                console.log(err);
+              }
+            }
+          );
+        }
       });
     }
   });
