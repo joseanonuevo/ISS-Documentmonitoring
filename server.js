@@ -57,6 +57,7 @@ app.delete("/delete/:id", (request, response) => {
     )
     .catch((err) => console.log(err));
 });
+
 app.delete("/deleteUpdate/:id", (request, response) => {
   const { id } = request.params;
   var create_docuID = request.headers.referer;
@@ -123,6 +124,7 @@ app.delete("/deleteUpdate/:id", (request, response) => {
     }
   });
 });
+
 app.patch("/archive/:id", (request, response) => {
   const { id } = request.params;
   query =
@@ -148,6 +150,7 @@ app.patch("/archive/:id", (request, response) => {
     )
     .catch((err) => console.log(err));
 });
+
 app.patch("/disable/:email", (request, response) => {
   const { email } = request.params;
   const result = disableRowById(email);
@@ -157,6 +160,7 @@ app.patch("/disable/:email", (request, response) => {
     });
   });
 });
+
 app.patch("/enable/:email", (request, response) => {
   const { email } = request.params;
   const result = enableRowById(email);
@@ -183,6 +187,7 @@ async function deleteRowById(id) {
     return false;
   }
 }
+
 async function deleteRowByIdUpdate(id) {
   try {
     id = parseInt(id, 10);
@@ -199,6 +204,7 @@ async function deleteRowByIdUpdate(id) {
     return false;
   }
 }
+
 async function archiveRowById(id) {
   const dateArchived = new Date();
   try {
@@ -238,6 +244,7 @@ async function disableRowById(email) {
     return false;
   }
 }
+
 async function enableRowById(email) {
   try {
     const response = await new Promise((resolve, reject) => {
