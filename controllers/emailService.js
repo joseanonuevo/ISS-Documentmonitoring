@@ -210,14 +210,11 @@ exports.activateAccount = (req, res, next) => {
             }
           );
           db.query(
-            "INSERT INTO users (user_lastName,user_firstName,user_middleInitial,user_commencementDate,user_Position, user_Email,user_Password,admin_ID) VALUES (?,?,?,?,?,?,?,?)",
-            [lname, fname, mi, regdate, position, email, hashedPassword, 1],
+            "INSERT INTO users (user_lastName,user_firstName,user_middleInitial,user_commencementDate,user_Position, user_Email,user_Password) VALUES (?,?,?,?,?,?,?)",
+            [lname, fname, mi, regdate, position, email, hashedPassword],
             (error, results) => {
               if (error) {
-                return res.status(400).render("alertPage", {
-                  errorMSG: "Error",
-                  error: "error",
-                });
+                console.log(error);
               } else {
                 console.log(results);
                 return res.status(400).render("alertPage", {
