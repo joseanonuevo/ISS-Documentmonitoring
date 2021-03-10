@@ -159,6 +159,10 @@ router.get("/alertPage", (req, res) => {
   res.render("alertPage");
 });
 
+router.get("/registration", (req, res) => {
+  res.render("registration");
+});
+
 function verify(req, res, next) {
   const authcookie = req.cookies.authcookie;
   jwt.verify(authcookie, process.env.JWT_SECRET, (err, data) => {

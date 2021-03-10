@@ -221,7 +221,7 @@
           </div>
           <div class="modal-body">
             <div class="create-docform">
-              <form action="/upload/update/" enctype="multipart/form-data" method="POST">
+              <form action="/upload/update/" enctype="multipart/form-data" method="POST" onSubmit="document.getElementById('submit').disabled=true;">
                 <label for="" id="createdoc-label">Document Title</label>
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
@@ -252,7 +252,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="close-modal" data-dismiss="modal">Close</button>
-                    <button type="submit" class="submit-modal">Submit</button>
+                    <button type="submit" class="submit-modal" id="submit">Submit</button>
                   </div>
                 </div>
               </form>
