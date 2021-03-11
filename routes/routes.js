@@ -9,7 +9,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/home", verify, (req, res) => {
-  const sql = "SELECT * from create_document WHERE status = 1";
+  const sql =
+    "SELECT * from create_document WHERE status = 1 ORDER BY createDocu_ID DESC";
   db.query(sql, (err, results1) => {
     if (!err) {
       const sql2 =
@@ -27,7 +28,8 @@ router.get("/home", verify, (req, res) => {
 });
 
 router.get("/adminHome", verify, isAdmin, (req, res) => {
-  const sql = "SELECT * from create_document WHERE status = 1";
+  const sql =
+    "SELECT * from create_document WHERE status = 1 ORDER BY createDocu_ID DESC";
   db.query(sql, (err, results1) => {
     if (!err) {
       const sql2 =
@@ -75,7 +77,8 @@ router.get("/adminArchive", verify, isAdmin, (req, res) => {
 });
 
 router.get("/update/:id", verify, (req, res) => {
-  const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
+  const sql =
+    "SELECT * from update_document WHERE createDocu_ID = ? ORDER BY updateDocu_ID DESC";
   db.query(sql, [req.params.id], (err, results1) => {
     if (!err) {
       const sql2 =
@@ -97,7 +100,8 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/adminUpdate/:id", verify, isAdmin, (req, res) => {
-  const sql = "SELECT * from update_document WHERE createDocu_ID = ?";
+  const sql =
+    "SELECT * from update_document WHERE createDocu_ID = ? ORDER BY updateDocu_ID DESC";
   db.query(sql, [req.params.id], (err, results1) => {
     if (!err) {
       const sql2 =

@@ -181,7 +181,7 @@
     <!-- FOR MODAL -->
     <!-- Modal -->
 
-    <!-- MODAL FOR FORGOT PASSWORD -->
+   <!-- MODAL FOR FORGOT PASSWORD -->
     <div class="modal fade" id="forgot-pass" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -194,16 +194,14 @@
           </div>
           <div class="modal-body">
             <div class="create-docform">
-              <form action="/functions/changePw" method="POST">
+              <form action="/functions/changePw" method="POST" onsubmit="return validate()">
                 <label for="" id="createdoc-label">Old Password</label>
-                <input type="password" class="modal-input" name="oldpassword" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="oldpassword" id="oldpassword" required><br>
                 <label for="" id="createdoc-label">New Password</label>
-                <input type="password" class="modal-input" name="newpassword1" id="createdoc-modal"
-                  pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$"
-                  title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter."
-                  required><br>
+                <input type="password" class="modal-input" name="newpassword1" id="newpassword1" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$"
+            title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter." required><br>
                 <label for="" id="createdoc-label">Confirm New Password</label>
-                <input type="password" class="modal-input" name="newpassword" id="createdoc-modal" required><br>
+                <input type="password" class="modal-input" name="newpassword" id="newpassword" required><br>
                 <center>
                   <button type="button" class="close-modal" data-dismiss="modal">Close</button>
                   <button type="submit" class="submit-modal">Submit</button>
@@ -220,7 +218,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" id="modal-body">
           <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLongTitle">Create a Document</h3>
+            <h3 class="modal-title" id="exampleModalLongTitle">Update a Document</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -377,6 +375,12 @@
   function logout() {
     window.location.assign("/logout");
   }
+</script>
+
+<script>
+  {{#each names}}
+    document.getElementById("createdoc-modal").value = "{{updateDocu_Title}}";
+  {{/each}}
 </script>
 
 </html>
