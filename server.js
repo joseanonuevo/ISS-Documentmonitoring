@@ -63,11 +63,22 @@ app.delete("/deleteUpdate/:id", (request, response) => {
   var create_docuID = request.headers.referer;
   var new_ID = create_docuID.split("/").pop();
   const sql =
-    "SELECT MAX(updateDocu_ID) as query_ID FROM update_document WHERE createDocu_ID = ?";
+    "SELECT MAX(updateDocu_ID) as query_ID,updateDocu_Title FROM update_document WHERE createDocu_ID = ?";
   db.query(sql, [new_ID], (err, result1) => {
     c1 = result1[0].query_ID; //query results comparison
     c2 = id; //original
+    const document_name = result1[0].updateDocu_Title; //title of document update
     if (c1 > c2) {
+      //insert to activity log
+      query2 =
+        "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
+      db.query(
+        query2,
+        ["has deleted an update", document_name, request.cookies.authcookie2],
+        (err, results) => {
+          console.log("pass");
+        }
+      );
       const result1 = deleteRowByIdUpdate(id);
       result1
         .then((data) =>
@@ -77,6 +88,15 @@ app.delete("/deleteUpdate/:id", (request, response) => {
         )
         .catch((err) => console.log(err));
     } else {
+      query2 =
+        "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
+      db.query(
+        query2,
+        ["has deleted an update", document_name, request.cookies.authcookie2],
+        (err, results) => {
+          console.log("pass");
+        }
+      );
       const sql1 =
         "SELECT * FROM update_document WHERE createDocu_ID = ? ORDER BY updateDocu_ID DESC";
       db.query(sql1, [new_ID], (err, result) => {
