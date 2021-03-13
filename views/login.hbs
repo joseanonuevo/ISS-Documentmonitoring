@@ -18,6 +18,9 @@
 
     {{!-- Favicon --}}
     <link rel="icon" href="/img/iss-logo.png" />
+
+    {{! SweetAlert }}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -141,7 +144,7 @@
                                     </center>
                                 </div>
                                 <div class=" modal-footer">
-                                    <button type="submit" id="submit-forgetPW">Submit</button>
+                                    <button type="submit" id="submit-forgetPW" onclick="return verifyEmail()">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -167,6 +170,40 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
         </script>
+
+    <script>
+        function verifyEmail() {
+            var num = document.getElementById("email").value;
+            var num1 = num.length;
+            var num2 = num1 - 10;
+            var result = num.slice(num2);
+
+        if (num == "ust.edu.ph") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Invalid Input',
+              text: "Please use a UST email",
+            })
+            return false;
+        } else if (num1 < 10) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Invalid Input',
+              text: "Please use a UST email",
+            })          
+            return false;
+        } else if (result != "ust.edu.ph") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Invalid Input',
+              text: "Please use a UST email",
+            })
+            return false;
+        } else {
+            return true;
+        }
+        }
+    </script>
 </body>
 
 </html>

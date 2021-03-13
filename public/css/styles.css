@@ -105,7 +105,10 @@ body {
 
 .login-btn:focus{
     outline: none;
-    box-shadow: 0 0 1pt 1pt rgb(0, 0, 0);
+    box-shadow: 0 0 3pt 2pt lightblue;
+}
+.login-btn:hover{
+    box-shadow: 0 0 3pt 2pt lightblue;
 }
 
 .forgotPW{
@@ -198,6 +201,10 @@ body {
     transition: all .15s ease-in-out;
 
 }
+.create-btn:focus {
+    box-shadow: 0 0 1pt 1pt lightblue;
+    outline: none;
+}
 
 .create-btn:hover {
       -ms-transform: scale(1.03);
@@ -208,9 +215,7 @@ body {
       box-shadow: 0 0 2pt 2pt lightblue;
 }
 
-.main-pages a:hover{
-    text-shadow: 0 0 3px rgb(153, 248, 255);
-}
+
 
 /* END of Nav */
 
@@ -799,7 +804,7 @@ tr:nth-child(odd) {
     font-size: 18px;
     position: relative;
     left: -10px;
-    
+    transition: 0.3s;
 }
 
 #gobackbtn{
@@ -807,6 +812,11 @@ tr:nth-child(odd) {
     position: relative;
     top: 13px;
     left: 13px;
+    transition: 0.3s;
+}
+
+#gobackbtn:hover{
+    transform: translate(-10px, 0px);
 }
 
 /* END Go back */
@@ -844,6 +854,14 @@ tr:nth-child(odd) {
     color: white;
     height: 30px;
     width: 100px;
+}
+#addAcc-emailBtn:focus{
+    border: none;
+    outline: none;
+    box-shadow: 0 0 1pt 1pt lightblue;
+}
+#addAcc-emailBtn:hover{
+    box-shadow: 0 0 1pt 1pt lightblue;
 }
 
 /* END Add Account Modal */
