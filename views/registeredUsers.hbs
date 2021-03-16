@@ -240,8 +240,8 @@
               <div class="content-addAcc" id="testi1"></div>
               <center>
                 <label for="addAcc-email">Enter Email</label>
-                <input type="email" name="email" id="addAcc-email">
-                <input type="submit" value="Submit" id="addAcc-emailBtn" />
+                <input type="email" name="email" id="addAcc-email" required>
+                <input type="submit" value="Submit" id="addAcc-emailBtn" onclick="return verifyEmail()" />
               </center>
           </div>
           </form>
@@ -323,6 +323,40 @@
         }
 
       }
+</script>
+
+<script>
+    function verifyEmail() {
+        var num = document.getElementById("addAcc-email").value;
+        var num1 = num.length;
+        var num2 = num1 - 10;
+        var result = num.slice(num2);
+
+        if (num == "ust.edu.ph") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Invalid Input',
+              text: "Please use a UST email",
+            })
+            return false;
+        } else if (num1 < 10) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Invalid Input',
+              text: "Please use a UST email",
+            })          
+            return false;
+        } else if (result != "ust.edu.ph") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Invalid Input',
+              text: "Please use a UST email",
+            })
+            return false;
+        } else {
+            return true;
+        }
+    }
 </script>
 
 </html>
