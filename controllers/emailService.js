@@ -57,6 +57,7 @@ exports.register = (req, res) => {
                       border: none;
                       border-radius: 50px;
                       color: white;
+                      cursor: pointer;
                   }
 
                   .email-container {
@@ -127,8 +128,7 @@ exports.register = (req, res) => {
                           <p>To register to e-Monitor of ISS, click the registration button to
                               access the link
                               and
-                              kindly place the
-                              verification code in the form.
+                              kindly fill in your information.
                           </p>
                       </section>
 
@@ -157,7 +157,7 @@ exports.register = (req, res) => {
           console.log(body);
           if (error) return console.log(error);
           else
-            return res.status(400).render("alertPage", {
+            return res.status(400).render("alertPage2", {
               successActivateAccount: "Success!",
               success: "check_circle",
             });
@@ -280,6 +280,7 @@ exports.requestPwChange = (req, res) => {
                       border: none;
                       border-radius: 50px;
                       color: white;
+                      cursor: pointer;
                   }
 
                   .email-container {
@@ -356,7 +357,7 @@ exports.requestPwChange = (req, res) => {
 
                       <center>
                           <a href="${process.env.CLIENT_URL}/resetPw/${token}"
-                              id="reset-link"><button id="resetpw-btn">Register Here</button>
+                              id="reset-link"><button id="resetpw-btn">Reset Password</button>
                           </a>
 
                       </center>
@@ -417,7 +418,7 @@ exports.resetPw = (req, res) => {
                 error: "error",
               });
             } else {
-              return res.status(400).render("alertPage", {
+              return res.status(400).render("alertPage2", {
                 pwUpdated: "Password Updated",
                 success: "check_circle",
               });

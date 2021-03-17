@@ -45,6 +45,7 @@ body {
     background-color: rgba(255, 255, 255, 0);
     border: none;
     color: black;
+    outline: none;
 }
 
 #dropdown-icons {
@@ -53,9 +54,6 @@ body {
     right: 5px;
 }
 
-.landing-content{
-    margin-top: 20px;
-}
 
 /* END of Header */
 
@@ -359,6 +357,28 @@ tr:nth-child(odd) {
     transform: scale(1.1);
 }
 
+#download-btn img{
+    height: 10px;
+    width: 10px;
+}
+
+#download-btn {
+    background: url('/img/download-icon.png') no-repeat;
+    background-color: rgba(245, 222, 179, 0);
+    height: 30px;
+    width: 30px;
+    border: none;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+}
+#download-btn:hover {
+    -ms-transform: scale(1.1);
+    /* IE 9 */
+    -webkit-transform: scale(1.1);
+    /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
 /* END of Table */
 
 /* END of main */
@@ -491,7 +511,9 @@ tr:nth-child(odd) {
 
 .notif-div :hover{
     background-color: #ddd;
+    cursor: context-menu;
 }
+
 
 .notif-whole {
     width: 500px;
@@ -504,10 +526,13 @@ tr:nth-child(odd) {
     box-shadow: 0px 3px 12px 3px rgba(0, 0, 0, 0.288);
 }
 
-
-
 #settings-btn:hover{
     background-color: rgba(255, 255, 255, 0.164);
+}
+#settings-btn:focus{
+    background-color: rgba(255, 255, 255, 0.164);
+    outline: none;
+    box-shadow: none;
 }
 
 .notif-txt{
@@ -573,7 +598,7 @@ tr:nth-child(odd) {
     padding-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
-    width: 38%;
+    width: 581px;
 }
 
 #header-logo1 {
@@ -605,7 +630,9 @@ tr:nth-child(odd) {
 .lbl-resetpg{
     width: 250px;
     font-size: 22px;
-    font-weight: bold;
+    font-family: 'Montserrat',
+    sans-serif;
+
 }
 
 .input-resetPW{
@@ -613,7 +640,7 @@ tr:nth-child(odd) {
     border: none;
     background-color: #e8e6e6;
     height: 35px;
-    width: 200px;
+    width: 300px;
     font-size: 21px;
     padding-left: 10px;
     font-size: 20px;
@@ -783,6 +810,10 @@ tr:nth-child(odd) {
     sans-serif;
     font-weight: bolder;
     margin-bottom: 40px;
+    transition: 0.3s;
+}
+#regSubmit-btn :hover{
+    transform: translate(-10px, 0px);
 }
 
 #regSubmit-btn:focus,
@@ -866,7 +897,7 @@ tr:nth-child(odd) {
 
 /* END Add Account Modal */
 
-/* Start of Tooltip */
+/* Start of Tooltip 
 
 .tooltip1 {
   position: relative;
@@ -903,4 +934,4 @@ tr:nth-child(odd) {
   visibility: visible;
 }
 
-/* End of Tooltip */
+ End of Tooltip */

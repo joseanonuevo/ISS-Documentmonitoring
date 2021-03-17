@@ -46,7 +46,7 @@
     <!-- Start of dropdown for notifications -->
     <div class="settings-dropdown">
       <div class="btn-group">
-        <button type="button" data-toggle="dropdown" class="button-settings" aria-haspopup="true" aria-expanded="false"
+        <button type="button" title="Notifications" data-toggle="dropdown" class="button-settings" aria-haspopup="true" aria-expanded="false"
           id="settings-btn">
           <span class="material-icons">
             notifications_none
@@ -57,17 +57,13 @@
             <h2 class="notif-title"><b>Notifications</b></h3>
               <h4 class="notif-recent"><b>Recent</b></h5>
                 <br>
-
-
                 {{#each activities}}
                 <div class="notif-div">
                   <p class="notif-txt">{{user_firstName}} {{user_lastName}} <span id="activity">{{activity}}</span>
                     {{document_name}}<br><span class="notif-date">{{date}}</span></p>
-
                   <hr>
                 </div>
                 {{/each}}
-
           </div>
         </div>
       </div>
@@ -75,7 +71,7 @@
 
       <!--Logout contents -->
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        <button type="button" title="Settings" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" id="settings-btn">
 
         </button>
@@ -172,7 +168,7 @@
             <td>{{user_Position}}</td>
             <td>{{user_Email}}</td>
             <td>{{user_commencementDate}}</td>
-            <td style="text-align: center;"><button class="enable-row-btn" id="enableUser-btn" data-id={{user_Email}}>
+            <td style="text-align: center;"><button class="enable-row-btn" id="enableUser-btn" title="Enable User" data-id={{user_Email}}>
             </td>
           </tr>
           {{/each}}

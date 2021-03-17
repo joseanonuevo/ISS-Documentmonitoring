@@ -47,7 +47,7 @@
     <!-- Start of dropdown for notifications -->
     <div class="settings-dropdown">
       <div class="btn-group">
-        <button type="button" data-toggle="dropdown" class="button-settings" aria-haspopup="true" aria-expanded="false"
+        <button type="button" title="Notification" data-toggle="dropdown" class="button-settings" aria-haspopup="true" aria-expanded="false"
           id="settings-btn">
           <span class="material-icons">
             notifications_none
@@ -76,7 +76,7 @@
 
       <!--Logout contents -->
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        <button type="button" title="Notification" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" id="settings-btn">
 
         </button>
@@ -139,28 +139,27 @@
       <table id="mydatatable">
         <thead>
           <tr>
-          <tr>
             <th style="width: 4%">ID</th>
             <th style="width: 20%">Title</th>
             <th style="width: 20%">Date Updated</th>
             <th style="width: 15%;">Note</th>
             <th style="width: 20%">To be Signed By</th>
-            <th style="width: 10%;">Attachment</th>
             <th style="width: 10%;">Status</th>
+            <th style="width: 10%;"></th>
           </tr>
         </thead>
 
         <tbody>
           {{#each names}}
-          <tr>
-            <td style="width: 100px">{{createDocu_ID}}</td>
-            <td>{{createDocu_Title}}</td>
-            <td style="width: 20%">{{createDocu_Date}}</td>
-            <td>{{createDocu_Notes}}</td>
-            <td>{{createDocu_tobeSignedby}}</td>
-            <td><a href="{{{createDocu_Attachment}}}">Attachment</a></td>
-            <td>{{createDocu_Status}}</td>
-          </tr>
+            <tr>
+                <td>{{createDocu_ID}}</td>
+                <td>{{createDocu_Title}}</td>
+                <td>{{createDocu_Date}}</td>
+                <td>{{createDocu_Notes}}</td>
+                <td>{{createDocu_tobeSignedby}}</td>
+                <td>{{createDocu_Status}}</td>
+                <td style="text-align: center;"><a href="{{{createDocu_Attachment}}}"><button class="download-btn" id="download-btn" title="Download Document"></button></a></td>
+            </tr>
           {{/each}}
         </tbody>
       </table>
@@ -305,7 +304,7 @@
     "aaSorting": [],
     columnDefs: [{
       orderable: false,
-      targets: [0, 3, 4, 5, ],
+      targets: [0, 3, 4, 6 ],
     }]
   });
 </script>

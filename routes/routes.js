@@ -163,8 +163,8 @@ router.get("/alertPage", (req, res) => {
   res.render("alertPage");
 });
 
-router.get("/registration", (req, res) => {
-  res.render("registration");
+router.get("/alertPage2", (req, res) => {
+  res.render("alertPage2");
 });
 
 function verify(req, res, next) {
