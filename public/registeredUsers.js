@@ -18,7 +18,7 @@ function disableRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("http://localhost:3000/disable/" + id, {
+      fetch("https://iss-emonitor/disable/" + id, {
         method: "PATCH",
       })
         .then((response) => response.json())
@@ -52,7 +52,7 @@ function enableRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("http://localhost:3000/enable/" + id, {
+      fetch("https://iss-emonitor/enable/" + id, {
         method: "PATCH",
       })
         .then((response) => response.json())
