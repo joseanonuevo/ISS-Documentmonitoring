@@ -157,7 +157,7 @@ exports.register = (req, res) => {
           console.log(body);
           if (error) return console.log(error);
           else
-            return res.status(400).render("alertPage2", {
+            return res.status(400).render("alertPage", {
               successActivateAccount: "Success!",
               success: "check_circle",
             });
@@ -379,7 +379,7 @@ exports.requestPwChange = (req, res) => {
           console.log(body);
           if (error) return console.log(error);
           else
-            return res.status(400).render("alertPage", {
+            return res.status(400).render("alertPage2", {
               yesAccount: "Success! An email has been sent to your account.",
               success: "check_circle",
             });
