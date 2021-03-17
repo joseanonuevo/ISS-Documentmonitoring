@@ -46,8 +46,8 @@
     <!-- Start of dropdown for notifications -->
     <div class="settings-dropdown">
       <div class="btn-group">
-        <button type="button" title="Notifications" data-toggle="dropdown" class="button-settings" aria-haspopup="true" aria-expanded="false"
-          id="settings-btn">
+        <button type="button" title="Notifications" data-toggle="dropdown" class="button-settings" aria-haspopup="true"
+          aria-expanded="false" id="settings-btn">
           <span class="material-icons">
             notifications_none
           </span>
@@ -75,8 +75,8 @@
 
       <!--Logout contents -->
       <div class="btn-group">
-        <button type="button" title="Settings" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false" id="settings-btn">
+        <button type="button" title="Settings" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" id="settings-btn">
 
         </button>
         <div class="dropdown-menu dropdown-menu-right">
@@ -165,7 +165,8 @@
             <td>{{updateDocu_Notes}}</td>
             <td>{{updateDocu_Signedby}}</td>
             <td>{{updateDocu_Status}}</td>
-            <td style="text-align: center;"><a href="{{{updateDocu_Attachment}}}"><button title="Download File" class="download-btn" id="download-btn"></button></a></td>
+            <td style="text-align: center;"><a href="{{{updateDocu_Attachment}}}"><button title="Download File"
+                  class="download-btn" id="download-btn"></button></a></td>
             <td><button class="delete-row-btn" id="delete-btn" title="Delete Row" data-id={{updateDocu_ID}}></td>
           </tr>
           {{/each}}
@@ -184,7 +185,7 @@
     <!-- FOR MODAL -->
     <!-- Modal -->
 
-   <!-- MODAL FOR FORGOT PASSWORD -->
+    <!-- MODAL FOR FORGOT PASSWORD -->
     <div class="modal fade" id="forgot-pass" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -201,8 +202,10 @@
                 <label for="" id="createdoc-label">Old Password</label>
                 <input type="password" class="modal-input" name="oldpassword" id="oldpassword" required><br>
                 <label for="" id="createdoc-label">New Password</label>
-                <input type="password" class="modal-input" name="newpassword1" id="newpassword1" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$"
-            title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter." required><br>
+                <input type="password" class="modal-input" name="newpassword1" id="newpassword1"
+                  pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$"
+                  title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter."
+                  required><br>
                 <label for="" id="createdoc-label">Confirm New Password</label>
                 <input type="password" class="modal-input" name="newpassword" id="newpassword" required><br>
                 <center>
@@ -292,7 +295,7 @@
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch("http://localhost:3000/deleteUpdate/" + id, {
+        fetch("http://iss-emonitor.org/deleteUpdate/" + id, {
           method: "DELETE",
         })
           .then((response) => response.json())
@@ -381,9 +384,9 @@
 </script>
 
 <script>
-  {{#each names}}
-    document.getElementById("createdoc-modal").value = "{{updateDocu_Title}}";
-  {{/each}}
+  { {#each names } }
+  document.getElementById("createdoc-modal").value = "{{updateDocu_Title}}";
+  { { /each}}
 </script>
 
 </html>

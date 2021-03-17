@@ -27,7 +27,7 @@
   {{!-- SweetAlert --}}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    {{!-- Favicon --}}
+  {{!-- Favicon --}}
   <link rel="icon" href="/img/iss-logo.png" />
 
 </head>
@@ -46,8 +46,8 @@
     <!-- Start of dropdown for notifications -->
     <div class="settings-dropdown">
       <div class="btn-group">
-        <button type="button" title="Notifications" data-toggle="dropdown" class="button-settings" aria-haspopup="true" aria-expanded="false"
-          id="settings-btn">
+        <button type="button" title="Notifications" data-toggle="dropdown" class="button-settings" aria-haspopup="true"
+          aria-expanded="false" id="settings-btn">
           <span class="material-icons">
             notifications_none
           </span>
@@ -75,8 +75,8 @@
 
       <!--Logout contents -->
       <div class="btn-group">
-        <button type="button" title="Settings" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false" id="settings-btn">
+        <button type="button" title="Settings" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" id="settings-btn">
 
         </button>
         <div class="dropdown-menu dropdown-menu-right">
@@ -160,7 +160,8 @@
             <td>{{updateDocu_Notes}}</td>
             <td>{{updateDocu_Signedby}}</td>
             <td>{{updateDocu_Status}}</td>
-            <td style="text-align: center;"><a href="{{{updateDocu_Attachment}}}"><button title="Download File" class="download-btn" id="download-btn"></button></a></td>
+            <td style="text-align: center;"><a href="{{{updateDocu_Attachment}}}"><button title="Download File"
+                  class="download-btn" id="download-btn"></button></a></td>
             <td><button class="delete-row-btn" id="delete-btn" title="Delete Row" data-id={{updateDocu_ID}}></td>
           </tr>
           {{/each}}
@@ -197,8 +198,10 @@
                 <label for="" id="createdoc-label">Old Password</label>
                 <input type="password" class="modal-input" name="oldpassword" id="oldpassword" required><br>
                 <label for="" id="createdoc-label">New Password</label>
-                <input type="password" class="modal-input" name="newpassword1" id="newpassword1" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$"
-            title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter." required><br>
+                <input type="password" class="modal-input" name="newpassword1" id="newpassword1"
+                  pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$"
+                  title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter."
+                  required><br>
                 <label for="" id="createdoc-label">Confirm New Password</label>
                 <input type="password" class="modal-input" name="newpassword" id="newpassword" required><br>
                 <center>
@@ -224,7 +227,8 @@
           </div>
           <div class="modal-body">
             <div class="create-docform">
-              <form action="/upload/update/" enctype="multipart/form-data" method="POST" onSubmit="document.getElementById('submit').disabled=true;">
+              <form action="/upload/update/" enctype="multipart/form-data" method="POST"
+                onSubmit="document.getElementById('submit').disabled=true;">
                 <label for="" id="createdoc-label">Document Title</label>
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
@@ -286,7 +290,7 @@
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch("http://localhost:3000/deleteUpdate/" + id, {
+        fetch("http://iss-emonitor.org/deleteUpdate/" + id, {
           method: "DELETE",
         })
           .then((response) => response.json())
@@ -313,9 +317,11 @@
 </script>
 
 <script>
-  {{#each names}}
+  { {#each names } }
   document.getElementById("createdoc-modal").value = "{{updateDocu_Title}}";
-  {{/each}}
+  {
+    {
+      /each}}
 </script>
 
 <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -341,52 +347,52 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
 <script>
-  $(document).ready(function () {
-    var table = $('#mydatatable').DataTable();
-    //DataTable custom search field
-    $('#custom-filter').keyup(function () {
-      table.search(this.value).draw();
-    });
-  });
+      $(document).ready(function () {
+        var table = $('#mydatatable').DataTable();
+        //DataTable custom search field
+        $('#custom-filter').keyup(function () {
+          table.search(this.value).draw();
+        });
+      });
 </script>
 
 <script>
 
-  $('#mydatatable').DataTable({
-    sDom: 'lrtip',
-    "bInfo": false,
-    bPaginate: false,
-    "aaSorting": [],
-    columnDefs: [{
-      orderable: false,
-      targets: [0, 3, 4, 6,7 ],
-    }]
-  });
+      $('#mydatatable').DataTable({
+        sDom: 'lrtip',
+        "bInfo": false,
+        bPaginate: false,
+        "aaSorting": [],
+        columnDefs: [{
+          orderable: false,
+          targets: [0, 3, 4, 6, 7],
+        }]
+      });
 
 </script>
 
 <script>
-  function validate() {
-    var t = document.getElementById("newpassword1").value;
-    var te = document.getElementById("newpassword").value;
+      function validate() {
+        var t = document.getElementById("newpassword1").value;
+        var te = document.getElementById("newpassword").value;
 
-    if (t != te) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: "Passwords doesn't match!",
-      })
-      return false;
-    } else {
-      return true;
-    }
+        if (t != te) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "Passwords doesn't match!",
+          })
+          return false;
+        } else {
+          return true;
+        }
 
-  }
+      }
 </script>
 <script>
-  function logout() {
-    window.location.assign("/logout");
-  }
+      function logout() {
+        window.location.assign("/logout");
+      }
 </script>
 
 </html>

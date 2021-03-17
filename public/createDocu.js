@@ -23,7 +23,7 @@ function archiveRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("https://iss-emonitor/archive/" + id, {
+      fetch("https://iss-emonitor.org/archive/" + id, {
         method: "PATCH",
       })
         .then((response) => response.json())
@@ -58,7 +58,7 @@ function deleteRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("https://iss-emonitor/delete/" + id, {
+      fetch("https://iss-emonitor.org/delete/" + id, {
         method: "DELETE",
       })
         .then((response) => response.json())
