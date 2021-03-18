@@ -116,8 +116,8 @@ router.get("/adminUpdate/:id", verify, isAdmin, (req, res) => {
   });
 });
 
-router.get("/resetPW/:id", (req, res) => {
-  res.render("resetPW");
+router.get("/resetPw/:id", (req, res) => {
+  res.render("resetPw");
 });
 
 router.get("/registration/:id", (req, res) => {
