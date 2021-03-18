@@ -283,7 +283,7 @@ async function enableRowById(email) {
   }
 }
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log("Server @ " + PORT);
+const SERVER = process.env.PORT || 3000;
+app.listen(SERVER, () => {
+  console.log("Server @ " + SERVER);
 });

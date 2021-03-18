@@ -1,3 +1,4 @@
+const PORT = "https://iss-emonitor.org";
 document.querySelector("tbody").addEventListener("click", function (event) {
   if (event.target.className === "disable-row-btn") {
     disableRowById(event.target.dataset.id);
@@ -18,7 +19,7 @@ function disableRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("https://iss-emonitor.org/disable/" + id, {
+      fetch(PORT + "/disable/" + id, {
         method: "PATCH",
       })
         .then((response) => response.json())
@@ -52,7 +53,7 @@ function enableRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("https://iss-emonitor.org/enable/" + id, {
+      fetch(PORT + "/enable/" + id, {
         method: "PATCH",
       })
         .then((response) => response.json())

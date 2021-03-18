@@ -1,3 +1,4 @@
+const PORT = "https://iss-emonitor.org";
 document.querySelector("tbody").addEventListener("click", function (event) {
   if (event.target.className === "archive-row-btn") {
     archiveRowById(event.target.dataset.id);
@@ -23,7 +24,7 @@ function archiveRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("https://iss-emonitor.org/archive/" + id, {
+      fetch(PORT + "/archive/" + id, {
         method: "PATCH",
       })
         .then((response) => response.json())
@@ -58,7 +59,7 @@ function deleteRowById(id) {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch("https://iss-emonitor.org/delete/" + id, {
+      fetch(PORT + "/delete/" + id, {
         method: "DELETE",
       })
         .then((response) => response.json())

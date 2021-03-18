@@ -272,7 +272,7 @@
 <!-- Scripts -->
 
 <script>
-
+  PORT = "https://iss-emonitor.org"
   document.querySelector("tbody").addEventListener("click", function (event) {
     if (event.target.className === "delete-row-btn") {
       deleteRowById(event.target.dataset.id);
@@ -290,7 +290,7 @@
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch("https://iss-emonitor.org/deleteUpdate/" + id, {
+        fetch(PORT + "/deleteUpdate/" + id, {
           method: "DELETE",
         })
           .then((response) => response.json())
