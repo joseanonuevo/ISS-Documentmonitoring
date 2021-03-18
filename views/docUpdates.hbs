@@ -290,7 +290,7 @@
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch("http://iss-emonitor.org/deleteUpdate/" + id, {
+        fetch("https://iss-emonitor.org/deleteUpdate/" + id, {
           method: "DELETE",
         })
           .then((response) => response.json())

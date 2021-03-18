@@ -283,7 +283,7 @@ router.post("/updateAdmin/", upload, (req, res) => {
         console.log("pass");
       }
     );
-    res.status(200).redirect("/update/" + new_ID);
+    res.status(200).redirect("/adminUpdate/" + new_ID);
   });
 });
 
