@@ -10,6 +10,6 @@ const loginLimitter = limitter({
 
 const { login } = require("../controllers/auth");
 
-router.post("/login", loginLimitter, login);
+router.post("/login", login);
 
 module.exports = router;
