@@ -83,8 +83,13 @@
                         <p>Please log in to the system</p>
                         <form action="/auth/login" method="POST">
                             {{#if message}}
-                            <p style="color: red;">
+                            <p id="loginMsg" style="color: red;">
                                 {{message}}
+                            </p>
+                            {{/if}}
+                            {{#if timeout}}
+                            <p id="loginMsg" style="color: red;">
+                                {{timeout}}
                             </p>
                             {{/if}}
                             <div class="form-group">

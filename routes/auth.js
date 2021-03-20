@@ -5,7 +5,12 @@ const limitter = require("express-rate-limit");
 const loginLimitter = limitter({
   windowMs: 60000 * 60,
   max: 10,
-  message: "Too attempts, please try again after an hour",
+  message: "Too many requests, please try again later.",
+  handler: function (req, res) {
+    return res.status(400).render("login", {
+      timeout: "Too many requests, please try again later.",
+    });
+  },
 });
 
 const { login } = require("../controllers/auth");
