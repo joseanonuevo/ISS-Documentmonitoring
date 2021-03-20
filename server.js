@@ -228,7 +228,6 @@ async function deleteRowByIdUpdate(id) {
 }
 
 async function archiveRowById(id) {
-  const dateArchived = new Date();
   try {
     id = parseInt(id, 10);
     const response = await new Promise((resolve, reject) => {
@@ -238,9 +237,8 @@ async function archiveRowById(id) {
         if (err) reject(new Error(err.message));
         resolve(results);
       });
-      const query2 =
-        "INSERT INTO archive_document (archiveDocu_Date, createDocu_ID) VALUES(?,?)";
-      db.query(query2, [dateArchived, id], (err, results) => {
+      const query2 = "INSERT INTO archive_document createDocu_ID) VALUES(?,?)";
+      db.query(query2, [id], (err, results) => {
         if (err) reject(new Error(err.message));
         resolve(results);
       });
