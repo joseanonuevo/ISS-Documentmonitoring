@@ -37,11 +37,12 @@ router.post("/upload", upload, (req, res) => {
     }
     console.log(data.Location);
     const sql =
-      "INSERT INTO create_document (createDocu_Title, createDocu_Notes,createDocu_tobeSignedby,createDocu_Attachment,createDocu_Status,user_ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+      "INSERT INTO create_document (createDocu_Title,createDocu_Date, createDocu_Notes,createDocu_tobeSignedby,createDocu_Attachment,createDocu_Status,user_ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
     db.query(
       sql,
       [
         document_title,
+        dateAdded,
         note,
         to_be_signed,
         data.Location,
@@ -51,11 +52,12 @@ router.post("/upload", upload, (req, res) => {
       (err, result) => {
         const newId = result.insertId;
         const sql2 =
-          "INSERT INTO update_document (updateDocu_Title, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+          "INSERT INTO update_document (updateDocu_Title,updateDocu_Date, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         db.query(
           sql2,
           [
             document_title,
+            dateAdded,
             note,
             to_be_signed,
             data.Location,
@@ -92,7 +94,7 @@ router.post("/update/", upload, (req, res) => {
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
   //for db
-  //const dateAdded = new Date();
+  const dateAdded = new Date();
   const user = req.cookies.authcookie2;
   const { document_title, note, to_be_signed, status } = req.body;
 
@@ -108,11 +110,12 @@ router.post("/update/", upload, (req, res) => {
     }
 
     const sql =
-      "INSERT INTO update_document (updateDocu_Title, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      "INSERT INTO update_document (updateDocu_Title,updateDocu_Date, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     db.query(
       sql,
       [
         document_title,
+        dateAdded,
         note,
         to_be_signed,
         data.Location,
@@ -123,11 +126,12 @@ router.post("/update/", upload, (req, res) => {
       (err, result) => {}
     );
     const sql2 =
-      "UPDATE create_document SET createDocu_Title = ?, createDocu_Notes = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
+      "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Notes = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
     db.query(
       sql2,
       [
         document_title,
+        dateAdded,
         note,
         to_be_signed,
         data.Location,
@@ -157,7 +161,7 @@ router.post("/uploadAdmin", upload, (req, res) => {
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
   //for db
-  //const dateAdded = new Date();
+  const dateAdded = new Date();
   const user = req.cookies.authcookie2;
   const { document_title, note, to_be_signed, status } = req.body;
 
@@ -173,11 +177,12 @@ router.post("/uploadAdmin", upload, (req, res) => {
     }
     console.log(data.Location);
     const sql =
-      "INSERT INTO create_document (createDocu_Title, createDocu_Notes,createDocu_tobeSignedby,createDocu_Attachment,createDocu_Status,user_ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+      "INSERT INTO create_document (createDocu_Title,createDocu_Date, createDocu_Notes,createDocu_tobeSignedby,createDocu_Attachment,createDocu_Status,user_ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
     db.query(
       sql,
       [
         document_title,
+        dateAdded,
         note,
         to_be_signed,
         data.Location,
@@ -187,11 +192,12 @@ router.post("/uploadAdmin", upload, (req, res) => {
       (err, result) => {
         const newId = result.insertId;
         const sql2 =
-          "INSERT INTO update_document (updateDocu_Title, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+          "INSERT INTO update_document (updateDocu_Title,updateDocu_Date, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         db.query(
           sql2,
           [
             document_title,
+            dateAdded,
             note,
             to_be_signed,
             data.Location,
@@ -228,7 +234,7 @@ router.post("/updateAdmin/", upload, (req, res) => {
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
   //for db
-  //const dateAdded = new Date();
+  const dateAdded = new Date();
   const user = req.cookies.authcookie2;
   const { document_title, note, to_be_signed, status } = req.body;
 
@@ -244,11 +250,12 @@ router.post("/updateAdmin/", upload, (req, res) => {
     }
 
     const sql =
-      "INSERT INTO update_document (updateDocu_Title, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      "INSERT INTO update_document (updateDocu_Title,updateDocu_Date, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     db.query(
       sql,
       [
         document_title,
+        dateAdded,
         note,
         to_be_signed,
         data.Location,
@@ -259,11 +266,12 @@ router.post("/updateAdmin/", upload, (req, res) => {
       (err, result) => {}
     );
     const sql2 =
-      "UPDATE create_document SET createDocu_Title = ?, createDocu_Notes = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
+      "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Notes = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
     db.query(
       sql2,
       [
         document_title,
+        dateAdded,
         note,
         to_be_signed,
         data.Location,
