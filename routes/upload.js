@@ -22,7 +22,9 @@ router.post("/upload", upload, (req, res) => {
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
   //for db
-  const dateAdded = new Date();
+  const dateAdded = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Taipei",
+  });
   const user = req.cookies.authcookie2;
   const { document_title, note, to_be_signed, status } = req.body;
 
@@ -70,10 +72,10 @@ router.post("/upload", upload, (req, res) => {
           }
         );
         const sql3 =
-          "INSERT INTO activity_log(activity,user_id,document_name) VALUES(?,?,?)";
+          "INSERT INTO activity_log(activity,date,user_id,document_name) VALUES(?,?,?,?)";
         db.query(
           sql3,
-          ["has created", req.cookies.authcookie2, document_title],
+          ["has created", dateAdded, req.cookies.authcookie2, document_title],
           (err, result) => {
             console.log(
               `${req.cookies.authcookie2} uploaded a document ${document_title}`
@@ -94,7 +96,9 @@ router.post("/update/", upload, (req, res) => {
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
   //for db
-  const dateAdded = new Date();
+  const dateAdded = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Taipei",
+  });
   const user = req.cookies.authcookie2;
   const { document_title, note, to_be_signed, status } = req.body;
 
@@ -141,10 +145,10 @@ router.post("/update/", upload, (req, res) => {
       ],
       (err, result) => {
         const sql3 =
-          "INSERT INTO activity_log(activity,user_id,document_name) VALUES(?,?,?)";
+          "INSERT INTO activity_log(activity,date,user_id,document_name) VALUES(?,?,?,?)";
         db.query(
           sql3,
-          ["has updated", req.cookies.authcookie2, document_title],
+          ["has updated", dateAdded, req.cookies.authcookie2, document_title],
           (err, result) => {
             console.log(
               `${req.cookies.authcookie2} updated document ${document_title}`
@@ -161,7 +165,9 @@ router.post("/uploadAdmin", upload, (req, res) => {
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
   //for db
-  const dateAdded = new Date();
+  const dateAdded = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Taipei",
+  });
   const user = req.cookies.authcookie2;
   const { document_title, note, to_be_signed, status } = req.body;
 
@@ -210,10 +216,10 @@ router.post("/uploadAdmin", upload, (req, res) => {
           }
         );
         const sql3 =
-          "INSERT INTO activity_log(activity,user_id,document_name) VALUES(?,?,?)";
+          "INSERT INTO activity_log(activity,date,user_id,document_name) VALUES(?,?,?,?)";
         db.query(
           sql3,
-          ["has created", req.cookies.authcookie2, document_title],
+          ["has created", dateAdded, req.cookies.authcookie2, document_title],
           (err, result) => {
             console.log(
               `${req.cookies.authcookie2} uploaded a document ${document_title}`
@@ -234,7 +240,9 @@ router.post("/updateAdmin/", upload, (req, res) => {
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
   //for db
-  const dateAdded = new Date();
+  const dateAdded = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Taipei",
+  });
   const user = req.cookies.authcookie2;
   const { document_title, note, to_be_signed, status } = req.body;
 

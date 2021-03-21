@@ -33,16 +33,19 @@ app.use("/functions", functions);
 const db = require("./db/connectDB");
 
 app.delete("/delete/:id", (request, response) => {
+  const dateAdded = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Taipei",
+  });
   const { id } = request.params;
   query =
     "SELECT createDocu_Title FROM create_document WHERE createDocu_ID = ?";
   db.query(query, [id], (err, results) => {
     const document_name = results[0].createDocu_Title;
     query2 =
-      "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
+      "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
     db.query(
       query2,
-      ["has deleted", document_name, request.cookies.authcookie2],
+      ["has deleted", dateAdded, document_name, request.cookies.authcookie2],
       (err, results) => {
         console.log("pass");
       }
@@ -62,6 +65,9 @@ app.delete("/deleteUpdate/:id", (request, response) => {
   const { id } = request.params;
   var create_docuID = request.headers.referer;
   var new_ID = create_docuID.split("/").pop();
+  const dateAdded = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Taipei",
+  });
   const sql =
     "SELECT MAX(updateDocu_ID) as query_ID,updateDocu_Title FROM update_document WHERE createDocu_ID = ?";
   db.query(sql, [new_ID], (err, result1) => {
@@ -71,10 +77,15 @@ app.delete("/deleteUpdate/:id", (request, response) => {
     if (c1 > c2) {
       //insert to activity log
       query2 =
-        "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
+        "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
       db.query(
         query2,
-        ["has deleted an update", document_name, request.cookies.authcookie2],
+        [
+          "has deleted an update",
+          dateAdded,
+          document_name,
+          request.cookies.authcookie2,
+        ],
         (err, results) => {
           console.log("pass");
         }
@@ -89,10 +100,15 @@ app.delete("/deleteUpdate/:id", (request, response) => {
         .catch((err) => console.log(err));
     } else {
       query2 =
-        "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
+        "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
       db.query(
         query2,
-        ["has deleted an update", document_name, request.cookies.authcookie2],
+        [
+          "has deleted an update",
+          dateAdded,
+          document_name,
+          request.cookies.authcookie2,
+        ],
         (err, results) => {
           console.log("pass");
         }
@@ -148,16 +164,19 @@ app.delete("/deleteUpdate/:id", (request, response) => {
 });
 
 app.patch("/archive/:id", (request, response) => {
+  const dateAdded = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Taipei",
+  });
   const { id } = request.params;
   query =
     "SELECT createDocu_Title FROM create_document WHERE createDocu_ID = ?";
   db.query(query, [id], (err, results) => {
     const document_name = results[0].createDocu_Title;
     query2 =
-      "INSERT INTO activity_log (activity,document_name,user_id) VALUES(?,?,?)";
+      "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
     db.query(
       query2,
-      ["has archived", document_name, request.cookies.authcookie2],
+      ["has archived", dateAdded, document_name, request.cookies.authcookie2],
       (err, results) => {
         console.log("pass");
       }
