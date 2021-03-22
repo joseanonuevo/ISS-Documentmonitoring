@@ -55,6 +55,7 @@
                 <div class="reg1">
                     <input type="text" id="studentno" name="studentno" placeholder="Student Number" required>
                 </div>
+                <br>
                 <div class="reg2">
                     <select name="position" id="position" name="position" aria-placeholder="Position" required>
                         <option value="" disabled selected>Position in the organization</option>
@@ -145,36 +146,29 @@
         var date1 = document.getElementById("date1").value;
         var date2 = document.getElementById("date2").value;
 
-        if(password == "" && confirmpw == "" && reg-fname == "" && reg-lname == "" && studentno == ""){
+        if(date1>= date2){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: "Check your dates!",
             })
-        }else{
-            if(date1>= date2){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: "Check your dates!",
-                })
-                return false;
-                } else {
-                return true            
-            }
-
-            if (password != confirmpw) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: "Passwords doesn't match!",
-                })
-                return false;
+            return false;
             } else {
-                return true
-            }
-            return false
+            return true            
         }
+
+        if (password != confirmpw) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Passwords doesn't match!",
+            })
+            return false;
+        } else {
+            return true
+        }
+
+        return false
     }
 </script>
 
