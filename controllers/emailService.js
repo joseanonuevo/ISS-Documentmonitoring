@@ -272,6 +272,9 @@ exports.requestPwChange = (req, res) => {
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>Document</title>
               <style>
+
+                  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700&display=swap');
+
                   body {
                       font-family: 'Montserrat',
                           sans-serif;
