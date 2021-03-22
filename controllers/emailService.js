@@ -169,15 +169,18 @@ exports.activateAccount = (req, res, next) => {
   try {
     date = Date.now();
     const {
+      studentno,
       fname,
       mi,
       lname,
-      regdate,
+      date1,
+      date2,
       position,
       password,
       confirmpw,
     } = req.body;
     console.log(req.body);
+    regdate = "AY " + date1 + "-" + date2;
     if (token) {
       jwt.verify(
         token,
@@ -201,22 +204,32 @@ exports.activateAccount = (req, res, next) => {
                   invalidRequest: "Invalid Request",
                   error: "error",
                 });
-              }
-            }
-          );
-          db.query(
-            "INSERT INTO users (user_lastName,user_firstName,user_middleInitial,user_commencementDate,user_Position, user_Email,user_Password) VALUES (?,?,?,?,?,?,?)",
-            [lname, fname, mi, regdate, position, email, hashedPassword],
-            (error, results) => {
-              if (error) {
-                console.log(error);
               } else {
-                console.log(results);
-                return res.status(400).render("alertPage", {
-                  successAccountRegistered:
-                    "Account has been successfully registered!",
-                  success: "check_circle",
-                });
+                db.query(
+                  "INSERT INTO users (student_number, user_lastName,user_firstName,user_middleInitial,user_commencementDate,user_Position, user_Email,user_Password) VALUES (?,?,?,?,?,?,?,?)",
+                  [
+                    studentno,
+                    lname,
+                    fname,
+                    mi,
+                    regdate,
+                    position,
+                    email,
+                    hashedPassword,
+                  ],
+                  (error, results) => {
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      console.log(results);
+                      return res.status(400).render("alertPage", {
+                        successAccountRegistered:
+                          "Account has been successfully registered!",
+                        success: "check_circle",
+                      });
+                    }
+                  }
+                );
               }
             }
           );

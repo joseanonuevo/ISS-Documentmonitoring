@@ -1,17 +1,20 @@
 const PORT = "https://iss-emonitor.org";
-document.querySelector("tbody").addEventListener("click", function (event) {
-  if (event.target.className === "archive-row-btn") {
-    archiveRowById(event.target.dataset.id);
-  }
-  //else if
-  if (event.target.className === "delete-row-btn") {
-    deleteRowById(event.target.dataset.id);
-  }
-  //else
-  if (event.target.className === "update-row-btn") {
-    updateRowById(event.target.dataset.id);
-  }
-});
+//localhost:3000/archive
+http: document
+  .querySelector("tbody")
+  .addEventListener("click", function (event) {
+    if (event.target.className === "archive-row-btn") {
+      archiveRowById(event.target.dataset.id);
+    }
+    //else if
+    if (event.target.className === "delete-row-btn") {
+      deleteRowById(event.target.dataset.id);
+    }
+    //else
+    if (event.target.className === "update-row-btn") {
+      updateRowById(event.target.dataset.id);
+    }
+  });
 function archiveRowById(id) {
   Swal.fire({
     icon: "warning",
