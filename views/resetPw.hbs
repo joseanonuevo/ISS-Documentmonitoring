@@ -45,7 +45,7 @@
                 <p>Reset your old password</p>
             </div>
             <br>
-            <form action="/api/resetPw" method="post" onsubmit="return validate()">
+            <form action="/api/resetPw" method="post" onSubmit="document.getElementById('submit-resetpw').disabled=true;">
 
             <label class="lbl-resetpg" for="newpw">New Password</label>
             <input type="password" id="password" name="password" class="input-resetPW" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$" title="Minimum of 7 characters. Should have at least one special character and one number and one UpperCase Letter." required><br><br>
@@ -54,7 +54,7 @@
             <input type="password" id="password1" name="passwordConfirm" class="input-resetPW" required><br><br>
             
             <center>
-                <button type="reset" value="Reset" id="resetreset-btn">Cancel</button>
+                <button type="reset" value="Reset" id="resetreset-btn" onclick="return validate()">Cancel</button>
                 <input type="submit" id="submit-resetpw" style="height: 29px; font-size:16px">
             </center>
             <br><br>

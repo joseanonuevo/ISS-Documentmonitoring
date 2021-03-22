@@ -42,115 +42,116 @@ exports.register = (req, res) => {
           to: email,
           subject: "Account Activation link",
           html: `
-          <!DOCTYPE html>
-          <html lang="en">
+            <!DOCTYPE html>
+            <html lang="en">
 
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Document</title>
-              <style>
-                  #resetpw-btn {
-                      background-color: orange;
-                      width: 150px;
-                      height: 30px;
-                      border: none;
-                      border-radius: 50px;
-                      color: white;
-                      cursor: pointer;
-                  }
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+                <style>
+                    #resetpw-btn {
+                        background-color: orange;
+                        width: 150px;
+                        height: 30px;
+                        border: none;
+                        border-radius: 50px;
+                        color: white;
+                    }
 
-                  .email-container {
-                      box-shadow: 0 0 8px #ccc;
-                      padding: 30px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      width: 600px;
-                      border: solid 1px black;
-                  }
+                    .email-container {
+                        box-shadow: 0 0 8px #ccc;
+                        padding: 30px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 600px;
+                        border: solid 1px black;
+                    }
 
-                  .email-header {
-                      margin-left: auto;
-                      margin-right: auto;
-                  }
+                    .email-header {
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
 
-                  #iss-logo {
-                      width: 50px;
-                      height: 50px;
-                      position: relative;
-                      top: 12px;
-                  }
+                    #iss-logo {
+                        width: 50px;
+                        height: 50px;
+                        position: relative;
+                        top: 12px;
+                    }
 
-                  #header-list {
-                      list-style: none;
-                      width: 100%;
-                      height: 90px;
-                      margin: 0;
-                      padding: 0;
-                      white-space: nowrap;
-                      overflow-x: auto;
-                      overflow-y: hidden;
-                  }
+                    #header-list {
+                        list-style: none;
+                        width: 100%;
+                        height: 90px;
+                        margin: 0;
+                        padding: 0;
+                        white-space: nowrap;
+                        overflow-x: auto;
+                        overflow-y: hidden;
+                    }
 
-                  #header-list>li {
-                      display: inline-block;
-                  }
+                    #header-list>li {
+                        display: inline-block;
+                    }
 
-                  .container {
-                      background-color: white;
-                      width: 680px;
-                      margin-left: auto;
-                      margin-right: auto;
-                  }
-              </style>
-          </head>
+                    .container {
+                        background-color: white;
+                        width: 680px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                </style>
+            </head>
 
-          <body>
-              <div class="container">
-                  <div class="email-header">
-                      <center>
-                        <ul id="header-list">
-                            <li><img src="https://i.ibb.co/9WqDmVm/iss-logo.png" alt="iss-logo" id="iss-logo"></li>
-                            <li>
-                                <h2>Information Systems Society</h2>
-                            </li>
-                        </ul>
-                      </center>
-                  </div>
+            <body>
+                <div class="container">
+                    <div class="email-header">
+                        <center>
+                            <ul id="header-list">
+                                <li><img src="https://scontent.fmnl2-1.fna.fbcdn.net/v/t31.0-8/13995619_1244444428913204_2794517576543849237_o.png?_nc_cat=100&ccb=2&_nc_sid=174925&_nc_ohc=e7JTAN5J6VsAX_ppGXe&_nc_ht=scontent.fmnl2-1.fna&oh=4cef3eaec49c01bf273941ea9b279e8a&oe=60031495"
+                                        alt="iss-logo" id="iss-logo"></li>
+                                <li>
+                                    <h2>Information Systems Society</h2>
+                                </li>
+                            </ul>
+                        </center>
+                    </div>
 
-                  <div class="email-container">
-                      <section>
-                          <h3>Good Day!</h3>
-                      </section>
+                    <div class="email-container">
+                        <section>
+                            <h3>Good Day!</h3>
+                        </section>
 
 
-                      <section>
-                          <p>To register to e-Monitor of ISS, click the registration button to
-                              access the link
-                              and
-                              kindly fill in your information.
-                          </p>
-                      </section>
+                        <section>
+                            <p>To register to e-Monitor of ISS, click the registration button to
+                                access the link
+                                and
+                                kindly place the
+                                verification code in the form.
+                            </p>
+                        </section>
 
-                      <br>
+                        <br>
 
-                      <center>
-                          <a href="${process.env.CLIENT_URL}/registration/${token}"
-                              id="reset-link"><button id="resetpw-btn">Register Here</button>
-                          </a>
+                        <center>
+                            <a href="${process.env.CLIENT_URL}/activation"
+                                id="reset-link"><button id="resetpw-btn">Register Here</button>
+                            </a>
 
-                      </center>
+                        </center>
 
-                      <br>
+                        <br>
 
-                      <section>
-                          <p>Cheers, <br> Information Systems Society (UST-ISS)</p>
-                      </section>
-                  </div>
-              </div>
-          </body>
+                        <section>
+                            <p>Cheers, <br> Information Systems Society (UST-ISS)</p>
+                        </section>
+                    </div>
+                </div>
+            </body>
 
-          </html>
+            </html>
         `,
         };
         mg.messages().send(data, (error, body) => {
@@ -272,6 +273,11 @@ exports.requestPwChange = (req, res) => {
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>Document</title>
               <style>
+                  body {
+                      font-family: 'Montserrat',
+                          sans-serif;
+                  }
+
                   #resetpw-btn {
                       background-color: orange;
                       width: 150px;
@@ -324,19 +330,25 @@ exports.requestPwChange = (req, res) => {
                       margin-left: auto;
                       margin-right: auto;
                   }
+
+                  .header-title {
+                      font-size: 28px;
+                      text-transform: uppercase;
+                  }
               </style>
+              <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
           </head>
 
           <body>
               <div class="container">
                   <div class="email-header">
                       <center>
-                        <ul id="header-list">
-                            <li><img src="https://i.ibb.co/9WqDmVm/iss-logo.png" alt="iss-logo" id="iss-logo"></li>
-                            <li>
-                                <h2>Information Systems Society</h2>
-                            </li>
-                        </ul>
+                          <ul id="header-list">
+                              <li><img src="https://i.ibb.co/9WqDmVm/iss-logo.png" alt="iss-logo" id="iss-logo"></li>
+                              <li>
+                                  <p class="header-title">Information Systems Society</h2>
+                              </li>
+                          </ul>
                       </center>
                   </div>
 
@@ -347,16 +359,18 @@ exports.requestPwChange = (req, res) => {
 
 
                       <section>
-                          <p>
-                          Click here to reset your password.
+                          <p>To register to e-Monitor of ISS, click the registration button to
+                              access the link
+                              and
+                              kindly fill in your information.
                           </p>
                       </section>
 
                       <br>
 
                       <center>
-                          <a href="${process.env.CLIENT_URL}/resetPw/${token}"
-                              id="reset-link"><button id="resetpw-btn">Reset Password</button>
+                          <a href="${process.env.CLIENT_URL}/registration/${token}" id="reset-link"><button
+                                  id="resetpw-btn">Register Here</button>
                           </a>
 
                       </center>
