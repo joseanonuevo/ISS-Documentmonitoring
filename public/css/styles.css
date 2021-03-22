@@ -691,8 +691,9 @@ tr:nth-child(odd) {
 /* REGISTRATION */
 
 .container-formreg{
-    margin: auto;
-    width: 40%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container-reg input{
@@ -736,15 +737,22 @@ tr:nth-child(odd) {
 
 #reg-fname{
     margin-bottom: 20px;
+    margin-right: 55px;
 }
 
 #reg-mi{
     width: 90px;
     margin-bottom: 20px;
+    margin-right: 55px;
+}
+
+#reg-date{
+    margin-bottom: 20px;
 }
 
 #reg-lname{
     margin-bottom: 20px;
+    padding-right: none;
 }
 
 #reg-month{
