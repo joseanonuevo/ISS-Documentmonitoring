@@ -288,7 +288,17 @@ router.post("/updateAdmin/", upload, (req, res) => {
         new_ID,
       ],
       (err, result) => {
-        console.log("pass");
+        const sql3 =
+          "INSERT INTO activity_log(activity,date,user_id,document_name) VALUES(?,?,?,?)";
+        db.query(
+          sql3,
+          ["has updated", dateAdded, req.cookies.authcookie2, document_title],
+          (err, result) => {
+            console.log(
+              `${req.cookies.authcookie2} updated document ${document_title}`
+            );
+          }
+        );
       }
     );
     res.status(200).redirect("/adminUpdate/" + new_ID);
