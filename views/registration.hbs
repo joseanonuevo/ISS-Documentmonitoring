@@ -53,7 +53,7 @@
                     <input type="text" id="reg-lname" name="lname" placeholder="Last Name" required>
                 </div>
                 <div class="reg1">
-                    <input type="text" id="reg-fname" name="studentno" placeholder="Student Number" required>
+                    <input type="text" id="studentno" name="studentno" placeholder="Student Number" required>
                 </div>
                 <div class="reg2">
                     <select name="position" id="position" name="position" aria-placeholder="Position" required>
@@ -139,34 +139,42 @@
 
         var password = document.getElementById("reg-pw").value;
         var confirmpw = document.getElementById("reg-cpw").value;
-
-
+        var reg-fname = document.getElementById("reg-fname").value;
+        var reg-lname = document.getElementById("reg-lname").value;
+        var studentno = document.getElementById("studentno").value;
         var date1 = document.getElementById("date1").value;
         var date2 = document.getElementById("date2").value;
 
-        if(date1>= date2){
+        if(password == "" && confirmpw == "" && reg-fname == "" && reg-lname == "" && studentno == ""){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: "Check your dates!",
             })
-            return false;
+        }else{
+            if(date1>= date2){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "Check your dates!",
+                })
+                return false;
+                } else {
+                return true            
+            }
+
+            if (password != confirmpw) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "Passwords doesn't match!",
+                })
+                return false;
             } else {
-            return true            
+                return true
+            }
+            return false
         }
-
-        if (password != confirmpw) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Passwords doesn't match!",
-            })
-            return false;
-        } else {
-            return true
-        }
-
-        return false
     }
 </script>
 
