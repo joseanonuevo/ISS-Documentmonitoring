@@ -136,10 +136,9 @@ exports.register = (req, res) => {
                         <br>
 
                         <center>
-                            <a href="${process.env.CLIENT_URL}/activation"
-                                id="reset-link"><button id="resetpw-btn">Register Here</button>
-                            </a>
-
+                          <a href="${process.env.CLIENT_URL}/registration/${token}" id="reset-link"><button
+                                  id="resetpw-btn">Register Here</button>
+                          </a>
                         </center>
 
                         <br>
@@ -359,20 +358,16 @@ exports.requestPwChange = (req, res) => {
 
 
                       <section>
-                          <p>To register to e-Monitor of ISS, click the registration button to
-                              access the link
-                              and
-                              kindly fill in your information.
+                          <p>Click here to reset your password
                           </p>
                       </section>
 
                       <br>
 
                       <center>
-                          <a href="${process.env.CLIENT_URL}/registration/${token}" id="reset-link"><button
-                                  id="resetpw-btn">Register Here</button>
-                          </a>
-
+                        <a href="${process.env.CLIENT_URL}/activation"
+                            id="reset-link"><button id="resetpw-btn">Register Here</button>
+                        </a>
                       </center>
 
                       <br>
