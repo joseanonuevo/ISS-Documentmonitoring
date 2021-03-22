@@ -123,8 +123,7 @@ exports.register = (req, res) => {
                             <p>To register to e-Monitor of ISS, click the registration button to
                                 access the link
                                 and
-                                kindly place the
-                                verification code in the form.
+                                kindly fill in the form.
                             </p>
                         </section>
 
@@ -169,18 +168,15 @@ exports.activateAccount = (req, res, next) => {
   try {
     date = Date.now();
     const {
-      studentno,
       fname,
       mi,
       lname,
-      date1,
-      date2,
+      regdate,
       position,
       password,
       confirmpw,
     } = req.body;
     console.log(req.body);
-    regdate = "AY " + date1 + "-" + date2;
     if (token) {
       jwt.verify(
         token,
@@ -204,32 +200,22 @@ exports.activateAccount = (req, res, next) => {
                   invalidRequest: "Invalid Request",
                   error: "error",
                 });
+              }
+            }
+          );
+          db.query(
+            "INSERT INTO users (user_lastName,user_firstName,user_middleInitial,user_commencementDate,user_Position, user_Email,user_Password) VALUES (?,?,?,?,?,?,?)",
+            [lname, fname, mi, regdate, position, email, hashedPassword],
+            (error, results) => {
+              if (error) {
+                console.log(error);
               } else {
-                db.query(
-                  "INSERT INTO users (student_number, user_lastName,user_firstName,user_middleInitial,user_commencementDate,user_Position, user_Email,user_Password) VALUES (?,?,?,?,?,?,?,?)",
-                  [
-                    studentno,
-                    lname,
-                    fname,
-                    mi,
-                    regdate,
-                    position,
-                    email,
-                    hashedPassword,
-                  ],
-                  (error, results) => {
-                    if (error) {
-                      console.log(error);
-                    } else {
-                      console.log(results);
-                      return res.status(400).render("alertPage", {
-                        successAccountRegistered:
-                          "Account has been successfully registered!",
-                        success: "check_circle",
-                      });
-                    }
-                  }
-                );
+                console.log(results);
+                return res.status(400).render("alertPage2", {
+                  successAccountRegistered:
+                    "Account has been successfully registered!",
+                  success: "check_circle",
+                });
               }
             }
           );
