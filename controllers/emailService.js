@@ -365,9 +365,9 @@ exports.requestPwChange = (req, res) => {
                       <br>
 
                       <center>
-                        <a href="${process.env.CLIENT_URL}/activation"
-                            id="reset-link"><button id="resetpw-btn">Register Here</button>
-                        </a>
+                          <a href="${process.env.CLIENT_URL}/resetPw/${token}"
+                              id="reset-link"><button id="resetpw-btn">Reset Password</button>
+                          </a>
                       </center>
 
                       <br>
