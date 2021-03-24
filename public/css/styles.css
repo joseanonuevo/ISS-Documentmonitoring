@@ -256,7 +256,14 @@ tr:nth-child(odd) {
     overflow-x:auto;
     box-shadow: 0 0 10px rgba(148, 148, 148, 0.637);
     border-radius: 15px;    
-    background: linear-gradient(to bottom, #FFA500 0%, #ececec 100%);
+    background: linear-gradient(to bottom, #ff8400 0%, #ececec 100%);
+}
+
+#eventType{
+    background-color:#fffff0; 
+    border:none; 
+    border-radius:10px;
+    width:300px"
 }
 
 .create-docbtn{
