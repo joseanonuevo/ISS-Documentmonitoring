@@ -144,8 +144,9 @@
           <tr>
             <th style="width: 4%">ID</th>
             <th style="width: 20%">Title</th>
+            <th style="width: 13%">Event Type</th>
             <th style="width: 20%">Date Updated</th>
-            <th style="width: 15%;">Note</th>
+            <th style="width: 15%;">Description</th>
             <th style="width: 20%">To be Signed By</th>
             <th style="width: 10%;">Status</th>
             <th style="width: 10%;"></th>
@@ -157,6 +158,7 @@
             <tr>
                 <td>{{createDocu_ID}}</td>
                 <td>{{createDocu_Title}}</td>
+                <td>IICS Week</td>
                 <td>{{createDocu_Date}}</td>
                 <td>{{createDocu_Notes}}</td>
                 <td>{{createDocu_tobeSignedby}}</td>
@@ -307,7 +309,7 @@ $('#mydatatable').DataTable({
     "aaSorting": [],
   columnDefs: [{
   orderable: false,
-  targets: [0, 3, 4, 6],
+  targets: [0,4,5,7],
   }]
 });
 
