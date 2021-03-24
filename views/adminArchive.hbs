@@ -260,7 +260,6 @@
             </form>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -304,8 +303,10 @@ var table = $('#mydatatable').DataTable();
 
 $('#mydatatable').DataTable({
     sDom: 'lrtip',
-    "bInfo" : false,
-    bPaginate: false,
+    "bInfo": false,
+    "bLengthChange": false,
+    bPaginate: true,
+    "pageLength": 10,
     "aaSorting": [],
   columnDefs: [{
   orderable: false,
