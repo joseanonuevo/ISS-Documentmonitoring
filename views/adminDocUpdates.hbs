@@ -151,7 +151,7 @@
             <th style="width: 15%">Date Updated</th>
             <th style="width: 30%;">Description</th>
             <th style="width: 18%">To be Signed By</th>
-            <th style="width: 10%;">Status</th>
+            <th style="width: 15%;">Status</th>
             <th></th>
             <th style="padding-right:3%"></th>
           </tr>
@@ -252,8 +252,17 @@
                 <label for="" id="createdoc-label">To be Signed by</label>
                 <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
 
-                <label for="note-modal" id="createdoc-label">Description</label>
-                <textarea name="note-modal" id="note-modal" cols="29" rows="5" required></textarea><br>
+                <div class="row">
+                  <div class="col-3">
+                    <label for="note-modal" id="createdoc-label">Description</label>
+                  </div>
+                  <div class="col">
+                    <div class="radio-form">
+                      <textarea name="note-modal" id="note-modal" cols="29" rows="5" required></textarea><br>
+                    </div>
+                  </div>
+                </div>
+
                 <!-- Radio Buttons -->
                 <div class="row">
                   <div class="col-3">
