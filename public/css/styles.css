@@ -434,6 +434,7 @@ tr:nth-child(odd) {
     border:none;
     width:300px;
     background-color:#fffff0;
+    border-radius: 10px;
 }
 
 #note-modal:focus{
