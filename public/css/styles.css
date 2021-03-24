@@ -231,9 +231,10 @@ th {
     padding-right: 10px;
     padding-left: 20px;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'Montserrat',
     sans-serif;
+    font-weight: bold;
 }
 
 td {
@@ -421,15 +422,6 @@ tr:nth-child(odd) {
     margin-bottom: 30px;
     border: none;
     border-radius: 10px;
-    background-color: rgb(255, 255, 240);
-}
-
-#note-modal {
-    height: 35px !important;
-    width: 300px !important;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    border: none;
     background-color: rgb(255, 255, 240);
 }
 
