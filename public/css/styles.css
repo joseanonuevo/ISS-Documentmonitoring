@@ -437,6 +437,13 @@ tr:nth-child(odd) {
     border-radius: 10px;
 }
 
+#mydatatable_paginate {
+    position: relative;
+    top: -6px;
+    padding-top: 10px;
+    background-color: white;
+}
+
 #note-modal:focus{
     outline: none;
     padding-left: 10px;
