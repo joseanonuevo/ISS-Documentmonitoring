@@ -152,7 +152,7 @@
             <th style="width: 13%">Event Type</th>
             <th style="width: 15%">Date Updated</th>
             <th style="width: 30%;">Note</th>
-            <th style="width: 15%">To be Signed By</th>
+            <th style="width: 18%">To be Signed By</th>
             <th style="width: 10%;">Status</th>
             <th></th>
             <th></th>
@@ -242,7 +242,7 @@
                 <label for="" id="createdoc-label">Document Title</label>
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
                 <label for="" id="createdoc-label">Event Type</label>
-                <select name="eventType" id="eventType" style="">
+                <select name="eventType" id="eventType">
                   <option value="ComDev">ComDev</option>
                   <option value="ISS Week">ISS Week</option>
                   <option value="IICS Week">IICS Week</option>
@@ -257,7 +257,7 @@
                 <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
 
                 <label for="note-modal" id="createdoc-label">Note</label>
-                <textarea name="note-modal" id="note-modal" cols="29" rows="5" style="border:none; width:300px; background-color:#fffff0;"></textarea><br>
+                <textarea name="note-modal" id="note-modal" cols="29" rows="5"></textarea><br>
                 <!-- Radio Buttons -->
                 <div class="row">
                   <div class="col-3">
@@ -330,7 +330,7 @@
     "aaSorting": [],
     columnDefs: [{
       orderable: false,
-      targets: [0, 3, 4, 6, 7, 8],
+      targets: [0,4,5,7,8,9],
     }]
   });
 

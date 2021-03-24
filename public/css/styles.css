@@ -267,6 +267,11 @@ tr:nth-child(odd) {
     height: 30px;
     margin-bottom: 20px;
 }
+#eventType:focus{
+    outline: none;
+    padding-left: 10px;
+    box-shadow: 0 0 3pt 2pt lightblue;
+}
 
 .create-docbtn{
     display: flex;
@@ -423,6 +428,18 @@ tr:nth-child(odd) {
     border: none;
     border-radius: 10px;
     background-color: rgb(255, 255, 240);
+}
+
+#note-modal{
+    border:none;
+    width:300px;
+    background-color:#fffff0;
+}
+
+#note-modal:focus{
+    outline: none;
+    padding-left: 10px;
+    box-shadow: 0 0 3pt 2pt lightblue;
 }
 
 .upload-file {
