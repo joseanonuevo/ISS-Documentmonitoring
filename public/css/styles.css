@@ -438,6 +438,7 @@ tr:nth-child(odd) {
 }
 
 #mydatatable_paginate {
+    height: 60px;
     position: relative;
     top: -6px;
     padding-top: 10px;
