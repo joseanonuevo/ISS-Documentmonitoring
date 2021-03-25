@@ -691,7 +691,8 @@ tr:nth-child(odd) {
 }
 
 .thick{
-    font-weight: 900;
+    font-family: 'Roboto',
+    sans-serif;
 }
 
 .lbl-resetpg{

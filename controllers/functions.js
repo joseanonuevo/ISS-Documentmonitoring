@@ -41,23 +41,25 @@ exports.changePw = (req, res) => {
   }
 };
 
-exports.editAccount = (req,res) =>{
-  try{
+exports.editAccount = (req, res) => {
+  try {
     const { changeYear1, changeYear2, position } = req.body;
     console.log(req.body);
     const id = req.cookies.authcookie2;
-    console.log(id)
+    console.log(id);
     regdate = "AY " + changeYear1 + "-" + changeYear2;
-    console.log(position)
-    console.log(regdate)
+    console.log(position);
+    console.log(regdate);
 
-    const sql = "UPDATE users SET user_acadYear = ?, user_Position = ? WHERE user_ID = ?"
-    db.query(sql,[regdate, position ,id],(err, results)=>{
-      if(!err){
-        console.log(results)
-        res.send("User updated")}
-    })
-  }catch{
-
-  }
-}
+    const sql =
+      "UPDATE users SET user_acadYear = ?, user_Position = ? WHERE user_ID = ?";
+    db.query(sql, [regdate, position, id], (err, results) => {
+      if (!err) {
+        return res.status(400).render("alertPage", {
+          successEdit: "Your information has been changed successfully!",
+          success: "check_circle",
+        });
+      }
+    });
+  } catch {}
+};
