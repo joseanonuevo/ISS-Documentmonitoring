@@ -26,26 +26,28 @@ router.post("/upload", upload, (req, res) => {
     timeZone: "Asia/Taipei",
   });
   const user = req.cookies.authcookie2;
-  const { document_title, note, to_be_signed, status } = req.body;
-
+  const { document_title, eventType, notemodal, to_be_signed, status } = req.body;
+  console.log(req.body)
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: `${uuidv4()}.${fileType}`,
     Body: req.file.buffer,
   };
+
   s3.upload(params, (error, data) => {
     if (error) {
       res.status(500).send(error);
     }
     console.log(data.Location);
     const sql =
-      "INSERT INTO create_document (createDocu_Title,createDocu_Date, createDocu_Notes,createDocu_tobeSignedby,createDocu_Attachment,createDocu_Status,user_ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    "INSERT INTO create_document (createDocu_Title, createDocu_Event, createDocu_Date, createDocu_Description, createDocu_tobeSignedby, createDocu_Attachment, createDocu_Status, user_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     db.query(
       sql,
       [
         document_title,
+        eventType,
         dateAdded,
-        note,
+        notemodal,
         to_be_signed,
         data.Location,
         status,
@@ -54,13 +56,13 @@ router.post("/upload", upload, (req, res) => {
       (err, result) => {
         const newId = result.insertId;
         const sql2 =
-          "INSERT INTO update_document (updateDocu_Title,updateDocu_Date, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+          "INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, User_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         db.query(
           sql2,
           [
             document_title,
             dateAdded,
-            note,
+            notemodal,
             to_be_signed,
             data.Location,
             status,
@@ -72,10 +74,10 @@ router.post("/upload", upload, (req, res) => {
           }
         );
         const sql3 =
-          "INSERT INTO activity_log(activity,date,user_id,document_name) VALUES(?,?,?,?)";
+          "INSERT INTO activity_log(activity,date,document_name,user_ID) VALUES(?,?,?,?)";
         db.query(
           sql3,
-          ["has created", dateAdded, req.cookies.authcookie2, document_title],
+          ["has created", dateAdded, document_title, req.cookies.authcookie2],
           (err, result) => {
             console.log(
               `${req.cookies.authcookie2} uploaded a document ${document_title}`
@@ -91,16 +93,15 @@ router.post("/upload", upload, (req, res) => {
 router.post("/update/", upload, (req, res) => {
   //url
   var create_docuID = req.headers.referer;
-  var new_ID = create_docuID.split("/").pop();
-
+  var newId = create_docuID.split("/").pop();
+  console.log(newId);
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
   //for db
   const dateAdded = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Taipei",
   });
-  const user = req.cookies.authcookie2;
-  const { document_title, note, to_be_signed, status } = req.body;
+  const { document_title, notemodal, to_be_signed, status } = req.body;
 
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
@@ -114,41 +115,41 @@ router.post("/update/", upload, (req, res) => {
     }
 
     const sql =
-      "INSERT INTO update_document (updateDocu_Title,updateDocu_Date, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, user_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     db.query(
       sql,
       [
         document_title,
         dateAdded,
-        note,
+        notemodal,
         to_be_signed,
         data.Location,
         status,
         req.cookies.authcookie2,
-        new_ID,
+        newId,
       ],
-      (err, result) => {}
+      (err, result) => {
+      }
     );
     const sql2 =
-      "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Notes = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
+      "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
     db.query(
       sql2,
       [
         document_title,
         dateAdded,
-        note,
         to_be_signed,
         data.Location,
         status,
         req.cookies.authcookie2,
-        new_ID,
+        newId,
       ],
       (err, result) => {
         const sql3 =
-          "INSERT INTO activity_log(activity,date,user_id,document_name) VALUES(?,?,?,?)";
+          "INSERT INTO activity_log(activity, date, document_name, user_ID) VALUES(?,?,?,?)";
         db.query(
           sql3,
-          ["has updated", dateAdded, req.cookies.authcookie2, document_title],
+          ["has updated", dateAdded, document_title, req.cookies.authcookie2],
           (err, result) => {
             console.log(
               `${req.cookies.authcookie2} updated document ${document_title}`
@@ -157,7 +158,7 @@ router.post("/update/", upload, (req, res) => {
         );
       }
     );
-    res.status(200).redirect("/update/" + new_ID);
+    res.status(200).redirect("/update/" + newId);
   });
 });
 
@@ -169,8 +170,8 @@ router.post("/uploadAdmin", upload, (req, res) => {
     timeZone: "Asia/Taipei",
   });
   const user = req.cookies.authcookie2;
-  const { document_title, note, to_be_signed, status } = req.body;
-
+  const { document_title, eventType, notemodal, to_be_signed, status } = req.body;
+  console.log(req.body)
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: `${uuidv4()}.${fileType}`,
@@ -183,13 +184,14 @@ router.post("/uploadAdmin", upload, (req, res) => {
     }
     console.log(data.Location);
     const sql =
-      "INSERT INTO create_document (createDocu_Title,createDocu_Date, createDocu_Notes,createDocu_tobeSignedby,createDocu_Attachment,createDocu_Status,user_ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    "INSERT INTO create_document (createDocu_Title, createDocu_Event, createDocu_Date, createDocu_Description, createDocu_tobeSignedby, createDocu_Attachment, createDocu_Status, user_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     db.query(
       sql,
       [
         document_title,
+        eventType,
         dateAdded,
-        note,
+        notemodal,
         to_be_signed,
         data.Location,
         status,
@@ -198,13 +200,13 @@ router.post("/uploadAdmin", upload, (req, res) => {
       (err, result) => {
         const newId = result.insertId;
         const sql2 =
-          "INSERT INTO update_document (updateDocu_Title,updateDocu_Date, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+          "INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, User_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         db.query(
           sql2,
           [
             document_title,
             dateAdded,
-            note,
+            notemodal,
             to_be_signed,
             data.Location,
             status,
@@ -216,10 +218,10 @@ router.post("/uploadAdmin", upload, (req, res) => {
           }
         );
         const sql3 =
-          "INSERT INTO activity_log(activity,date,user_id,document_name) VALUES(?,?,?,?)";
+          "INSERT INTO activity_log(activity,date,document_name,user_ID) VALUES(?,?,?,?)";
         db.query(
           sql3,
-          ["has created", dateAdded, req.cookies.authcookie2, document_title],
+          ["has created", dateAdded, document_title, req.cookies.authcookie2],
           (err, result) => {
             console.log(
               `${req.cookies.authcookie2} uploaded a document ${document_title}`
@@ -235,16 +237,15 @@ router.post("/uploadAdmin", upload, (req, res) => {
 router.post("/updateAdmin/", upload, (req, res) => {
   //url
   var create_docuID = req.headers.referer;
-  var new_ID = create_docuID.split("/").pop();
-
+  var newId = create_docuID.split("/").pop();
+  console.log(newId);
   let myFile = req.file.originalname.split(".");
   const fileType = myFile[myFile.length - 1];
   //for db
   const dateAdded = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Taipei",
   });
-  const user = req.cookies.authcookie2;
-  const { document_title, note, to_be_signed, status } = req.body;
+  const { document_title, notemodal, to_be_signed, status } = req.body;
 
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
@@ -258,41 +259,41 @@ router.post("/updateAdmin/", upload, (req, res) => {
     }
 
     const sql =
-      "INSERT INTO update_document (updateDocu_Title,updateDocu_Date, updateDocu_Notes,updateDocu_Signedby,updateDocu_Attachment,updateDocu_Status,updateUser_ID,createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, user_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     db.query(
       sql,
       [
         document_title,
         dateAdded,
-        note,
+        notemodal,
         to_be_signed,
         data.Location,
         status,
         req.cookies.authcookie2,
-        new_ID,
+        newId,
       ],
-      (err, result) => {}
+      (err, result) => {
+      }
     );
     const sql2 =
-      "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Notes = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
+      "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
     db.query(
       sql2,
       [
         document_title,
         dateAdded,
-        note,
         to_be_signed,
         data.Location,
         status,
         req.cookies.authcookie2,
-        new_ID,
+        newId,
       ],
       (err, result) => {
         const sql3 =
-          "INSERT INTO activity_log(activity,date,user_id,document_name) VALUES(?,?,?,?)";
+          "INSERT INTO activity_log(activity, date, document_name, user_ID) VALUES(?,?,?,?)";
         db.query(
           sql3,
-          ["has updated", dateAdded, req.cookies.authcookie2, document_title],
+          ["has updated", dateAdded, document_title, req.cookies.authcookie2],
           (err, result) => {
             console.log(
               `${req.cookies.authcookie2} updated document ${document_title}`
@@ -301,7 +302,7 @@ router.post("/updateAdmin/", upload, (req, res) => {
         );
       }
     );
-    res.status(200).redirect("/adminUpdate/" + new_ID);
+    res.status(200).redirect("/adminUpdate/" + newId);
   });
 });
 
