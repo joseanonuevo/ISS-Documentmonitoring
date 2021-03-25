@@ -81,6 +81,10 @@
               class="material-icons" id="dropdown-icons">
               manage_accounts
             </span>Manage Accounts</button></a>
+          <button class="dropdown-item" type="button" data-toggle="modal" data-target="#edit-user"><span
+              class="material-icons" id="dropdown-icons">
+              edit
+            </span>Edit Account</button>
           <button class="dropdown-item" type="button" data-toggle="modal" data-target="#forgot-pass"><span
               class="material-icons" id="dropdown-icons">
               lock
@@ -159,7 +163,6 @@
             <th>Position</th>
             <th>Email</th>
             <th>Academic Year</th>
-            <th style="text-align: center; width:8%">Edit</th>
             <th style="width: 8%; text-align:center;">Disable</th>
           </tr>
         </thead>
@@ -174,7 +177,6 @@
             <td>{{user_Position}}</td>
             <td>{{user_Email}}</td>
             <td>{{user_acadYear}}</td>
-            <td style="text-align: center;"><button class="edit-row-btn" id="editUser-btn" title="Edit User" type="button" data-toggle="modal" data-target="#edit-user" ></button>
             <td style="text-align: center;"><button class="disable-row-btn" id="disableUser-btn" title="Disable User" data-id={{user_Email}}>
             </td>
           </tr>
@@ -280,6 +282,7 @@
                   <option value="2020">2029</option>
                   <option value="2020">2030</option>
                 </select>
+                <span>to</span>
                 <select name="changeYear2" id="changeYear2" class="modal-select">
                   <option value="2018">2018</option>
                   <option value="2019">2019</option>
