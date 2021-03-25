@@ -40,3 +40,24 @@ exports.changePw = (req, res) => {
     return res.send("Passwords do not match");
   }
 };
+
+exports.editAccount = (req,res) =>{
+  try{
+    const { changeYear1, changeYear2, position } = req.body;
+    console.log(req.body);
+    const id = req.cookies.authcookie2;
+    console.log(id)
+    regdate = "AY " + changeYear1 + "-" + changeYear2;
+    console.log(position)
+    console.log(regdate)
+
+    const sql = "UPDATE users SET user_acadYear = ?, user_Position = ? WHERE user_ID = ?"
+    db.query(sql,[regdate, position ,id],(err, results)=>{
+      if(!err){
+        console.log(results)
+        res.send("User updated")}
+    })
+  }catch{
+
+  }
+}
