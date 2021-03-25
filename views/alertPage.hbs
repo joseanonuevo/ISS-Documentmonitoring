@@ -11,7 +11,8 @@
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
@@ -167,6 +168,16 @@
             <h2 class="thick">
                 {{successAccountRegistered}}
             </h2>
+            {{/if}}
+
+            {{#if successEdit}}
+            <span class="material-icons" style="font-size: 250px; color:rgb(9, 139, 9)">
+                {{success}}
+            </span>
+
+            <h1 class="thick" >
+                {{successEdit}}
+            </h1>
             {{/if}}
 
 

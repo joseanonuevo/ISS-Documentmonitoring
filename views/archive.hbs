@@ -158,7 +158,7 @@
             <tr>
                 <td>{{createDocu_ID}}</td>
                 <td>{{createDocu_Title}}</td>
-                <td>IICS Week</td>
+                <td>{{createDocu_Event}}</td>
                 <td>{{createDocu_Date}}</td>
                 <td>{{createDocu_Notes}}</td>
                 <td>{{createDocu_tobeSignedby}}</td>
@@ -276,7 +276,7 @@
           </div>
           <div class="modal-body">
             <div class="create-docform">
-              <form action="#" method="POST">
+              <form action="/functions/editAccount" method="POST">
                 <label for="" id="createdoc-label">Academic Year</label>
                 <select name="changeYear1" id="changeYear1" class="modal-select">
                   <option value="2018">2018</option>
