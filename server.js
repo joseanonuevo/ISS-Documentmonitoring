@@ -121,23 +121,24 @@ app.delete("/deleteUpdate/:id", (request, response) => {
           db.query(query, [id], (err, results) => {
             console.log("passed");
           });
-          const result = deleteRowById(new_ID);
+          const result = deleteRowById(new_ID);            
           result
             .then((data) =>
               response.json({
                 success: true,
               })
-            )
-            .catch((err) => console.log(err));
+            ).catch((err) => console.log(err));
+      
+
         } else {
           sql2 =
-            "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Notes = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?, createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
+            "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Description = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?, createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
           db.query(
             sql2,
             [
               result[1].updateDocu_Title,
               result[1].updateDocu_Date,
-              result[1].updateDocu_Notes,
+              result[1].updateDocu_Description,
               result[1].updateDocu_Signedby,
               result[1].updateDocu_Attachment,
               result[1].updateDocu_Status,
@@ -173,7 +174,7 @@ app.patch("/archive/:id", (request, response) => {
   db.query(query, [id], (err, results) => {
     const document_name = results[0].createDocu_Title;
     query2 =
-      "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
+      "INSERT INTO activity_log (activity, date, document_name, user_ID) VALUES(?, ?, ?, ?)";
     db.query(
       query2,
       ["has archived", dateAdded, document_name, request.cookies.authcookie2],
@@ -252,14 +253,8 @@ async function archiveRowById(id) {
     id = parseInt(id, 10);
     const response = await new Promise((resolve, reject) => {
       const query =
-        "UPDATE create_document SET status = 0 WHERE createDocu_ID = ?";
+        "UPDATE create_document SET isArchive = 1 WHERE createDocu_ID = ?";
       db.query(query, [id], (err, results) => {
-        if (err) reject(new Error(err.message));
-        resolve(results);
-      });
-      const query2 =
-        "INSERT INTO archive_document (archiveDocu_Date, createDocu_ID) VALUES(?,?)";
-      db.query(query2, [dateArchived, id], (err, results) => {
         if (err) reject(new Error(err.message));
         resolve(results);
       });
