@@ -152,27 +152,29 @@
       <table id="mydatatable">
         <thead>
           <tr>
-            <th style="width:11%">Student Number</th>
+            <th style="width:13%">Student Number</th>
             <th style="width:11%">Last Name</th>
             <th style="width:11%">First Name</th>
             <th>M.I</th>
             <th>Position</th>
             <th>Email</th>
             <th>Academic Year</th>
-            <th>Disable</th>
+            <th style="text-align: center; width:8%">Edit</th>
+            <th style="width: 8%; text-align:center;">Disable</th>
           </tr>
         </thead>
 
         <tbody>
           {{#each names}}
           <tr>
-            <td>2018112048</td>
+            <td>{{student_number}}</td>
             <td>{{user_lastName}}</td>
             <td>{{user_firstName}}</td>
             <td>{{user_middleInitial}}</td>
             <td>{{user_Position}}</td>
             <td>{{user_Email}}</td>
-            <td>{{user_commencementDate}}</td>
+            <td>{{user_acadYear}}</td>
+            <td style="text-align: center;"><button class="edit-row-btn" id="editUser-btn" title="Edit User" type="button" data-toggle="modal" data-target="#edit-user" ></button>
             <td style="text-align: center;"><button class="disable-row-btn" id="disableUser-btn" title="Disable User" data-id={{user_Email}}>
             </td>
           </tr>
@@ -248,6 +250,76 @@
       </div>
     </div>
   </div>
+{{!-- EDIT USER MODAL --}}
+  <div class="modal fade" id="edit-user" tabindex="-1" role="dialog" aria-labelledby="createDocTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="modal-body">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLongTitle">Edit User</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="create-docform">
+              <form action="#" method="POST">
+                <label for="" id="createdoc-label">Academic Year</label>
+                <select name="changeYear1" id="changeYear1" class="modal-select">
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2020">2021</option>
+                  <option value="2020">2022</option>
+                  <option value="2020">2023</option>
+                  <option value="2020">2024</option>
+                  <option value="2020">2025</option>
+                  <option value="2020">2026</option>
+                  <option value="2020">2027</option>
+                  <option value="2020">2028</option>
+                  <option value="2020">2029</option>
+                  <option value="2020">2030</option>
+                </select>
+                <select name="changeYear2" id="changeYear2" class="modal-select">
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2020">2021</option>
+                  <option value="2020">2022</option>
+                  <option value="2020">2023</option>
+                  <option value="2020">2024</option>
+                  <option value="2020">2025</option>
+                  <option value="2020">2026</option>
+                  <option value="2020">2027</option>
+                  <option value="2020">2028</option>
+                  <option value="2020">2029</option>
+                  <option value="2020">2030</option>
+                </select>
+                <br>
+                <label for="position" id="createdoc-label">Position</label>
+                <select name="position" id="position" aria-placeholder="Position" class="modal-select"required>
+                  <option value="President">President</option>
+                  <option value="Internal Vice-President">Internal Vice-President</option>
+                  <option value="External Vice-President">External Vice-President</option>
+                  <option value="Secretary">Secretary</option>
+                  <option value="Treasurer">Treasurer</option>
+                  <option value="Auditor">Auditor</option>
+                  <option value="Public Relations Officer">Public Relations Officer</option>
+                  <option value="Quality Assurance Officer">Quality Assurance Officer</option>
+                  <option value="Assistant Secretary">Assistant Secretary</option>
+                  <option value="Executive Associate to Secretary">Executive Associate to Secretary</option>
+                  <option value="Team Head for Academics">Team Head for Academics</option>
+                </select><br>
+                <center>
+                  <button type="submit" class="submit-modal2" onclick="return checkDate()">Submit</button>
+                </center>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{! END EDIT USER MODAL }}
 </body>
 <!-- Scripts -->
 <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -293,7 +365,7 @@
     "aaSorting": [],
     columnDefs: [{
       orderable: false,
-      targets: [2, 3, 4, 5, 6],
+      targets: [0, 3, 4, 5, 6,7],
     }]
   });
 
@@ -356,6 +428,24 @@
             return true;
         }
     }
+</script>
+
+<script>
+  function checkDate(){
+    var date1 = document.getElementById("changeYear1").value;
+    var date2 = document.getElementById("changeYear2").value;
+
+    if(date1>= date2){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "Check your inputs!",
+        })
+        return false;
+        } else {
+        return true            
+    }
+  }
 </script>
 
 </html>
