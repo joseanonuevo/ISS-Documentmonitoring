@@ -354,6 +354,24 @@ tr:nth-child(odd) {
     transform: scale(1.1);
 }
 
+#editUser-btn {
+    background: url('/img/edit-user.png') no-repeat;
+    background-color: rgba(245, 222, 179, 0);
+    height: 30px;
+    width: 30px;
+    border: none;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+}
+
+#editUser-btn:hover {
+    -ms-transform: scale(1.1);
+    /* IE 9 */
+    -webkit-transform: scale(1.1);
+    /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
 #archive-btn {
     background: url('/img/archive-icon.png') no-repeat;
     background-color: rgba(245, 222, 179, 0);
@@ -485,6 +503,31 @@ tr:nth-child(odd) {
     width: 80px;
     margin-right: 50px;
     color: white;
+}
+.submit-modal2 {
+    background-color: orange;
+    border: none;
+    border-radius: 30px;
+    padding: 3px;
+    width: 80px;
+    color: white;
+    margin-top: 10px;
+    outline: none;
+}
+.submit-modal2:focus {
+    box-shadow: 0 0 3pt 2pt lightblue;
+    outline: none;
+}
+
+.modal-select{
+    border-radius: 30px;
+    height: 30px;
+    border: none;
+    margin: 5px;
+    outline: none;
+}
+.modal-select:focus{
+    box-shadow: 0 0 3pt 2pt lightblue;
 }
 
 .close-modal {
