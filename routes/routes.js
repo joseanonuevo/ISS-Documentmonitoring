@@ -117,7 +117,7 @@ router.get("/adminUpdate/:id", verify, isAdmin, (req, res) => {
 });
 
 //clickable archive
-router.get("/arhiveupdate/:id", verify, (req, res) => {
+router.get("/archiveUpdate/:id", verify, (req, res) => {
   const sql =
     "SELECT * from update_document WHERE createDocu_ID = ? ORDER BY updateDocu_ID DESC";
   db.query(sql, [req.params.id], (err, results1) => {
@@ -125,12 +125,15 @@ router.get("/arhiveupdate/:id", verify, (req, res) => {
       const sql2 =
         "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC";
       db.query(sql2, (err, results2) => {
-        res.send(results1)
+        res.render("archiveUpdate", {
+          names: results1,
+          activities: results2,
+        });
       });
     } else return res.json(err);
   });
 });
-router.get("/adminarhiveupdate/:id", verify, (req, res) => {
+router.get("/adminArchiveUpdate/:id", verify, (req, res) => {
   const sql =
     "SELECT * from update_document WHERE createDocu_ID = ? ORDER BY updateDocu_ID DESC";
   db.query(sql, [req.params.id], (err, results1) => {
@@ -138,7 +141,10 @@ router.get("/adminarhiveupdate/:id", verify, (req, res) => {
       const sql2 =
         "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC";
       db.query(sql2, (err, results2) => {
-        res.send(results1)
+        res.render("adminArchiveUpdate", {
+          names: results1,
+          activities: results2,
+        });
       });
     } else return res.json(err);
   });
