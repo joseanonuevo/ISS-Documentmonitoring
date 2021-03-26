@@ -132,12 +132,13 @@ router.post("/update/", upload, (req, res) => {
       }
     );
     const sql2 =
-      "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
+    "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Description = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
     db.query(
       sql2,
       [
         document_title,
         dateAdded,
+        notemodal,
         to_be_signed,
         data.Location,
         status,
@@ -276,17 +277,18 @@ router.post("/updateAdmin/", upload, (req, res) => {
       }
     );
     const sql2 =
-      "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
+      "UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Description = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?";
     db.query(
       sql2,
       [
         document_title,
         dateAdded,
+        notemodal,
         to_be_signed,
         data.Location,
         status,
         req.cookies.authcookie2,
-        newId,
+        newId
       ],
       (err, result) => {
         const sql3 =
