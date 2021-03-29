@@ -207,7 +207,7 @@ exports.activateAccount = (req, res, next) => {
             }
           );
           db.query(
-            "INSERT INTO users (student_number, user_lastName,user_firstName,user_middleInitial,user_commencementDate,user_Position, user_Email,user_Password) VALUES (?,?,?,?,?,?,?,?)",
+            "INSERT INTO users (student_number, user_lastName,user_firstName,user_middleInitial,user_acadYear,user_Position, user_Email,user_Password) VALUES (?,?,?,?,?,?,?,?)",
             [
               studentno,
               lname,
