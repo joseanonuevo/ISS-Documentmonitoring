@@ -1,8 +1,3 @@
-@media only screen and (max-width: 600px) {
-    #icon-alertPage {
-        font-size: 150px;
-    }
-}
 
 
 html,
@@ -11,6 +6,17 @@ body {
     height: 100%;
     background-color: rgb(250, 250, 217);
 }
+
+#icon-alertPage{
+    font-size: 250px;
+}
+
+@media only screen and (max-width: 600px) {
+    #icon-alertPage {
+        font-size: 150px;
+    }
+}
+
 
 /* START of Header */
 
