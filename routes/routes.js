@@ -159,7 +159,7 @@ router.get("/registration/:id", (req, res) => {
 });
 
 router.get("/registeredUsers", verify, isAdmin, (req, res) => {
-  const sql = "SELECT * FROM users where user_status = 1";
+  const sql = "SELECT * FROM users where user_status = 1 and isAdmin = 0";
   db.query(sql, (err, results1) => {
     if (!err) {
       const sql2 =
