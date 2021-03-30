@@ -268,7 +268,7 @@ async function archiveRowById(id) {
 async function disableRowById(email) {
   try {
     const response = await new Promise((resolve, reject) => {
-      const query = "UPDATE users SET user_Status = 1 WHERE user_Email = ?";
+      const query = "UPDATE users SET user_Status = 0 WHERE user_Email = ?";
       db.query(query, [email], (err, results) => {
         if (err) reject(new Error(err.message));
         resolve(results);
@@ -284,7 +284,7 @@ async function disableRowById(email) {
 async function enableRowById(email) {
   try {
     const response = await new Promise((resolve, reject) => {
-      const query = "UPDATE users SET user_Status = 0 WHERE user_Email = ?";
+      const query = "UPDATE users SET user_Status = 1 WHERE user_Email = ?";
       db.query(query, [email], (err, results) => {
         if (err) reject(new Error(err.message));
         resolve(results);

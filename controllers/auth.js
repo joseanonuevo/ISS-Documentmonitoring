@@ -16,7 +16,7 @@ exports.login = async (req, res, next) => {
       async (error, results) => {
         if (results.length === 0) {
           db.query(
-            "SELECT * FROM users WHERE user_Email = ? AND user_Status = 0",
+            "SELECT * FROM users WHERE user_Email = ? AND user_Status = 1",
             [email],
             async (error, results) => {
               if (results.length === 0) {
@@ -54,7 +54,7 @@ exports.login = async (req, res, next) => {
           !(await bcrypt.compare(password, results[0].user_Password))
         ) {
           db.query(
-            "SELECT * FROM users WHERE user_Email = ? AND user_Status = 0",
+            "SELECT * FROM users WHERE user_Email = ? AND user_Status = 1",
             [email],
             async (error, results) => {
               if (results.length === 0) {
