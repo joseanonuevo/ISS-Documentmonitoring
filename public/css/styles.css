@@ -23,13 +23,12 @@ body {
     #icon-alertPage {
         font-size: 150px;
     }
-
-    .pos-reg{
-        width: 200px;
-        font-size: 14px;
-    }
 }
 
+    .pos-reg {
+        width: 200px;
+        font-size: 16px;
+    }
 
 /* START of Header */
 
