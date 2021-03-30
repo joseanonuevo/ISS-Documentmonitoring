@@ -23,6 +23,11 @@ body {
     #icon-alertPage {
         font-size: 150px;
     }
+
+    .pos-reg{
+        width: 180px;
+        font-size: 16px;
+    }
 }
 
 
@@ -194,6 +199,8 @@ body {
     top: 5px;
     right: 5px;
 }
+
+
 
 .search-btn {
     background-color: rgba(0, 0, 0, 0);
