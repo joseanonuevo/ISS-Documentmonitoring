@@ -76,7 +76,15 @@ app.delete("/deleteUpdate/:id", (request, response) => {
     const document_name = result1[0].updateDocu_Title; //title of document update
     if (c1 > c2) {
       //insert to activity log
-      query2 =
+      const result1 = deleteRowByIdUpdate(id);
+      result1
+        .then((data) =>
+          response.json({
+            success: true,
+          })
+        )
+        .catch((err) => console.log(err));
+        query2 =
         "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
       db.query(
         query2,
@@ -87,17 +95,9 @@ app.delete("/deleteUpdate/:id", (request, response) => {
           request.cookies.authcookie2,
         ],
         (err, results) => {
-          console.log("pass");
+          console.log(results);
         }
       );
-      const result1 = deleteRowByIdUpdate(id);
-      result1
-        .then((data) =>
-          response.json({
-            success: true,
-          })
-        )
-        .catch((err) => console.log(err));
     } else {
       query2 =
         "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
@@ -142,7 +142,7 @@ app.delete("/deleteUpdate/:id", (request, response) => {
               result[1].updateDocu_Signedby,
               result[1].updateDocu_Attachment,
               result[1].updateDocu_Status,
-              result[1].updateUser_ID,
+              result[1].user_ID,
               new_ID,
             ],
             (err, results) => {
@@ -236,6 +236,7 @@ async function deleteRowByIdUpdate(id) {
     const response = await new Promise((resolve, reject) => {
       const query = "DELETE FROM update_document WHERE updateDocu_ID = ?";
       db.query(query, [id], (err, results) => {
+        console.log(results)
         if (err) reject(new Error(err.message));
         resolve(results);
       });
