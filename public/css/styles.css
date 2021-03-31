@@ -1,9 +1,34 @@
+
+
 html,
 body {
     margin: 0;
     height: 100%;
     background-color: rgb(250, 250, 217);
 }
+
+.icon-alertPageError{
+    color: red;
+}
+
+.icon-alertPageSuccess{
+    color:rgb(23, 207, 23);
+}
+
+#icon-alertPage{
+    font-size: 250px;
+}
+
+@media only screen and (max-width: 600px) {
+    #icon-alertPage {
+        font-size: 150px;
+    }
+}
+
+    .pos-reg {
+        width: 250px;
+        font-size: 16px;
+    }
 
 /* START of Header */
 
@@ -173,6 +198,8 @@ body {
     top: 5px;
     right: 5px;
 }
+
+
 
 .search-btn {
     background-color: rgba(0, 0, 0, 0);
