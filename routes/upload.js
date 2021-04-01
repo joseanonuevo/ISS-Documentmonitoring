@@ -56,7 +56,7 @@ router.post("/upload", upload, (req, res) => {
       (err, result) => {
         const newId = result.insertId;
         const sql2 =
-          "INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, User_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+          "INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, user_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         db.query(
           sql2,
           [
@@ -79,6 +79,7 @@ router.post("/upload", upload, (req, res) => {
           sql3,
           ["has created", dateAdded, document_title, req.cookies.authcookie2],
           (err, result) => {
+            console.log(result)
             console.log(
               `${req.cookies.authcookie2} uploaded a document ${document_title}`
             );
@@ -205,7 +206,7 @@ router.post("/uploadAdmin", upload, (req, res) => {
       (err, result) => {
         const newId = result.insertId;
         const sql2 =
-          "INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, User_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+          "INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, user_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         db.query(
           sql2,
           [

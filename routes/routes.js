@@ -14,7 +14,7 @@ router.get("/home", verify, (req, res) => {
   db.query(sql, (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("home", {
           names: results1,
@@ -33,7 +33,7 @@ router.get("/adminHome", verify, isAdmin, (req, res) => {
   db.query(sql, (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("adminHome", {
           names: results1,
@@ -49,7 +49,7 @@ router.get("/archive", verify, (req, res) => {
   db.query(sql, (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("archive", {
           names: results1,
@@ -65,7 +65,7 @@ router.get("/adminArchive", verify, isAdmin, (req, res) => {
   db.query(sql, (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("adminArchive", {
           names: results1,
@@ -82,7 +82,7 @@ router.get("/update/:id", verify, (req, res) => {
   db.query(sql, [req.params.id], (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("docUpdates", {
           names: results1,
@@ -105,7 +105,7 @@ router.get("/adminUpdate/:id", verify, isAdmin, (req, res) => {
   db.query(sql, [req.params.id], (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("adminDocUpdates", {
           names: results1,
@@ -123,7 +123,7 @@ router.get("/archiveUpdate/:id", verify, (req, res) => {
   db.query(sql, [req.params.id], (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("archiveUpdate", {
           names: results1,
@@ -139,7 +139,7 @@ router.get("/adminArchiveUpdate/:id", verify, (req, res) => {
   db.query(sql, [req.params.id], (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("adminArchiveUpdate", {
           names: results1,
@@ -163,7 +163,7 @@ router.get("/registeredUsers", verify, isAdmin, (req, res) => {
   db.query(sql, (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("registeredUsers", {
           names: results1,
@@ -179,7 +179,7 @@ router.get("/disabledUsers", verify, isAdmin, (req, res) => {
   db.query(sql, (err, results1) => {
     if (!err) {
       const sql2 =
-        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_id ORDER BY date DESC LIMIT 20";
+        "SELECT * FROM activity_log INNER JOIN users ON users.user_ID = activity_log.user_ID ORDER BY act_id DESC LIMIT 20;";
       db.query(sql2, (err, results2) => {
         res.render("disabledUsers", {
           names: results1,
