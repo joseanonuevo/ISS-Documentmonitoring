@@ -148,7 +148,7 @@
       <table id="mydatatable">
        <thead>
           <tr>
-            <th style="width: 4%">ID</th>
+            <th style="width: 8%">ID</th>
             <th style="width: 20%">Title</th>
             <th style="width: 13%">Event Type</th>
             <th style="width: 20%">Date Updated</th>
@@ -166,8 +166,8 @@
                 <td><a href="/adminArchiveUpdate/{{createDocu_ID}}" style="color: black;">{{createDocu_Title}}</a></td>
                 <td>{{createDocu_Event}}</td>
                 <td>{{createDocu_Date}}</td>
-                <td>{{createDocu_Notes}}</td>
-                <td>{{createDocu_tobeSignedby}}</td>
+                <td style="word-wrap: break-word">{{createDocu_Description}}</td>
+                <td style="word-wrap: break-word">{{createDocu_tobeSignedby}}</td>
                 <td style="width: 12%;">{{createDocu_Status}}</td>
                 <td style="text-align: center;"><a href="{{{createDocu_Attachment}}}"><button class="download-btn" id="download-btn" title="Download Document"></button></a></td>
             </tr>
