@@ -90,7 +90,7 @@ router.post("/upload", upload, (req, res) => {
   });
 });
 
-router.post("/update/", upload, (req, res) => {
+router.post("/update/", upload, (req, res, next) => {
   //url
   var create_docuID = req.headers.referer;
   var newId = create_docuID.split("/").pop();
@@ -101,14 +101,18 @@ router.post("/update/", upload, (req, res) => {
   const dateAdded = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Taipei",
   });
+    const sqlCheck = "SELECT * FROM update_document WHERE createDocu_ID = ?"
+    db.query(sqlCheck,[newId],(err,results)=>{
+      if(results.length == 0){
+        res.status(404).send("INVALID REQUEST");
+      }
+    })
   const { document_title, notemodal, to_be_signed, status } = req.body;
-
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: `${uuidv4()}.${fileType}`,
     Body: req.file.buffer,
   };
-
   s3.upload(params, (error, data) => {
     if (error) {
       res.status(500).send(error);
@@ -246,6 +250,12 @@ router.post("/updateAdmin/", upload, (req, res) => {
   const dateAdded = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Taipei",
   });
+  const sqlCheck = "SELECT * FROM update_document WHERE createDocu_ID = ?"
+  db.query(sqlCheck,[newId],(err,results)=>{
+    if(results.length == 0){
+      res.status(404).send("NO PARENT DOCUMENT FOUND - CODY");
+    }
+  })
   const { document_title, notemodal, to_be_signed, status } = req.body;
 
   const params = {

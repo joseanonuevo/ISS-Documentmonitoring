@@ -4,10 +4,12 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const app = express();
+const cors = require("cors")
 app.use(cookieParser());
 
 const publicDirectory = path.join(__dirname, "./public");
 app.use(express.static(publicDirectory));
+app.use(cors())
 
 //import routes
 const emailService = require("./routes/emailService");
@@ -146,6 +148,7 @@ app.delete("/deleteUpdate/:id", (request, response) => {
               new_ID,
             ],
             (err, results) => {
+            console.log(results)
               if (!err) {
                 const result = deleteRowByIdUpdate(id);
                 result.then((data) =>
