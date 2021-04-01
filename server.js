@@ -148,7 +148,7 @@ app.delete("/deleteUpdate/:id", (request, response) => {
               new_ID,
             ],
             (err, results) => {
-            console.log(results)
+              console.log(results)
               if (!err) {
                 const result = deleteRowByIdUpdate(id);
                 result.then((data) =>
