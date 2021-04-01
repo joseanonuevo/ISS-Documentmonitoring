@@ -490,6 +490,10 @@ tr:nth-child(odd) {
     background-color: white;
 }
 
+#mydatatable{
+    table-layout: fixed;
+}
+
 #note-modal:focus{
     outline: none;
     padding-left: 10px;
