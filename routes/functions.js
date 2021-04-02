@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const router = express();
 
-const { changePw, editAccount } = require("../controllers/functions");
+const { changePw, editAccount } = require('../controllers/functions');
 
-router.post("/changePw", changePw);
+router.post('/changePw', changePw);
 
-router.post("/editAccount", editAccount)
+router.post('/editAccount', editAccount);
 
 module.exports = router;
