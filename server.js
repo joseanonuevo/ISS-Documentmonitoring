@@ -44,7 +44,7 @@ app.delete("/delete/:id", (request, response) => {
   db.query(query, [id], (err, results) => {
     const document_name = results[0].createDocu_Title;
     query2 =
-      "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
+      "INSERT INTO activity_log (activity,date,document_name,user_ID) VALUES(?,?,?,?)";
     db.query(
       query2,
       ["has deleted", dateAdded, document_name, request.cookies.authcookie2],
@@ -87,7 +87,7 @@ app.delete("/deleteUpdate/:id", (request, response) => {
         )
         .catch((err) => console.log(err));
         query2 =
-        "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
+        "INSERT INTO activity_log (activity,date,document_name,user_ID) VALUES(?,?,?,?)";
       db.query(
         query2,
         [
@@ -102,7 +102,7 @@ app.delete("/deleteUpdate/:id", (request, response) => {
       );
     } else {
       query2 =
-        "INSERT INTO activity_log (activity,date,document_name,user_id) VALUES(?,?,?,?)";
+        "INSERT INTO activity_log (activity,date,document_name,user_ID) VALUES(?,?,?,?)";
       db.query(
         query2,
         [
