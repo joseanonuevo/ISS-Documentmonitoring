@@ -112,6 +112,7 @@ app.delete('/deleteUpdate/:id', (request, response) => {
 						)
 						.catch((err) => console.log(err));
 				} else {
+					//update create docu head
 					sql2 =
 						'UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Description = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?, createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?';
 					db.query(
@@ -146,7 +147,6 @@ app.delete('/deleteUpdate/:id', (request, response) => {
 		}
 	});
 });
-
 app.patch('/archive/:id', (request, response) => {
 	const dateAdded = new Date().toLocaleString('en-US', {
 		timeZone: 'Asia/Taipei'
@@ -242,6 +242,7 @@ async function archiveRowById(id) {
 		return false;
 	}
 }
+
 async function disableRowById(email) {
 	try {
 		const response = await new Promise((resolve, reject) => {
