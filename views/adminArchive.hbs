@@ -424,6 +424,12 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
 <script>
+  function logout() {
+    window.location.assign("/logout");
+  }
+</script>
+
+<script>
     $(document).ready(function(){
 var table = $('#mydatatable').DataTable();
    //DataTable custom search field
