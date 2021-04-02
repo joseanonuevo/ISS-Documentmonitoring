@@ -137,6 +137,7 @@ app.delete('/deleteUpdate/:id', (request, response) => {
 								);
 							} else {
 								console.log(err);
+								//console.log(err);
 							}
 						}
 					);
