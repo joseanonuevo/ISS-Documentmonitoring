@@ -111,7 +111,6 @@ router.post('/update/', upload, (req, res, next) => {
 		if (error) {
 			res.status(500).send(error);
 		}
-
 		const sql =
 			'INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, user_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 		db.query(
@@ -237,6 +236,7 @@ router.post('/updateAdmin/', upload, (req, res) => {
 			[document_title, dateAdded, notemodal, to_be_signed, data.Location, status, req.cookies.authcookie2, newId],
 			(err, result) => {}
 		);
+		//update
 		const sql2 =
 			'UPDATE create_document SET createDocu_Title = ?, createDocu_Date = ?, createDocu_Description = ?, createDocu_tobeSignedby = ?, createDocu_Attachment = ?,createDocu_Status = ?, user_ID = ? WHERE createDocu_ID = ?';
 		db.query(
