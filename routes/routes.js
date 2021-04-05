@@ -11,6 +11,8 @@ router.get('/', (req, res) => {
 	if (fullUrl == 'http://iss-emonitor.org/' || 'http://localhost:3000/') {
 		res.redirect('https://iss-emonitor.org/');
 		res.render('login');
+	} else {
+		res.redirect('https://iss-emonitor.org/');
 	}
 });
 
