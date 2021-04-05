@@ -8,12 +8,21 @@ const db = require('../db/connectDB');
 router.get('/', (req, res) => {
 	var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 	console.log(fullUrl);
+	res.render('login');
 	if (fullUrl == 'http://iss-emonitor.org/' || 'http://localhost:3000/') {
 		res.redirect('https://iss-emonitor.org/');
-		res.render('login');
 	} else {
 		res.redirect('https://iss-emonitor.org/');
 	}
+	/*
+	if (fullUrl == 'http://iss-emonitor.org/' || 'http://localhost:3000/') {
+		res.render('login');
+		res.redirect('https://iss-emonitor.org/');
+	} else {
+		res.render('login');
+		res.redirect('https://iss-emonitor.org/');
+	}
+	*/
 });
 
 router.get('/home', verify, (req, res) => {
