@@ -1,11 +1,17 @@
 const { compareSync } = require('bcrypt');
+const e = require('express');
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const db = require('../db/connectDB');
 
 router.get('/', (req, res) => {
-	res.render('login');
+	var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+	console.log(fullUrl);
+	if (fullUrl == 'http://iss-emonitor.org/' || 'http://localhost:3000/') {
+		res.redirect('https://iss-emonitor.org/');
+		res.render('login');
+	}
 });
 
 router.get('/home', verify, (req, res) => {
