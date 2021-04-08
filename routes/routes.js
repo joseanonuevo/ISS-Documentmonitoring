@@ -4,7 +4,11 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const db = require('../db/connectDB');
 
-router.get('/', (req, res) => {
+router.all('/', (req, res) => {
+	res.redirect('login');
+});
+
+router.use('/login', (req, res) => {
 	res.render('login');
 });
 
