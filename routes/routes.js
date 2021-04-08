@@ -4,14 +4,10 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const db = require('../db/connectDB');
 
-router.all('/', (req, res) => {
-	res.redirect('login');
-});
-
-router.use('/login', (req, res) => {
+router.get('/', (req, res) => {
 	res.render('login');
 });
-/*
+
 router.get('/home', verify, (req, res) => {
 	const sql = 'SELECT * from create_document WHERE isArchive = 0 ORDER BY createDocu_ID DESC';
 	db.query(sql, (err, results1) => {
@@ -21,7 +17,7 @@ router.get('/home', verify, (req, res) => {
 			db.query(sql2, (err, results2) => {
 				res.render('home', {
 					names: results1,
-					activities: results2
+					activities: results2d
 				});
 			});
 		} else {
@@ -29,10 +25,7 @@ router.get('/home', verify, (req, res) => {
 		}
 	});
 });
-*/
-router.get('/test', (req, res) => {
-	res.redirect('https://www.youtube.com/');
-});
+
 router.get('/adminHome', verify, isAdmin, (req, res) => {
 	const sql = 'SELECT * from create_document WHERE isArchive = 0 ORDER BY createDocu_ID DESC';
 	db.query(sql, (err, results1) => {
