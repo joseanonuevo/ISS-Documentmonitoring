@@ -276,7 +276,7 @@ async function enableRowById(email) {
 }
 
 app.set('trust proxy', 'loopback, 123.123.123.123'); // specify a subnet and an address
-const SERVER = 3000;
+const SERVER = 3000 || process.env.PORT;
 app.listen(SERVER, () => {
 	console.log('Server @ ' + SERVER);
 });
