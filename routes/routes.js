@@ -1,5 +1,4 @@
 const { compareSync } = require('bcrypt');
-const e = require('express');
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
