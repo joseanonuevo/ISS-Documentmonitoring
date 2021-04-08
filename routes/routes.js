@@ -26,7 +26,9 @@ router.get('/home', verify, (req, res) => {
 		}
 	});
 });
-
+router.get('/test', (req, res) => {
+	res.redirect('https://www.youtube.com/');
+});
 router.get('/adminHome', verify, isAdmin, (req, res) => {
 	const sql = 'SELECT * from create_document WHERE isArchive = 0 ORDER BY createDocu_ID DESC';
 	db.query(sql, (err, results1) => {
