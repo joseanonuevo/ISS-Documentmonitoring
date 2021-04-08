@@ -11,7 +11,7 @@ router.all('/', (req, res) => {
 router.use('/login', (req, res) => {
 	res.render('login');
 });
-
+/*
 router.get('/home', verify, (req, res) => {
 	const sql = 'SELECT * from create_document WHERE isArchive = 0 ORDER BY createDocu_ID DESC';
 	db.query(sql, (err, results1) => {
@@ -29,6 +29,7 @@ router.get('/home', verify, (req, res) => {
 		}
 	});
 });
+*/
 router.get('/test', (req, res) => {
 	res.redirect('https://www.youtube.com/');
 });
