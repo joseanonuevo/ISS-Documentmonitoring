@@ -6,16 +6,15 @@ const jwt = require('jsonwebtoken');
 const db = require('../db/connectDB');
 
 router.get('/', (req, res) => {
+	/*
 	var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 	console.log(fullUrl);
 	if (fullUrl == 'http://iss-emonitor.org/' || 'http://localhost:3000/') {
-		return res.status(200).redirect('https://iss-emonitor.org/login');
+		return res.status(200).redirect('https://iss-emonitor.org/login');	
 	} else {
 		return res.status(200).redirect('https://iss-emonitor.org/login');
 	}
-});
-
-router.get('/login', (req, res) => {
+	*/
 	res.render('login');
 });
 
