@@ -17,7 +17,7 @@ router.get('/home', verify, (req, res) => {
 			db.query(sql2, (err, results2) => {
 				res.render('home', {
 					names: results1,
-					activities: results2d
+					activities: results2
 				});
 			});
 		} else {
