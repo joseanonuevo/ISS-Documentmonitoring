@@ -154,19 +154,19 @@
             })
             return false;
             } else {
-            return true            
+            if (password != confirmpw) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "Passwords doesn't match!",
+                })
+                return false;
+            } else {
+                return true
+            }          
         }
 
-        if (password != confirmpw) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Passwords doesn't match!",
-            })
-            return false;
-        } else {
-            return true
-        }
+
 
         return false
     }
