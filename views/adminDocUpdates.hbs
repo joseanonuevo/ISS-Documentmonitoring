@@ -241,6 +241,8 @@
                 onSubmit="document.getElementById('submit').disabled=true;">
                 <label for="" id="createdoc-label">Document Title</label>
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
+                <label for="" id="createdoc-label">Project Head</label>
+                <input type="text" class="modal-input" id="createdoc-modal" name="document_head" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">Upload File</label>
                 <input type="file" name="key"
@@ -271,7 +273,9 @@
                       <input type="radio" id="in-progress" name="status" value="In Progress">
                       <label for="in-progress">In Progress</label><br>
                       <input type="radio" id="on-hold" name="status" value="On Hold">
-                      <label for="on-hold">On Hold</label>
+                      <label for="on-hold">On Hold</label><br />
+                      <input type="radio" id="cancelled" name="status" value="Cancelled">
+                      <label for="cancelled">Cancelled</label>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -362,7 +366,7 @@
 <!-- Scripts -->
 
 <script>
-  PORT = "http://localhost:3000"
+  PORT = "https://iss-emonitor.org"
   document.querySelector("tbody").addEventListener("click", function (event) {
     if (event.target.className === "delete-row-btn") {
       deleteRowById(event.target.dataset.id);

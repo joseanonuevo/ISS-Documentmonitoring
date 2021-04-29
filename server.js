@@ -33,10 +33,20 @@ app.use('/functions', functions);
 
 //FUNCTIONS
 const db = require('./db/connectDB');
-const e = require('express');
 
 app.delete('/delete/:id', (request, response) => {
+	const dateAdded = new Date().toLocaleString('en-US', {
+		timeZone: 'Asia/Taipei'
+	});
 	const { id } = request.params;
+	query = 'SELECT createDocu_Title FROM create_document WHERE createDocu_ID = ?';
+	db.query(query, [id], (err, results) => {
+		const document_name = results[0].createDocu_Title;
+		query2 = 'INSERT INTO activity_log (activity,date,document_name,user_ID) VALUES(?,?,?,?)';
+		db.query(query2, ['has deleted', dateAdded, document_name, request.cookies.authcookie2], (err, results) => {
+			console.log('pass');
+		});
+	});
 	const result = deleteRowById(id);
 	result
 		.then((data) =>
@@ -138,36 +148,26 @@ app.delete('/deleteUpdate/:id', (request, response) => {
 	});
 });
 app.patch('/archive/:id', (request, response) => {
+	const dateAdded = new Date().toLocaleString('en-US', {
+		timeZone: 'Asia/Taipei'
+	});
 	const { id } = request.params;
-
+	query = 'SELECT createDocu_Title FROM create_document WHERE createDocu_ID = ?';
+	db.query(query, [id], (err, results) => {
+		const document_name = results[0].createDocu_Title;
+		query2 = 'INSERT INTO activity_log (activity, date, document_name, user_ID) VALUES(?, ?, ?, ?)';
+		db.query(query2, ['has archived', dateAdded, document_name, request.cookies.authcookie2], (err, results) => {
+			console.log('pass');
+		});
+	});
 	const result = archiveRowById(id);
-
 	result
-		.then((message) => {
-			const dateAdded = new Date().toLocaleString('en-US', {
-				timeZone: 'Asia/Taipei'
-			});
-			const query1 = 'SELECT createDocu_Title FROM create_document WHERE createDocu_ID = ?';
-			db.query(query1, [id], (err, results) => {
-				const document_name = results[0].createDocu_Title;
-				const query2 = 'INSERT INTO activity_log (activity, date, document_name, user_ID) VALUES(?, ?, ?, ?)';
-				db.query(
-					query2,
-					['has archived', dateAdded, document_name, request.cookies.authcookie2],
-					(err, results) => {
-						console.log('pass');
-					}
-				);
-			});
+		.then((data) =>
 			response.json({
 				success: true
-			});
-		})
-		.catch((message) => {
-			response.json({
-				failed: true
-			});
-		});
+			})
+		)
+		.catch((err) => console.log(err));
 });
 
 app.patch('/disable/:email', (request, response) => {
@@ -227,22 +227,20 @@ async function deleteRowByIdUpdate(id) {
 
 async function archiveRowById(id) {
 	const dateArchived = new Date();
-
-	const sql = 'SELECT createDocu_Status FROM create_document WHERE createDocu_ID = ?';
-	const response = await new Promise((resolve, reject) => {
-		db.query(sql, [id], async (err, results) => {
-			const status = results[0].createDocu_Status;
-			if (status == 'Complete' || status == 'Canceled') {
-				id = parseInt(id, 10);
-				const query = 'UPDATE create_document SET isArchive = 1 WHERE createDocu_ID = ?';
-				db.query(query, [id], (err, results) => {
-					resolve('Success');
-				});
-			} else {
-				reject('Failed');
-			}
+	try {
+		id = parseInt(id, 10);
+		const response = await new Promise((resolve, reject) => {
+			const query = 'UPDATE create_document SET isArchive = 1 WHERE createDocu_ID = ?';
+			db.query(query, [id], (err, results) => {
+				if (err) reject(new Error(err.message));
+				resolve(results);
+			});
 		});
-	});
+		return response === 1 ? true : false;
+	} catch (error) {
+		console.log(error);
+		return false;
+	}
 }
 
 async function disableRowById(email) {
@@ -276,28 +274,6 @@ async function enableRowById(email) {
 		return false;
 	}
 }
-
-app.get('/notify', (req, res) => {
-	//console.log(req.cookies.authcookie2);
-	const sql = 'SELECT user_ID  FROM users where viewed = 0';
-	db.query(sql, (err, results) => {
-		res.json({
-			message: results
-		});
-	});
-});
-
-app.get('/updatenotif', (req, res) => {
-	const sql = 'UPDATE users SET viewed = 1 WHERE user_ID = ?';
-
-	db.query(sql, [req.cookies.authcookie2], (err, results) => {
-		if (err) {
-			console.log(err);
-		} else {
-			console.log(results);
-		}
-	});
-});
 
 app.set('trust proxy', 'loopback, 123.123.123.123'); // specify a subnet and an address
 const SERVER = 3000 || process.env.PORT;

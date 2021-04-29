@@ -1,4 +1,4 @@
-const PORT = 'http://localhost:3000';
+const PORT = 'https://iss-emonitor.org';
 //localhost:3000/archive
 document.querySelector('tbody').addEventListener('click', function (event) {
 	if (event.target.className === 'archive-row-btn') {
@@ -37,18 +37,6 @@ function archiveRowById(id) {
 						Swal.fire({
 							icon: 'success',
 							title: 'File Archived!',
-							confirmButtonText: `Done`,
-							confirmButtonColor: '#FFA627'
-						}).then((result) => {
-							/* Read more about isConfirmed, isDenied below */
-							if (result.isConfirmed) {
-								location.reload();
-							}
-						});
-					} else if (data.failed) {
-						Swal.fire({
-							icon: 'Failed',
-							title: 'Status is not Complete',
 							confirmButtonText: `Done`,
 							confirmButtonColor: '#FFA627'
 						}).then((result) => {
@@ -131,10 +119,3 @@ function deleteRowByIdAdmin(id) {
 		}
 	});
 }
-
-function notify() {
-	fetch(PORT + '/notify')
-		.then((response) => response.json())
-		.then((data) => console.log(data));
-}
-notify();
