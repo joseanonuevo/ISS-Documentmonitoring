@@ -146,9 +146,10 @@
           <tr>
             <th style="width: 8%">ID</th>
             <th style="width: 20%">Title</th>
-            <th style="width: 13%">Event Type</th>
-            <th style="width: 15%">Date Updated</th>
-            <th style="width: 23%;">Description</th>
+            <th style="width: 15%">Event Type</th>
+            <th style="width: 17%">Project Head</th>
+            <th style="width: 18%">Date Updated</th>
+            <th style="width: 20%;">Description</th>
             <th style="width: 18%">To be Signed By</th>
             <th style="width: 15%;">Status</th>
             <th style="width:25px"></th>
@@ -165,6 +166,7 @@
               <a href="/update/{{createDocu_ID}}" style="color: black;">{{createDocu_Title}}</a>
             </td>
             <td>{{createDocu_Event}}</td>
+            <td style="word-wrap: break-word">{{createDocu_ProjectHead }}</td>
             <td>{{createDocu_Date}}</td>
             <td style="word-wrap: break-word">{{createDocu_Description}}</td>
             <td style="word-wrap: break-word">{{createDocu_tobeSignedby}}</td>
@@ -414,7 +416,7 @@
     "aaSorting": [],
     columnDefs: [{
       orderable: false,
-      targets: [0,4,5,7,8,9],
+      targets: [0,4,5,6,8,9,10],
     }]
   });
 </script>
