@@ -1,4 +1,4 @@
-const PORT = 'http://localhost:3000';
+const PORT = 'https://iss-emonitor.org';
 document.querySelector('tbody').addEventListener('click', function (event) {
 	if (event.target.className === 'disable-row-btn') {
 		disableRowById(event.target.dataset.id);
