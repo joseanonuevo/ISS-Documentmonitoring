@@ -36,7 +36,18 @@ const db = require('./db/connectDB');
 const e = require('express');
 
 app.delete('/delete/:id', (request, response) => {
+	const dateAdded = new Date().toLocaleString('en-US', {
+		timeZone: 'Asia/Taipei'
+	});
 	const { id } = request.params;
+	query = 'SELECT createDocu_Title FROM create_document WHERE createDocu_ID = ?';
+	db.query(query, [id], (err, results) => {
+		const document_name = results[0].createDocu_Title;
+		query2 = 'INSERT INTO activity_log (activity,date,document_name,user_ID) VALUES(?,?,?,?)';
+		db.query(query2, ['has deleted', dateAdded, document_name, request.cookies.authcookie2], (err, results) => {
+			console.log('pass');
+		});
+	});
 	const result = deleteRowById(id);
 	result
 		.then((data) =>
@@ -232,7 +243,7 @@ async function archiveRowById(id) {
 	const response = await new Promise((resolve, reject) => {
 		db.query(sql, [id], async (err, results) => {
 			const status = results[0].createDocu_Status;
-			if (status == 'Complete' || status == 'Canceled') {
+			if (status == 'Complete' || status == 'Cancelled') {
 				id = parseInt(id, 10);
 				const query = 'UPDATE create_document SET isArchive = 1 WHERE createDocu_ID = ?';
 				db.query(query, [id], (err, results) => {

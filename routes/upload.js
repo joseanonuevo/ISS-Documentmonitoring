@@ -40,13 +40,14 @@ router.post('/upload', upload, (req, res) => {
 		}
 		console.log(data.Location);
 		const sql =
-			'INSERT INTO create_document (createDocu_Title, createDocu_Event, createDocu_Date, createDocu_Description, createDocu_tobeSignedby, createDocu_Attachment, createDocu_Status, user_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
+			'INSERT INTO create_document (createDocu_Title, createDocu_Event, createDocu_Date,  createDocu_ProjectHead, createDocu_Description, createDocu_tobeSignedby, createDocu_Attachment, createDocu_Status, user_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
 		db.query(
 			sql,
 			[
 				document_title,
 				eventType,
 				dateAdded,
+				document_head,
 				notemodal,
 				to_be_signed,
 				data.Location,
@@ -142,7 +143,8 @@ router.post('/uploadAdmin', upload, (req, res) => {
 		timeZone: 'Asia/Taipei'
 	});
 	const user = req.cookies.authcookie2;
-	const { document_title, eventType, notemodal, to_be_signed, status } = req.body;
+	const { document_title, eventType, document_head, notemodal, to_be_signed, status } = req.body;
+	console.log(document_head);
 	console.log(req.body);
 	const params = {
 		Bucket: process.env.AWS_BUCKET_NAME,
@@ -156,13 +158,14 @@ router.post('/uploadAdmin', upload, (req, res) => {
 		}
 		console.log(data.Location);
 		const sql =
-			'INSERT INTO create_document (createDocu_Title, createDocu_Event, createDocu_Date, createDocu_Description, createDocu_tobeSignedby, createDocu_Attachment, createDocu_Status, user_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
+			'INSERT INTO create_document (createDocu_Title, createDocu_Event, createDocu_Date, createDocu_ProjectHead, createDocu_Description, createDocu_tobeSignedby, createDocu_Attachment, createDocu_Status, user_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
 		db.query(
 			sql,
 			[
 				document_title,
 				eventType,
 				dateAdded,
+				document_head,
 				notemodal,
 				to_be_signed,
 				data.Location,
