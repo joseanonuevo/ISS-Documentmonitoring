@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../db/connectDB');
 
 router.get('/', (req, res) => {
-	res.redirect('/login');
+	res.redirect('https://iss-emonitor.org/login');
 });
 
 router.get('/login', (req, res) => {
