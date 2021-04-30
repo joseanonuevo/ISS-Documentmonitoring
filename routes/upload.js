@@ -102,7 +102,7 @@ router.post('/update/', upload, (req, res, next) => {
 			res.status(404).send('INVALID REQUEST');
 		}
 	});
-	const { document_title, notemodal, to_be_signed, status } = req.body;
+	const { document_title, notemodal, to_be_signed, signed_by, status } = req.body;
 	const params = {
 		Bucket: process.env.AWS_BUCKET_NAME,
 		Key: `${uuidv4()}.${fileType}`,
@@ -113,10 +113,20 @@ router.post('/update/', upload, (req, res, next) => {
 			res.status(500).send(error);
 		}
 		const sql =
-			'INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, user_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+			'INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Signedby2, updateDocu_Attachment,updateDocu_Status, user_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		db.query(
 			sql,
-			[document_title, dateAdded, notemodal, to_be_signed, data.Location, status, req.cookies.authcookie2, newId],
+			[
+				document_title,
+				dateAdded,
+				notemodal,
+				to_be_signed,
+				signed_by,
+				data.Location,
+				status,
+				req.cookies.authcookie2,
+				newId
+			],
 			(err, result) => {}
 		);
 		const sql2 =
@@ -216,10 +226,10 @@ router.post('/updateAdmin/', upload, (req, res) => {
 	const sqlCheck = 'SELECT * FROM update_document WHERE createDocu_ID = ?';
 	db.query(sqlCheck, [newId], (err, results) => {
 		if (results.length == 0) {
-			res.status(404).send('NO PARENT DOCUMENT FOUND - CODY');
+			res.status(404).send('NO PARENT DOCUMENT FOUND PLEASE CREATE A DOCUMENT FIRST');
 		}
 	});
-	const { document_title, notemodal, to_be_signed, status } = req.body;
+	const { document_title, notemodal, to_be_signed, signed_by, status } = req.body;
 
 	const params = {
 		Bucket: process.env.AWS_BUCKET_NAME,
@@ -233,10 +243,20 @@ router.post('/updateAdmin/', upload, (req, res) => {
 		}
 
 		const sql =
-			'INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Attachment,updateDocu_Status, user_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+			'INSERT INTO update_document (updateDocu_Title, updateDocu_Date, updateDocu_Description, updateDocu_Signedby, updateDocu_Signedby2, updateDocu_Attachment,updateDocu_Status, user_ID, createDocu_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		db.query(
 			sql,
-			[document_title, dateAdded, notemodal, to_be_signed, data.Location, status, req.cookies.authcookie2, newId],
+			[
+				document_title,
+				dateAdded,
+				notemodal,
+				to_be_signed,
+				signed_by,
+				data.Location,
+				status,
+				req.cookies.authcookie2,
+				newId
+			],
 			(err, result) => {}
 		);
 		//update
