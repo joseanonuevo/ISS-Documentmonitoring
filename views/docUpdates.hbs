@@ -149,6 +149,7 @@
             <th style="width: 17%">Date Updated</th>
             <th style="width: 23%;">Description</th>
             <th style="width: 18%">To be Signed By</th>
+            <th style="width: 18%">Signed By</th>
             <th style="width: 15%;">Status</th>
             <th style="width:25px"></th>
             <th style="width:25px"></th>
@@ -163,6 +164,7 @@
             <td>{{updateDocu_Date}}</td>
             <td style="word-wrap: break-word">{{updateDocu_Description}}</td>
             <td style="word-wrap: break-word">{{updateDocu_Signedby}}</td>
+            <td style="word-wrap: break-word">{{updateDocu_Signedby2}}</td>
             <td style="width: 12%;">{{updateDocu_Status}}</td>
             <td style="text-align: center;"><a href="{{{updateDocu_Attachment}}}"><button title="Download File"
                   class="download-btn" id="download-btn"></button></a></td>
@@ -235,8 +237,6 @@
                 onSubmit="document.getElementById('submit').disabled=true;">
                 <label for="" id="createdoc-label">Document Title</label>
                 <input type="text" class="modal-input" id="createdoc-modal" name="document_title" required><br>
-                <label for="" id="createdoc-label">Project Head</label>
-                <input type="text" class="modal-input" id="createdoc-modal" name="document_head" required><br>
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">Upload File</label>
                 <input type="file" name="key"
@@ -245,6 +245,9 @@
                 <!--DI AKO SURE DITO PERO BUBUKSAN NIYA DIRECTORY -->
                 <label for="" id="createdoc-label">To be Signed by</label>
                 <input type="text" class="modal-input" id="sign-modal" name="to_be_signed" required><br>
+
+                <label for="" id="createdoc-label">Signed by</label>
+                <input type="text" class="modal-input" id="sign-modal" name="signed_by" required><br>
 
                 <div class="row">
                   <div class="col-3">
@@ -455,7 +458,7 @@
         "aaSorting": [],
         columnDefs: [{
           orderable: false,
-          targets: [0,3,4,6,7],
+          targets: [0,3,4, 5,7,8],
         }]
       });
 
